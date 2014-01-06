@@ -1,4 +1,4 @@
-package fr.ensicaen.model;
+package fr.ensicaen.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
