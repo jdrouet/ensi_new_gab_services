@@ -8,5 +8,11 @@
     <artifactId>ensi_new_gab_services</artifactId>
     <version>0.0.1</version>
 
+    <developers>
+        <developer>
+            <name>Jérémie Drouet</name>
+            <email>jeremie.drouet@gmail.com</email>
+        </developer>
+    </developers>
     
 </project>
