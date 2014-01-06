@@ -1,6 +1,6 @@
-package com.mkyong.stock.bo;
+package exemple.stock.bo;
 
-import com.mkyong.stock.model.Stock;
+import exemple.stock.model.Stock;
 
 public interface StockBo {
 	

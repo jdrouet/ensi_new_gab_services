@@ -1,17 +1,16 @@
-package com.mkyong.stock.bo.impl;
+package exemple.stock.bo.impl;
 
+import exemple.stock.bo.StockBo;
+import exemple.stock.dao.StockDao;
+import exemple.stock.model.Stock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mkyong.stock.bo.StockBo;
-import com.mkyong.stock.dao.StockDao;
-import com.mkyong.stock.model.Stock;
-
 @Service("stockBo")
-public class StockBoImpl implements StockBo{
+public class StockBoImpl implements StockBo {
 	
 	@Autowired
-	StockDao stockDao;
+    StockDao stockDao;
 	
 	public void setStockDao(StockDao stockDao) {
 		this.stockDao = stockDao;

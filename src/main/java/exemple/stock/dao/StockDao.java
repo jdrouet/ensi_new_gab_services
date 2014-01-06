@@ -1,6 +1,6 @@
-package com.mkyong.stock.dao;
+package exemple.stock.dao;
 
-import com.mkyong.stock.model.Stock;
+import exemple.stock.model.Stock;
 
 public interface StockDao {
 	
