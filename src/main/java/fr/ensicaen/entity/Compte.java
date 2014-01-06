@@ -1,6 +1,7 @@
 package fr.ensicaen.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
@@ -10,6 +11,7 @@ import java.io.Serializable;
  * Date: 06/01/14
  */
 @Table(name = "compte")
+@Entity
 public class Compte implements Serializable {
     private static final long serialVersionUID = 6095491421553685983L;
 
