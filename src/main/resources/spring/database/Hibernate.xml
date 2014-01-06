@@ -17,7 +17,7 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
     	
 		<property name="annotatedClasses">
 			<list>
-				<value>com.mkyong.stock.model.Stock</value>
+				<value>fr.ensicaen.model</value>
 			</list>
 		</property>
     </bean>
