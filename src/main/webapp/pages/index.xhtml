@@ -1,0 +1,113 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Keyboard</title>
+</h:head>
+<h:body>
+    <h:form>
+        <p:panelGrid id="keyboard" style="margin: 0 auto; text-align: center;">
+            <f:facet name="header">
+                <p:row>
+                    <p:column colspan="3">
+                        <h:outputText value="#{lang['index.insert_pin_code']}"/>
+                    </p:column>
+                </p:row>
+            </f:facet>
+            <p:row rendered="#{authentificationBean.error != null}">
+                <p:column colspan="3">
+
+                </p:column>
+            </p:row>
+            <p:row>
+                <p:column colspan="3">
+                    <p:inputText style="text-align: center;"
+                                 readonly="true" id="cliqued_stars"
+                                 value="#{authentificationBean.stars}"/>
+                </p:column>
+            </p:row>
+            <p:row>
+                <p:column>
+                    <p:commandButton update="@form"
+                                     disabled="#{authentificationBean.keyboardDisabled}"
+                                     actionListener="#{authentificationBean.clickKeyboard(0)}"
+                                     value="#{authentificationBean.getButtonLabel(0)}"/>
+                </p:column>
+                <p:column>
+                    <p:commandButton update="@form"
+                                     disabled="#{authentificationBean.keyboardDisabled}"
+                                     actionListener="#{authentificationBean.clickKeyboard(1)}"
+                                     value="#{authentificationBean.getButtonLabel(1)}"/>
+                </p:column>
+                <p:column>
+                    <p:commandButton update="@form"
+                                     disabled="#{authentificationBean.keyboardDisabled}"
+                                     actionListener="#{authentificationBean.clickKeyboard(2)}"
+                                     value="#{authentificationBean.getButtonLabel(2)}"/>
+                </p:column>
+            </p:row>
+            <p:row>
+                <p:column>
+                    <p:commandButton update="@form"
+                                     disabled="#{authentificationBean.keyboardDisabled}"
+                                     actionListener="#{authentificationBean.clickKeyboard(3)}"
+                                     value="#{authentificationBean.getButtonLabel(3)}"/>
+                </p:column>
+                <p:column>
+                    <p:commandButton update="@form"
+                                     disabled="#{authentificationBean.keyboardDisabled}"
+                                     actionListener="#{authentificationBean.clickKeyboard(4)}"
+                                     value="#{authentificationBean.getButtonLabel(4)}"/>
+                </p:column>
+                <p:column>
+                    <p:commandButton update="@form"
+                                     disabled="#{authentificationBean.keyboardDisabled}"
+                                     actionListener="#{authentificationBean.clickKeyboard(5)}"
+                                     value="#{authentificationBean.getButtonLabel(5)}"/>
+                </p:column>
+            </p:row>
+            <p:row>
+                <p:column>
+                    <p:commandButton update="@form"
+                                     disabled="#{authentificationBean.keyboardDisabled}"
+                                     actionListener="#{authentificationBean.clickKeyboard(6)}"
+                                     value="#{authentificationBean.getButtonLabel(6)}"/>
+                </p:column>
+                <p:column>
+                    <p:commandButton update="@form"
+                                     disabled="#{authentificationBean.keyboardDisabled}"
+                                     actionListener="#{authentificationBean.clickKeyboard(7)}"
+                                     value="#{authentificationBean.getButtonLabel(7)}"/>
+                </p:column>
+                <p:column>
+                    <p:commandButton update="@form"
+                                     disabled="#{authentificationBean.keyboardDisabled}"
+                                     actionListener="#{authentificationBean.clickKeyboard(8)}"
+                                     value="#{authentificationBean.getButtonLabel(8)}"/>
+                </p:column>
+            </p:row>
+            <p:row>
+                <p:column>
+                    <p:commandButton icon="ui-icon-close" ajax="false"
+                                     title="#{lang['index.cancel']}"
+                                     action="#{authentificationBean.onPressCancel}"/>
+                </p:column>
+                <p:column>
+                    <p:commandButton update="@form"
+                                     disabled="#{authentificationBean.keyboardDisabled}"
+                                     actionListener="#{authentificationBean.clickKeyboard(9)}"
+                                     value="#{authentificationBean.getButtonLabel(9)}"/>
+                </p:column>
+                <p:column>
+                    <p:commandButton icon="ui-icon-check" ajax="false"
+                                     title="#{lang['index.valid']}"
+                                     disabled="#{authentificationBean.validButtonDisabled}"
+                                     action="#{authentificationBean.onPressValid}"/>
+                </p:column>
+            </p:row>
+        </p:panelGrid>
+
+    </h:form>
+</h:body>
+</html>
