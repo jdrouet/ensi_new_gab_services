@@ -10,8 +10,24 @@
 
     <developers>
         <developer>
+            <name>Alexandre Cros</name>
+            <email>alexandre.cros@ecole.ensicaen.fr</email>
+        </developer>
+        <developer>
             <name>Jérémie Drouet</name>
-            <email>jeremie.drouet@gmail.com</email>
+            <email>jeremie.drouet@ecole.ensicaen.fr</email>
+        </developer>
+        <developer>
+            <name>Julien Marginier</name>
+            <email>julien.marginier@ecole.ensicaen.fr</email>
+        </developer>
+        <developer>
+            <name>Yannick Fernand Nassala</name>
+            <email>yannick-fernand.nassala@ecole.ensicaen.fr</email>
+        </developer>
+        <developer>
+            <name>Wassim Mhiri</name>
+            <email>wassim.mhiri@ecole.ensicaen.fr</email>
         </developer>
     </developers>
     
