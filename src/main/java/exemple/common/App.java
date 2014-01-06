@@ -8,7 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class App {
     public static void main(String[] args) {
         ApplicationContext appContext =
-                new ClassPathXmlApplicationContext("spring/config/BeanLocations.xml");
+                new ClassPathXmlApplicationContext("spring/config/beanLocations.xml");
 
         StockBo stockBo = (StockBo) appContext.getBean("stockBo");
 
