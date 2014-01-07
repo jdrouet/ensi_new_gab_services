@@ -1,10 +1,8 @@
 package fr.ensicaen.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * User: Jérémie Drouet
@@ -19,11 +17,56 @@ public class Account implements Serializable {
     @Column(name = "id_account", nullable = false)
     private Long idAccount;
 
+    @ManyToOne
+    @JoinColumn(name = "account_type", nullable = false)
+    private AccountType accountType;
+
+    @OneToMany(mappedBy = "account")
+    private List<Card> cardList;
+
+    @OneToMany(mappedBy = "source")
+    private List<Operation> debitList;
+
+    @OneToMany(mappedBy = "destination")
+    private List<Operation> creditList;
+
     public Long getIdAccount() {
         return idAccount;
     }
 
     public void setIdAccount(Long idCompte) {
         this.idAccount = idCompte;
+    }
+
+    public AccountType getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
+    }
+
+    public List<Operation> getDebitList() {
+        return debitList;
+    }
+
+    public void setDebitList(List<Operation> debitList) {
+        this.debitList = debitList;
+    }
+
+    public List<Operation> getCreditList() {
+        return creditList;
+    }
+
+    public void setCreditList(List<Operation> creditList) {
+        this.creditList = creditList;
+    }
+
+    public List<Card> getCardList() {
+        return cardList;
+    }
+
+    public void setCardList(List<Card> cardList) {
+        this.cardList = cardList;
     }
 }

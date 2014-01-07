@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * User: Alexandre Cros
  * Date: 06/01/14
  */
-
+@Entity
 @Table(name = "operation")
 public class Operation implements Serializable {
     private static final long serialVersionUID = 1628033427391795070L;

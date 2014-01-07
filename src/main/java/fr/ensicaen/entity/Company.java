@@ -11,6 +11,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "company")
 public class Company extends Client implements Serializable {
+    private static final long serialVersionUID = 2611603814153599254L;
 
     @Column(name = "address")
     private String address;

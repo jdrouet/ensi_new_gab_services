@@ -12,6 +12,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "client")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Client implements Serializable {
     private static final long serialVersionUID = -4995265848265187571L;
 
@@ -22,8 +23,11 @@ public class Client implements Serializable {
     @OneToMany(mappedBy = "id_client")
     private List<Account> accountList;
 
-    @OneToMany(mappedBy = "id_service")
+    @OneToMany(mappedBy = "id_client")
     private List<Service> serviceList;
+
+    @OneToMany(mappedBy = "id_client")
+    private List<Action> actionList;
 
     public Long getIdClient() {
         return idClient;
@@ -47,5 +51,13 @@ public class Client implements Serializable {
 
     public void setServiceList(List<Service> serviceList) {
         this.serviceList = serviceList;
+    }
+
+    public List<Action> getActionList() {
+        return actionList;
+    }
+
+    public void setActionList(List<Action> actionList) {
+        this.actionList = actionList;
     }
 }
