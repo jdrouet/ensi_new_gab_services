@@ -8,6 +8,8 @@ import java.security.MessageDigest;
 import javax.persistence.*;
 
 /**
+ * Classe contenant les informations d'une carte
+ *
  * @author mhiri
  */
 @Entity
@@ -15,16 +17,31 @@ import javax.persistence.*;
 public class Card implements Serializable {
     private static final long serialVersionUID = -7336446907414202184L;
 
+    /**
+     * Identifiant unique de la carte
+     */
     @Id
     @Column(name = "id_card")
     private Long idCard;
 
+    /**
+     * PAN de la carte
+     */
     @Column(name = "pan", nullable = false, unique = true)
     private String pan;
 
+    /**
+     * PIN hashé de la carte
+     * En pratique, celui ci doit être stocké dans la carte physique et non en base de données,
+     * mais à des fins de démonstrations, comme nous n'utilisons pas de carte physique, nous
+     * stockons le hash du PIN en base de données
+     */
     @Column(name = "hashed_pin", nullable = false)
     private String hashedPin;
 
+    /**
+     * Compte auquel est lié la carte
+     */
     @ManyToOne
     @JoinColumn(name = "account", nullable = false)
     private Account account;

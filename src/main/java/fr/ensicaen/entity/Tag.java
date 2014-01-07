@@ -8,18 +8,26 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
- * User: Jérémie Drouet
- * Date: 07/01/14
+ * Classe caractérisant un TAG
+ *
+ * @author  Jérémie Drouet
+ * @date 07/01/14
  */
 @Entity
 @Table(name = "tag")
 public class Tag implements Serializable {
     private static final long serialVersionUID = 8351247950608630896L;
 
+    /**
+     * Identifiant du TAG
+     */
     @Id
     @Column(name = "id_tag")
     private Long idTag;
 
+    /**
+     * Nom du TAG
+     */
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
