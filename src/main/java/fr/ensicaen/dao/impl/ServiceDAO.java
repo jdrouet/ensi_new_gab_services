@@ -25,7 +25,7 @@ public class ServiceDAO implements IGenericDAO<Service> {
 		List list = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"from " + Account.class.getName()
+						"from " + Service.class.getName()
 								+ " where id_service=?").setParameter(0, id)
 				.list();
 		if (list != null && !list.isEmpty())
@@ -46,7 +46,7 @@ public class ServiceDAO implements IGenericDAO<Service> {
 	@Override
 	public List<Service> readAll() {
 		return sessionFactory.getCurrentSession()
-				.createQuery("from " + Organization.class.getName()).list();
+				.createQuery("from " + Service.class.getName()).list();
 	}
 
 	/**

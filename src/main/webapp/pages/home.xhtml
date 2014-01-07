@@ -6,19 +6,24 @@
                 template="template.xhtml">
     <ui:define name="page_title">Home</ui:define>
     <ui:define name="page_content">
-        <p:dataGrid var="service" value="#{homeBean.selectedServiceList}">
+        <p:dataGrid id="services" var="srv"
+                    value="#{homeBean.selectedServiceList}" columns="2">
             <f:facet name="header">
-                <h:outputText value="Vos services"/>
+                <h:outputText value="#{lang['home.your_services']}"/>
             </f:facet>
-            <p:panel header="#{service.name}">
-                <h:panelGrid columns="1" style="width: 100%;">
-                    <h:outputText value="#{service.description}"/>
-                    <p:commandButton value="#{lang['home.access']}" immediate="true"
-                                     action="#{homeBean.getServicePage(service)}"/>
+            <p:panel header="#{srv.name}">
+                <h:outputText value="#{srv.description}"/>
+                <h:panelGrid columns="2" style="width: 100%; text-align: center">
+                    <p:commandButton value="#{lang['home.access']}"
+                                     action="#{homeBean.getServicePage(srv)}"/>
+                    <p:commandButton value="#{lang['home.remove_service']}"
+                                     update=":form:services"
+                                     actionListener="#{homeBean.removeService(srv)}"/>
                 </h:panelGrid>
             </p:panel>
             <f:facet name="footer">
-                <p:commandButton value="Ajouter des services"/>
+                <p:commandButton value="#{lang['home.add_services']}"
+                                 action="/pages/store.xhtml"/>
             </f:facet>
         </p:dataGrid>
     </ui:define>

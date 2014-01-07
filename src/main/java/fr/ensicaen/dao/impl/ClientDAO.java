@@ -24,7 +24,7 @@ public class ClientDAO implements IGenericDAO<Client> {
 		List list = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"from " + Account.class.getName()
+						"from " + Client.class.getName()
 								+ " where id_client=?").setParameter(0, id)
 				.list();
 		if (list != null && !list.isEmpty())

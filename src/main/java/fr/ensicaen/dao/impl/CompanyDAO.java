@@ -24,7 +24,7 @@ public class CompanyDAO implements IGenericDAO<Company> {
 		List list = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"from " + Account.class.getName()
+						"from " + Company.class.getName()
 								+ " where id_company=?").setParameter(0, id)
 				.list();
 		if (list != null && !list.isEmpty())

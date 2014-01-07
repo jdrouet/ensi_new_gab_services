@@ -24,7 +24,7 @@ public class OrganizationDAO implements IGenericDAO<Organization> {
 		List list = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"from " + Account.class.getName()
+						"from " + Organization.class.getName()
 								+ " where id_organization=?")
 				.setParameter(0, id).list();
 		if (list != null && !list.isEmpty())

@@ -1,0 +1,26 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="template.xhtml">
+    <ui:define name="page_title">Store</ui:define>
+    <ui:define name="page_content">
+        <p:dataGrid id="services" value="#{serviceService.all}" var="srv" columns="2">
+            <f:facet name="header">
+                <h:outputText value="#{lang['store.available_services']}"/>
+            </f:facet>
+            <p:panel header="#{srv.name}">
+                <h:panelGrid columns="1" style="width: 100%; text-align: center">
+                    <h:outputText value="#{srv.description}"/>
+                    <p:commandButton value="#{lang['store.add_service']}" update="@all"
+                                     actionListener="#{storeBean.addService(srv)}"/>
+                </h:panelGrid>
+            </p:panel>
+            <f:facet name="footer">
+                <p:commandButton value="#{lang['store.back_to_home']}"
+                                 action="/pages/home.xhtml"/>
+            </f:facet>
+        </p:dataGrid>
+    </ui:define>
+</ui:composition>

@@ -24,7 +24,7 @@ public class CardDAO implements IGenericDAO<Card> {
 		List list = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"from " + Account.class.getName() + " where id_card=?")
+						"from " + Card.class.getName() + " where id_card=?")
 				.setParameter(0, id).list();
 		if (list != null && !list.isEmpty())
 			return (Card) list.get(0);

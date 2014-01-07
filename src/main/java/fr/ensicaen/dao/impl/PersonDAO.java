@@ -25,7 +25,7 @@ public class PersonDAO implements IGenericDAO<Person> {
 		List list = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"from " + Account.class.getName()
+						"from " + Person.class.getName()
 								+ " where id_person=?").setParameter(0, id)
 				.list();
 		if (list != null && !list.isEmpty())
@@ -46,7 +46,7 @@ public class PersonDAO implements IGenericDAO<Person> {
 	@Override
 	public List<Person> readAll() {
 		return sessionFactory.getCurrentSession()
-				.createQuery("from " + Organization.class.getName()).list();
+				.createQuery("from " + Person.class.getName()).list();
 	}
 
 	/**

@@ -4,10 +4,12 @@ import fr.ensicaen.entity.Card;
 import fr.ensicaen.service.IGenericService;
 import fr.ensicaen.service.impl.CardService;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.security.SecureRandom;
 import java.util.*;
@@ -107,6 +109,7 @@ public class AuthenticationBean implements Serializable {
     }
 
     public String onPressValid() {
+        FacesContext context = FacesContext.getCurrentInstance();
         if (this.card == null) {
             return IndexBean.PAGE;
         } else if (this.card.isPin(this.getClearPin())) {
