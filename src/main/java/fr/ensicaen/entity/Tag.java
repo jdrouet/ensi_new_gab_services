@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 import java.io.Serializable;
 
 /**
@@ -37,4 +38,11 @@ public class Tag implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+	public Tag(String name) {
+		super();
+		this.name = name;
+	}
+    
+    
 }
