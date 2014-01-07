@@ -4,14 +4,14 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.ensicaen.dao.GenericDAO;
-import fr.ensicaen.service.IAccountService;
+import fr.ensicaen.dao.IAccountDAO;
 import fr.ensicaen.entity.Account;
+import fr.ensicaen.service.IAccountService;
 
 @Transactional
 public class AccountService implements IAccountService {
 
-	private GenericDAO<Account, Long> accountDAO;
+	private IAccountDAO accountDAO;
 
 	@Override
 	public void addAccount(Account user) {
@@ -36,6 +36,14 @@ public class AccountService implements IAccountService {
 	@Override
 	public List<Account> getAccounts() {
 		return accountDAO.readAll();
+	}
+
+	public IAccountDAO getAccountDAO() {
+		return accountDAO;
+	}
+
+	public void setAccountDAO(IAccountDAO accountDAO) {
+		this.accountDAO = accountDAO;
 	}
 
 }
