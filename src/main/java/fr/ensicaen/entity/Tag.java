@@ -42,7 +42,5 @@ public class Tag implements Serializable {
 	public Tag(String name) {
 		super();
 		this.name = name;
-	}
-    
-    
+	} 
 }

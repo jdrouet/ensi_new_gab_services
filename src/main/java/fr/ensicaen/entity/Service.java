@@ -19,8 +19,11 @@ public class Service implements Serializable {
 
     @Column(name = "description", nullable = false)
     private String description;
+    
+    @Column(name = "path", nullable = false)
+    private String path;
 
-    @ManyToMany
+	@ManyToMany
     @JoinTable(name = "service_tag",
             joinColumns = {@JoinColumn(name = "id_service")},
             inverseJoinColumns = {@JoinColumn(name = "id_tag")})
@@ -65,4 +68,12 @@ public class Service implements Serializable {
     public void setTagList(List<Tag> tagList) {
         this.tagList = tagList;
     }
+    
+    public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
 }
