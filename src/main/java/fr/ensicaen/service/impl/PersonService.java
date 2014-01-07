@@ -5,45 +5,45 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.ensicaen.dao.IGenericDAO;
-import fr.ensicaen.entity.Account;
+import fr.ensicaen.entity.Person;
 import fr.ensicaen.service.IGenericService;
 
 @Transactional
-public class AccountService implements IGenericService<Account> {
+public class PersonService implements IGenericService<Person> {
 
-	private IGenericDAO<Account> dao;
+	private IGenericDAO<Person> dao;
 
 	@Override
-	public void add(Account user) {
+	public void add(Person user) {
 		dao.create(user);
 
 	}
 
 	@Override
-	public void update(Account user) {
+	public void update(Person user) {
 		dao.update(user);
 	}
 
 	@Override
-	public void delete(Account user) {
+	public void delete(Person user) {
 		dao.delete(user);
 	}
 
 	@Override
-	public Account find(Long id) {
+	public Person find(Long id) {
 		return dao.find(id);
 	}
 
 	@Override
-	public List<Account> findAll() {
+	public List<Person> findAll() {
 		return dao.readAll();
 	}
 
-	public IGenericDAO<Account> getDao() {
+	public IGenericDAO<Person> getDao() {
 		return dao;
 	}
 
-	public void setDao(IGenericDAO<Account> dao) {
+	public void setDao(IGenericDAO<Person> dao) {
 		this.dao = dao;
 	}
 

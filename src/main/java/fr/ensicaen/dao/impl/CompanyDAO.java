@@ -6,45 +6,46 @@ import org.hibernate.SessionFactory;
 
 import fr.ensicaen.dao.IGenericDAO;
 import fr.ensicaen.entity.Account;
+import fr.ensicaen.entity.Company;
 
 /**
  * Hibernate implementation of GenericDao A typesafe implementation of CRUD.
  */
-public class AccountDAO implements IGenericDAO<Account> {
+public class CompanyDAO implements IGenericDAO<Company> {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public void create(Account obj) {
+	public void create(Company obj) {
 		sessionFactory.getCurrentSession().save(obj);
 	}
 
 	@Override
-	public Account find(Long id) {
+	public Company find(Long id) {
 		List list = sessionFactory
 				.getCurrentSession()
 				.createQuery(
 						"from " + Account.class.getName()
-								+ " where id_account=?").setParameter(0, id)
+								+ " where id_company=?").setParameter(0, id)
 				.list();
 		if (list != null && !list.isEmpty())
-			return (Account) list.get(0);
+			return (Company) list.get(0);
 		return null;
 	}
 
 	@Override
-	public void update(Account obj) {
+	public void update(Company obj) {
 		sessionFactory.getCurrentSession().update(obj);
 	}
 
 	@Override
-	public void delete(Account obj) {
+	public void delete(Company obj) {
 		sessionFactory.getCurrentSession().delete(obj);
 	}
 
 	@Override
-	public List<Account> readAll() {
+	public List<Company> readAll() {
 		return sessionFactory.getCurrentSession()
-				.createQuery("from " + Account.class.getName()).list();
+				.createQuery("from " + Company.class.getName()).list();
 	}
 
 	/**

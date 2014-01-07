@@ -10,8 +10,8 @@
 		        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<!-- Beans Declaration -->
-	<bean id="Account" class="fr.ensicaen.entity.Account"/>
-	<!--<bean id="AccountType" class="fr.ensicaen.entity.AccountType"/>
+	<!--<bean id="Account" class="fr.ensicaen.entity.Account"/>
+	<bean id="AccountType" class="fr.ensicaen.entity.AccountType"/>
 	<bean id="Action" class="fr.ensicaen.entity.Action"/>
 	<bean id="Card" class="fr.ensicaen.entity.Card"/>
 	<bean id="Client" class="fr.ensicaen.entity.Client"/>
@@ -23,12 +23,73 @@
 	<bean id="Tag" class="fr.ensicaen.entity.Tag"/> -->
 	
 	<!-- User Service Declaration -->
-	<bean id="AccountService" class="fr.ensicaen.service.impl.AccountService">
-		<property name="accountDAO" ref="AccountDAO" />
+	<bean id="accountService" class="fr.ensicaen.service.impl.AccountService">
+		<property name="dao" ref="accountDAO" />
+	</bean>
+	<bean id="accountTypeService" class="fr.ensicaen.service.impl.AccountTypeService">
+		<property name="dao" ref="accountTypeDAO" />
+	</bean>
+	<bean id="actionService" class="fr.ensicaen.service.impl.ActionService">
+		<property name="dao" ref="actionDAO" />
+	</bean>
+	<bean id="cardService" class="fr.ensicaen.service.impl.CardService">
+		<property name="dao" ref="cardDAO" />
+	</bean>
+	<bean id="clientService" class="fr.ensicaen.service.impl.ClientService">
+		<property name="dao" ref="clientDAO" />
+	</bean>
+	<bean id="companyService" class="fr.ensicaen.service.impl.CompanyService">
+		<property name="dao" ref="companyDAO" />
+	</bean>
+	<bean id="operationService" class="fr.ensicaen.service.impl.OperationService">
+		<property name="dao" ref="operationDAO" />
+	</bean>
+	<bean id="organizationService" class="fr.ensicaen.service.impl.OrganizationService">
+		<property name="dao" ref="organizationDAO" />
+	</bean>
+	<bean id="personService" class="fr.ensicaen.service.impl.PersonService">
+		<property name="dao" ref="personDAO" />
+	</bean>
+	<bean id="serviceService" class="fr.ensicaen.service.impl.ServiceService">
+		<property name="dao" ref="serviceDAO" />
+	</bean>
+	<bean id="tagService" class="fr.ensicaen.service.impl.TagService">
+		<property name="dao" ref="tagDAO" />
 	</bean>
 	
+	
 	<!-- User DAO Declaration -->
-	<bean id="AccountDAO" class="fr.ensicaen.dao.impl.AccountDAO">
+	<bean id="accountDAO" class="fr.ensicaen.dao.impl.AccountDAO">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+	<bean id="accountTypeDAO" class="fr.ensicaen.dao.impl.AccountTypeDAO">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+	<bean id="actionDAO" class="fr.ensicaen.dao.impl.ActionDAO">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+	<bean id="cardDAO" class="fr.ensicaen.dao.impl.CardDAO">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+	<bean id="clientDAO" class="fr.ensicaen.dao.impl.ClientDAO">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+	<bean id="companyDAO" class="fr.ensicaen.dao.impl.CompanyDAO">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+	<bean id="operationDAO" class="fr.ensicaen.dao.impl.OperationDAO">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+	<bean id="organizationDAO" class="fr.ensicaen.dao.impl.OrganizationDAO">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+	<bean id="personDAO" class="fr.ensicaen.dao.impl.PersonDAO">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+	<bean id="serviceDAO" class="fr.ensicaen.dao.impl.ServiceDAO">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+	<bean id="tagDAO" class="fr.ensicaen.dao.impl.TagDAO">
 		<property name="sessionFactory" ref="SessionFactory" />
 	</bean>
 
@@ -46,11 +107,7 @@
     <!-- Session Factory Declaration -->
     <bean id="SessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="DataSource"/>
-        <property name="annotatedPackages">
-            <list>
-                <value>fr.ensicaen.entity</value>
-            </list>
-        </property>
+        <property name="packagesToScan" value="fr.ensicaen.entity"/>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>

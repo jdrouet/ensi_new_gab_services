@@ -7,6 +7,8 @@ import javax.persistence.*;
 
 
 /**
+ * Classe conteneur du client générique
+ *
  * @author mhiri
  * @date 06/01/2014
  */
@@ -16,17 +18,32 @@ import javax.persistence.*;
 public class Client implements Serializable {
     private static final long serialVersionUID = -4995265848265187571L;
 
+    /**
+     * Identifiant du client dans la base de données
+     */
     @Id
     @Column(name = "id_client", nullable = false)
     private Long idClient;
 
-    @OneToMany(mappedBy = "id_client")
+    /**
+     * Liste des comptes liés au client
+     */
+    @OneToMany(mappedBy = "client")
     private List<Account> accountList;
 
-    @OneToMany(mappedBy = "id_client")
+    /**
+     * Liste des services activés au client
+     */
+    @ManyToMany
+    @JoinTable(name = "client_service",
+            joinColumns = {@JoinColumn(name = "id_client")},
+            inverseJoinColumns = {@JoinColumn(name = "id_service")})
     private List<Service> serviceList;
 
-    @OneToMany(mappedBy = "id_client")
+    /**
+     * Liste des actions d'activation et de desactivation des services par le client
+     */
+    @OneToMany(mappedBy = "client")
     private List<Action> actionList;
 
     public Client() {

@@ -4,16 +4,24 @@ import javax.persistence.Column;
 import javax.persistence.Table;
 
 /**
- * User: Alexandre Cros
- * Date: 06/01/14
+ * Classe héritant de client définissant une personne
+ *
+ * @author  Alexandre Cros
+ * @date 06/01/14
  */
 @Table(name = "person")
 public class Person extends Client {
     private static final long serialVersionUID = 1418275098077928373L;
 
+    /**
+     * Prénom du client
+     */
     @Column(name = "firstname", nullable = false)
     private String firstname;
-    
+
+    /**
+     * Nom du client
+     */
     @Column(name = "lastname", nullable = false)
     private String lastname;
 

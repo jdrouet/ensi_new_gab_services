@@ -7,7 +7,14 @@
 </h:head>
 <h:body>
     <h:form>
-
+        <p:dataGrid var="service" value="#{homeBean.selectedServiceList}"
+                    style="width: 80%; margin: 0 auto;">
+            <p:panel header="#{service.name}">
+                <h:panelGrid columns="1" style="width: 100%;">
+                    <h:outputText value="#{service.description}"/>
+                </h:panelGrid>
+            </p:panel>
+        </p:dataGrid>
     </h:form>
 </h:body>
 </html>
