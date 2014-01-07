@@ -18,7 +18,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "client")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Client implements Serializable {
+public abstract class Client implements Serializable {
     private static final long serialVersionUID = -4995265848265187571L;
 
     /**
@@ -33,6 +33,7 @@ public class Client implements Serializable {
      * Liste des comptes liés au client
      */
     @OneToMany(mappedBy = "client", cascade = {CascadeType.ALL})
+    @LazyCollection(value = LazyCollectionOption.FALSE)
     private List<Account> accountList;
 
     /**
@@ -49,6 +50,7 @@ public class Client implements Serializable {
      * Liste des actions d'activation et de desactivation des services par le client
      */
     @OneToMany(mappedBy = "client", cascade = {CascadeType.ALL})
+    @LazyCollection(value = LazyCollectionOption.FALSE)
     private List<Action> actionList;
 
     public Client() {
@@ -61,6 +63,8 @@ public class Client implements Serializable {
     public void setIdClient(Long idClient) {
         this.idClient = idClient;
     }
+
+    public abstract String getName();
 
     public List<Account> getAccountList() {
         return accountList;
@@ -85,4 +89,6 @@ public class Client implements Serializable {
     public void setActionList(List<Action> actionList) {
         this.actionList = actionList;
     }
+
+
 }

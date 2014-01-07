@@ -1,0 +1,58 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="../../template.xhtml">
+    <ui:define name="page_title">Consultation</ui:define>
+    <ui:define name="page_content">
+        <p:dataTable value="#{consultationBean.accountList}" var="acc" scrollable="true">
+            <f:facet name="header">
+                <h:outputText value="#{lang['consult.operation_list']}"/>
+            </f:facet>
+
+            <p:columnGroup type="header">
+                <p:row>
+                    <p:column headerText="#{lang['consult.entitled']}"/>
+                    <p:column headerText="#{lang['consult.date']}"/>
+                    <p:column headerText="#{lang['consult.credit']}"/>
+                    <p:column headerText="#{lang['consult.debit']}"/>
+                </p:row>
+            </p:columnGroup>
+
+            <p:subTable value="#{consultationBean.getOperationList(acc)}" var="op">
+                <f:facet name="header">
+                    #{acc.idAccount} - #{acc.accountType.name}
+                </f:facet>
+                <p:column>
+                    <h:outputText rendered="#{op.source.idAccount == acc.idAccount}"
+                                  value="#{op.source.client.name} - #{op.source.idAccount}"/>
+                    <h:outputText rendered="#{op.destination.idAccount == acc.idAccount}"
+                                  value="#{op.destination.client.name} - #{op.destination.idAccount}"/>
+                </p:column>
+                <p:column>
+                    #{op.event}
+                </p:column>
+                <p:column>
+                    <h:outputText rendered="#{op.destination.idAccount == acc.idAccount}"
+                                  value="#{op.amount} €"/>
+                </p:column>
+                <p:column>
+                    <h:outputText rendered="#{op.source.idAccount == acc.idAccount}"
+                                  value="#{op.amount} €"/>
+                </p:column>
+                <p:columnGroup type="footer">
+                    <p:row>
+                        <p:column footerText="#{lang['consult.balance']}" style="text-align:right" colspan="2"/>
+                        <p:column footerText="#{acc.balance} €" colspan="2"/>
+                    </p:row>
+                </p:columnGroup>
+            </p:subTable>
+            <f:facet name="footer">
+                <p:commandButton value="#{lang['consult.back_to_home']}"
+                                 action="/pages/home.xhtml"/>
+            </f:facet>
+        </p:dataTable>
+    </ui:define>
+</ui:composition>
+

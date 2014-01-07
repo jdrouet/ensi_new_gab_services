@@ -1,9 +1,6 @@
 package fr.ensicaen.bean;
 
-import fr.ensicaen.entity.Account;
-import fr.ensicaen.entity.Card;
-import fr.ensicaen.entity.Client;
-import fr.ensicaen.entity.Service;
+import fr.ensicaen.entity.*;
 import fr.ensicaen.service.IGenericService;
 
 import javax.faces.application.FacesMessage;
@@ -28,6 +25,9 @@ public class HomeBean implements Serializable {
     @ManagedProperty("#{clientService}")
     private IGenericService<Client> clientService;
 
+    @ManagedProperty("#{actionService}")
+    private IGenericService<Action> actionService;
+
     private Card card;
 
     public Card getCard() {
@@ -44,6 +44,14 @@ public class HomeBean implements Serializable {
 
     public Client getClient() {
         return this.getAccount().getClient();
+    }
+
+    public IGenericService<Action> getActionService() {
+        return actionService;
+    }
+
+    public void setActionService(IGenericService<Action> actionService) {
+        this.actionService = actionService;
     }
 
     public IGenericService<Client> getClientService() {
@@ -73,6 +81,7 @@ public class HomeBean implements Serializable {
     public void removeService(Service service) {
         this.getClient().getServiceList().remove(service);
         this.clientService.update(this.getClient());
+        this.actionService.add(new Action(this.getClient(), service, false));
         //
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(

@@ -49,6 +49,16 @@ public class Action implements Serializable {
     @Column(name = "activation", nullable = false)
     private boolean activation;
 
+    public Action() {
+    }
+
+    public Action(Client client, Service service, boolean activation) {
+        this.event = new Timestamp(new Date().getTime());
+        this.client = client;
+        this.service = service;
+        this.activation = activation;
+    }
+
     public Long getIdAction() {
         return idAction;
     }

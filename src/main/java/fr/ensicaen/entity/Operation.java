@@ -1,7 +1,7 @@
 package fr.ensicaen.entity;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.Timestamp;
 
 /**
@@ -48,6 +48,16 @@ public class Operation implements Serializable {
      */
     @Column(name = "amout", nullable = false)
 	private float amount; /* toujours positif */
+
+    public Operation() {
+    }
+
+    public Operation(Account source, Account destination, float amount) {
+        this.setEvent(new Timestamp(new Date().getTime()));
+        this.source = source;
+        this.destination = destination;
+        this.amount = amount;
+    }
 
     public Long getIdOperation() {
         return idOperation;

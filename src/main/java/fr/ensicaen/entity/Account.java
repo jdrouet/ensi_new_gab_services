@@ -1,5 +1,8 @@
 package fr.ensicaen.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -34,6 +37,7 @@ public class Account implements Serializable {
      * Client à qui appartient le compte
      */
     @ManyToOne(cascade = {CascadeType.ALL})
+    @LazyCollection(value = LazyCollectionOption.FALSE)
     @JoinColumn(name = "client", nullable = false)
     private Client client;
 
@@ -41,6 +45,7 @@ public class Account implements Serializable {
      * Type du compte
      */
     @ManyToOne(cascade = {CascadeType.ALL})
+    @LazyCollection(value = LazyCollectionOption.FALSE)
     @JoinColumn(name = "account_type", nullable = false)
     private AccountType accountType;
 
@@ -48,18 +53,21 @@ public class Account implements Serializable {
      * Liste des cartes liées au compte
      */
     @OneToMany(mappedBy = "account", cascade = {CascadeType.ALL})
+    @LazyCollection(value = LazyCollectionOption.FALSE)
     private List<Card> cardList;
 
     /**
      * Liste des opérations débitées sur le compte
      */
     @OneToMany(mappedBy = "source", cascade = {CascadeType.ALL})
+    @LazyCollection(value = LazyCollectionOption.FALSE)
     private List<Operation> debitList;
 
     /**
      * Liste des opérations créditées sur le compte
      */
     @OneToMany(mappedBy = "destination", cascade = {CascadeType.ALL})
+    @LazyCollection(value = LazyCollectionOption.FALSE)
     private List<Operation> creditList;
 
     public Account() {

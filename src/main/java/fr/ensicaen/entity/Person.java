@@ -7,7 +7,7 @@ import javax.persistence.Table;
 /**
  * Classe héritant de client définissant une personne
  *
- * @author  Alexandre Cros
+ * @author Alexandre Cros
  * @date 06/01/14
  */
 @Entity
@@ -30,6 +30,11 @@ public class Person extends Client {
     public Person() {
     }
 
+    @Override
+    public String getName() {
+        return this.getFirstname() + " " + this.getLastname();
+    }
+
     public Person(String firstname, String lastname) {
         super();
         this.firstname = firstname;
@@ -37,18 +42,18 @@ public class Person extends Client {
     }
 
     public String getFirstname() {
-		return firstname;
-	}
+        return firstname;
+    }
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
 
-	public String getLastname() {
-		return lastname;
-	}
+    public String getLastname() {
+        return lastname;
+    }
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
 }

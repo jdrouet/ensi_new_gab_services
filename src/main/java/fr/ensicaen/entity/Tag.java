@@ -29,6 +29,14 @@ public class Tag implements Serializable {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
+    public Tag() {
+    }
+
+    public Tag(String name) {
+        super();
+        this.name = name;
+    }
+
     public Long getIdTag() {
         return idTag;
     }
@@ -44,9 +52,4 @@ public class Tag implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-
-	public Tag(String name) {
-		super();
-		this.name = name;
-	} 
 }

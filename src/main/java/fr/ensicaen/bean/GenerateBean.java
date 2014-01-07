@@ -102,7 +102,16 @@ public class GenerateBean implements Serializable {
         //
         p2.setServiceList(profile2);
         //
+        Operation o1 = new Operation(a1, a2, 10);
+        Operation o2 = new Operation(a2, a1, 15);
+        //
+        a1.setDebitList(Arrays.asList(o1));
+        a2.setDebitList(Arrays.asList(o2));
+        a2.setCreditList(Arrays.asList(o1));
+        a1.setCreditList(Arrays.asList(o2));
+        //
         this.clientService.add(p2);
+        //
         //
         /** Personne 3 **/
         //
