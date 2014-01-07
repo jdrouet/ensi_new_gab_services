@@ -78,14 +78,14 @@ public class AuthenticationBean implements Serializable {
 
     public String onPressCancel() {
         Collections.shuffle(this.keyboard);
-        return "index.xhtml";
+        return "authentication.xhtml";
     }
 
     public String onPressValid() {
         if (new Random().nextBoolean()) {
-            return "index.xhtml";
+            return "authentication.xhtml";
         } else {
-            return "index.xhtml?error=index.wrong_pin";
+            return "authentication.xhtml?error=index.wrong_pin";
         }
     }
 }
