@@ -1,11 +1,106 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
-<h:head>
-    <title></title>
-</h:head>
-<h:body>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui">  
+  
+    <h:head>  
+        <title>SNCF</title>
+    </h:head>  
+    <h:body>
+        <p:graphicImage value="images/logo-sncf.png" />
+        <h:form id="form">
+            <p:panel header="Réservez votre voyage" toggleable="false" id="panelSNCF">  
+                <h:panelGrid columns="2" cellpadding="5">
+          
+                    <h:outputLabel value="Départ" for="depart" />  
+                    <p:autoComplete id="depart" 
+                                value="#{SNCFformBean.depart}"   
+                                completeMethod="#{SNCFformBean.completeVille}"/>  
+              
+                    <h:outputLabel value="Arrivée" for="arrivee" />  
+                    <p:autoComplete id="arrivee"   
+                                value="#{SNCFformBean.arrivee}" 
+                                completeMethod="#{SNCFformBean.completeVille}"/>  
+                </h:panelGrid>
+                <h:panelGrid columns="6" cellpadding="5">
+                    <h:outputLabel value="Aller" for="date" />
+                    <p:calendar locale="fr" value="#{SNCFformBean.date}" id="date" showOn="button" size="10" />
+                    
+                    <h:outputLabel value="à partir de" for="heure" />
+                    <p:spinner id="heure" value="#{SNCFformBean.heure}" size="2" />
+                    <h:outputLabel value=":" for="minutes" />
+                    <p:spinner id="minutes" value="#{SNCFformBean.minutes}" size="2" />
+                </h:panelGrid>
+            </p:panel>
+      
+            <p:commandButton value="Rechercher" id="submit" update="display" oncomplete="PF('dialog').show()" />  
+      
+            <p:dialog id="display" header="Sélectionnez votre aller" widgetVar="dialog"  
+                    showEffect="fold" hideEffect="fold" width="600">
+                <h:panelGrid columns="3">
+                    <p:panel header="#{SNCFformBean.depart} - #{SNCFformBean.arrivee}">
+                        <h:panelGrid columns="1" style="width:100%">
+                            <h:outputText value="Départ : #{SNCFformBean.depart}"/>
+                            <h:outputText value="Arrivée : #{SNCFformBean.arrivee}"/>
+                            <h:outputText value="Le #{SNCFformBean.date.day}/#{SNCFformBean.date.month}/#{SNCFformBean.date.year} à #{SNCFformBean.heure+1%24}h10"/>
+                            <h:outputText value="Intercité" style="text-transform: uppercase; color: grey" />
+                            <h:outputText value="Prix : 35.80 &euro;"/>
+                            <p:commandButton value="Réserver" title="Réserver ce billet" />
+                        </h:panelGrid>
+                    </p:panel>
+                    <p:panel header="#{SNCFformBean.depart} - #{SNCFformBean.arrivee}">
+                        <h:panelGrid columns="1" style="width:100%">
+                            <h:outputText value="Départ : #{SNCFformBean.depart}"/>
+                            <h:outputText value="Arrivée : #{SNCFformBean.arrivee}"/>
+                            <h:outputText value="Le #{SNCFformBean.date.day}/#{SNCFformBean.date.month+1}/#{SNCFformBean.date.year} à #{SNCFformBean.heure+1%24}h36"/>
+                            <h:outputText value="Intercité" style="text-transform: uppercase; color: grey" />
+                            <h:outputText value="Prix : 35.80 &euro;"/>
+                            <p:commandButton value="Réserver" title="Réserver ce billet" />
+                        </h:panelGrid>
+                    </p:panel>
+                    <p:panel header="#{SNCFformBean.depart} - #{SNCFformBean.arrivee}">
+                        <h:panelGrid columns="1" style="width:100%">
+                            <h:outputText value="Départ : #{SNCFformBean.depart}"/>
+                            <h:outputText value="Arrivée : #{SNCFformBean.arrivee}"/>
+                            <h:outputText value="Le #{SNCFformBean.date.day}/#{SNCFformBean.date.month+1}/#{SNCFformBean.date.year} à #{SNCFformBean.heure+1%24}h55"/>
+                            <h:outputText value="Intercité" style="text-transform: uppercase; color: grey" />
+                            <h:outputText value="Prix : 35.80 &euro;"/>
+                            <p:commandButton value="Réserver" title="Réserver ce billet" />
+                        </h:panelGrid>
+                    </p:panel><p:panel header="#{SNCFformBean.depart} - #{SNCFformBean.arrivee}">
+                        <h:panelGrid columns="1" style="width:100%">
+                            <h:outputText value="Départ : #{SNCFformBean.depart}"/>
+                            <h:outputText value="Arrivée : #{SNCFformBean.arrivee}"/>
+                            <h:outputText value="Le #{SNCFformBean.date.day}/#{SNCFformBean.date.month+1}/#{SNCFformBean.date.year} à #{SNCFformBean.heure+2%24}h10"/>
+                            <h:outputText value="Intercité" style="text-transform: uppercase; color: grey" />
+                            <h:outputText value="Prix : 35.80 &euro;"/>
+                            <p:commandButton value="Réserver" title="Réserver ce billet" />
+                        </h:panelGrid>
+                    </p:panel><p:panel header="#{SNCFformBean.depart} - #{SNCFformBean.arrivee}">
+                        <h:panelGrid columns="1" style="width:100%">
+                            <h:outputText value="Départ : #{SNCFformBean.depart}"/>
+                            <h:outputText value="Arrivée : #{SNCFformBean.arrivee}"/>
+                            <h:outputText value="Le #{SNCFformBean.date.day}/#{SNCFformBean.date.month+1}/#{SNCFformBean.date.year} à #{SNCFformBean.heure+2%24}h36"/>
+                            <h:outputText value="Intercité" style="text-transform: uppercase; color: grey" />
+                            <h:outputText value="Prix : 35.80 &euro;"/>
+                            <p:commandButton value="Réserver" title="Réserver ce billet" />
+                        </h:panelGrid>
+                    </p:panel><p:panel header="#{SNCFformBean.depart} - #{SNCFformBean.arrivee}">
+                        <h:panelGrid columns="1" style="width:100%">
+                            <h:outputText value="Départ : #{SNCFformBean.depart}"/>
+                            <h:outputText value="Arrivée : #{SNCFformBean.arrivee}"/>
+                            <h:outputText value="Le #{SNCFformBean.date.day}/#{SNCFformBean.date.month+1} à #{SNCFformBean.heure+2%24}h50"/>
+                            <h:outputText value="Intercité" style="text-transform: uppercase; color: grey" />
+                            <h:outputText value="Prix : 35.80 &euro;"/>
+                            <p:commandButton value="Réserver" title="Réserver ce billet" />
+                        </h:panelGrid>
+                    </p:panel>
+                </h:panelGrid>
+            </p:dialog>  
+                  
+        </h:form>  
+    </h:body>  
+</html> 
 
-</h:body>
-</html>
