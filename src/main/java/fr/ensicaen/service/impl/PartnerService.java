@@ -7,6 +7,8 @@ package fr.ensicaen.service.impl;
 import fr.ensicaen.entity.Account;
 import fr.ensicaen.entity.Operation;
 import fr.ensicaen.service.IPartnerService;
+import java.sql.Timestamp;
+import java.util.Calendar;
 
 /**
  *
@@ -18,7 +20,11 @@ public class PartnerService implements IPartnerService {
     public void transfer(Account partner, Account user, Float amount) {
         
         Operation operation =  new Operation();
+        Calendar calendar = Calendar.getInstance();
+        java.util.Date now = calendar.getTime();
+        java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
         operation.setAmount(amount);
+        operation.setEvent(currentTimestamp);
         operation.setSource(user);
         operation.setDestination(partner);
                          
