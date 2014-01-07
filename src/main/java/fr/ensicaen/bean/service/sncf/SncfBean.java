@@ -21,7 +21,23 @@ public class SncfBean implements Serializable {
     
     public class Voyage {
         private String source;
+        private String destination;
+        private String date;
+        private String heure;
+        private String type;
 
+        public Voyage() {
+            
+        }
+        
+        public Voyage(String source, String destination, String date, String heure, String type) {
+            this.source = source;
+            this.destination = destination;
+            this.date = date;
+            this.heure = heure;
+            this.type = type;
+        }
+        
         public String getSource() {
             return source;
         }
@@ -61,24 +77,6 @@ public class SncfBean implements Serializable {
         public void setType(String type) {
             this.type = type;
         }
-        private String destination;
-        private String date;
-        private String heure;
-        private String type;
-        
-        public Voyage() {
-            
-        }
-        
-        public Voyage(String source, String destination, String date, String heure, String type) {
-            this.source = source;
-            this.destination = destination;
-            this.date = date;
-            this.heure = heure;
-            this.type = type;
-        }
-        
-        
     }
     
     private static final long serialVersionUID = -4134614781118798187L;
@@ -134,7 +132,7 @@ public class SncfBean implements Serializable {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM");
         DateFormat timeFormat = new SimpleDateFormat("hh");
         for(int i=0; i<6; i++) {
-            Voyage v = new Voyage(this.source, this.destination, dateFormat.format(this.start) , timeFormat.format(this.start)+minutes[i%3], "Intercité");
+            Voyage v = new Voyage(this.source, this.destination, dateFormat.format(this.start) , timeFormat.format(this.start)+"h"+minutes[i%3], "Intercité");
             this.voyages.add(v);
         }
     }
