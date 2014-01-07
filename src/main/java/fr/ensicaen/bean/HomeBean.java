@@ -42,6 +42,7 @@ public class HomeBean implements Serializable {
     }
 
     public String getServicePage(Service service) {
+        System.out.println("/pages/services/" + service.getPath() + "/index.xhtml");
         return "/pages/services/" + service.getPath() + "/index.xhtml";
     }
 }

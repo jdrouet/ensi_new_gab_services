@@ -7,13 +7,19 @@
     <ui:define name="page_title">Home</ui:define>
     <ui:define name="page_content">
         <p:dataGrid var="service" value="#{homeBean.selectedServiceList}">
+            <f:facet name="header">
+                <h:outputText value="Vos services"/>
+            </f:facet>
             <p:panel header="#{service.name}">
                 <h:panelGrid columns="1" style="width: 100%;">
                     <h:outputText value="#{service.description}"/>
-                    <p:commandButton value="#{lang['home.access']}"
+                    <p:commandButton value="#{lang['home.access']}" immediate="true"
                                      action="#{homeBean.getServicePage(service)}"/>
                 </h:panelGrid>
             </p:panel>
+            <f:facet name="footer">
+                <p:commandButton value="Ajouter des services"/>
+            </f:facet>
         </p:dataGrid>
     </ui:define>
 </ui:composition>

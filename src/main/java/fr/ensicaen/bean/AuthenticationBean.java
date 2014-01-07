@@ -26,7 +26,6 @@ public class AuthenticationBean implements Serializable {
     private List<Integer> cliqued;
 
     private Card card;
-    private String error;
 
     @ManagedProperty("#{cardService}")
     private IGenericService<Card> cardService;
@@ -43,14 +42,6 @@ public class AuthenticationBean implements Serializable {
         }
         //
         Collections.shuffle(this.keyboard);
-    }
-
-    public String getError() {
-        return error;
-    }
-
-    public void setError(String error) {
-        this.error = error;
     }
 
     public HomeBean getHomeBean() {
