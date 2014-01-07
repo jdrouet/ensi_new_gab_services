@@ -25,7 +25,7 @@ public class TagDAO implements IGenericDAO<Tag> {
 		List list = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"from " + Account.class.getName() + " where id_tag=?")
+						"from " + Tag.class.getName() + " where id_tag=?")
 				.setParameter(0, id).list();
 		if (list != null && !list.isEmpty())
 			return (Tag) list.get(0);
@@ -45,7 +45,7 @@ public class TagDAO implements IGenericDAO<Tag> {
 	@Override
 	public List<Tag> readAll() {
 		return sessionFactory.getCurrentSession()
-				.createQuery("from " + Organization.class.getName()).list();
+				.createQuery("from " + Tag.class.getName()).list();
 	}
 
 	/**

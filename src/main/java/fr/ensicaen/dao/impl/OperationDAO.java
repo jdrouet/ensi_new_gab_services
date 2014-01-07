@@ -24,7 +24,7 @@ public class OperationDAO implements IGenericDAO<Operation> {
 		List list = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"from " + Account.class.getName()
+						"from " + Operation.class.getName()
 								+ " where id_operation=?").setParameter(0, id)
 				.list();
 		if (list != null && !list.isEmpty())

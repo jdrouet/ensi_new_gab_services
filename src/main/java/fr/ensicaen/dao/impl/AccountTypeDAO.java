@@ -45,7 +45,7 @@ public class AccountTypeDAO implements IGenericDAO<AccountType> {
 	@Override
 	public List<AccountType> readAll() {
 		return sessionFactory.getCurrentSession()
-				.createQuery("from " + Account.class.getName()).list();
+				.createQuery("from " + AccountType.class.getName()).list();
 	}
 
 	/**

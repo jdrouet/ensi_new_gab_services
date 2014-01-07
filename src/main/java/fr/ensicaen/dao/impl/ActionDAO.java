@@ -24,7 +24,7 @@ public class ActionDAO implements IGenericDAO<Action> {
 		List list = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"from " + Account.class.getName()
+						"from " + Action.class.getName()
 								+ " where id_action=?").setParameter(0, id)
 				.list();
 		if (list != null && !list.isEmpty())
@@ -45,7 +45,7 @@ public class ActionDAO implements IGenericDAO<Action> {
 	@Override
 	public List<Action> readAll() {
 		return sessionFactory.getCurrentSession()
-				.createQuery("from " + Account.class.getName()).list();
+				.createQuery("from " + Action.class.getName()).list();
 	}
 
 	/**

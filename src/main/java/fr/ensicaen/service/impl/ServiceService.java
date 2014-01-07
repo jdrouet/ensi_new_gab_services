@@ -1,11 +1,16 @@
 package fr.ensicaen.service.impl;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.ensicaen.dao.IGenericDAO;
+import fr.ensicaen.entity.Client;
 import fr.ensicaen.entity.Service;
+import fr.ensicaen.entity.Tag;
 import fr.ensicaen.service.IGenericService;
 
 @Transactional
@@ -45,6 +50,50 @@ public class ServiceService implements IGenericService<Service> {
 
 	public void setDao(IGenericDAO<Service> dao) {
 		this.dao = dao;
+	}
+
+	/**
+	 * Retrieve all services concern by the tag (without existing service in
+	 * client profil)
+	 * 
+	 * @param tag
+	 * @return
+	 */
+	public List<Service> getServicesByTag(Client c, Tag tag) {
+		List<Service> ret = getAll();
+		Iterator<Service> it = ret.iterator();
+		while (it.hasNext()) {
+			Service s = it.next();
+			if (!c.getServiceList().contains(s)) {
+				if (s.getTagList().contains(tag)) {
+					ret.remove(ret);
+				}
+			}
+		}
+		return ret;
+	}
+
+	/**
+	 * counts the number of occurrences of tag
+	 * 
+	 * @return
+	 */
+	public Map<Tag, Integer> getOccTag() {
+		Map<Tag, Integer> ret = new HashMap<>();
+		List<Service> services = getAll();
+		Iterator<Service> it = services.iterator();
+		while (it.hasNext()) {
+			Service s = it.next();
+			for (Tag t : s.getTagList()) {
+				Integer cpt = ret.get(t);
+				if (cpt != null) {
+					ret.put(t, cpt + 1);
+				} else {
+					ret.put(t, 1);
+				}
+			}
+		}
+		return ret;
 	}
 
 }
