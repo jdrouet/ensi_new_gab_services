@@ -82,6 +82,7 @@ public class AuthenticationBean implements Serializable {
     }
 
     public String onPressValid() {
+        // TODO mettre la carte dans HomeBean
         if (new Random().nextBoolean()) {
             return "authentication.xhtml";
         } else {
