@@ -26,6 +26,14 @@ public class Service implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "id_tag")})
     private List<Tag> tagList;
 
+    public Service() {
+    }
+
+    public Service(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
     public Long getIdService() {
         return idService;
     }

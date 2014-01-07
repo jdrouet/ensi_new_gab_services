@@ -9,6 +9,8 @@ import java.util.Arrays;
 public class GenerateDatabase {
 
     public static void main(String[] argv) {
+        /** Types de comptes **/
+        //
         AccountType t1 = new AccountType();
         t1.setName("Livret A");
         t1.setCeiling(22000);
@@ -17,6 +19,12 @@ public class GenerateDatabase {
         t2.setName("Livret jeune");
         t2.setCeiling(22000);
         t2.setRate(0.0325);
+        //
+        /** Services **/
+        //
+        Service s1 = new Service("SNCF", "Service d'achat de billets SNCF");
+        //
+        /** Personne 1 **/
         //
         Person p1 = new Person("Hervé", "Tété");
         //
@@ -28,6 +36,7 @@ public class GenerateDatabase {
         //
         p1.setAccountList(Arrays.asList(a1));
         //
+
     }
 
 }
