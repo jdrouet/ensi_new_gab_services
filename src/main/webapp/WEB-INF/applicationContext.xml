@@ -9,6 +9,29 @@
 		        http://www.springframework.org/schema/context
 		        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
+	<!-- Beans Declaration -->
+	<bean id="Account" class="fr.ensicaen.entity.Account"/>
+	<!--<bean id="AccountType" class="fr.ensicaen.entity.AccountType"/>
+	<bean id="Action" class="fr.ensicaen.entity.Action"/>
+	<bean id="Card" class="fr.ensicaen.entity.Card"/>
+	<bean id="Client" class="fr.ensicaen.entity.Client"/>
+	<bean id="Company" class="fr.ensicaen.entity.Company"/>
+	<bean id="Operation" class="fr.ensicaen.entity.Operation"/>
+	<bean id="Organization" class="fr.ensicaen.entity.Organization"/>
+	<bean id="Person" class="fr.ensicaen.entity.Person"/>
+	<bean id="Service" class="fr.ensicaen.entity.Service"/>
+	<bean id="Tag" class="fr.ensicaen.entity.Tag"/> -->
+	
+	<!-- User Service Declaration -->
+	<bean id="AccountService" class="fr.ensicaen.service.impl.AccountService">
+		<property name="accountDAO" ref="AccountDAO" />
+	</bean>
+	
+	<!-- User DAO Declaration -->
+	<bean id="AccountDAO" class="fr.ensicaen.dao.impl.AccountDAO">
+		<property name="sessionFactory" ref="SessionFactory" />
+	</bean>
+
     <!-- Data Source Declaration -->
     <bean id="DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
@@ -32,7 +55,7 @@
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
             </props>
         </property>
     </bean>
