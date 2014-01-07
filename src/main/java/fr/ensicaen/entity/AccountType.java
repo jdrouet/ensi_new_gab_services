@@ -17,28 +17,31 @@ public class AccountType implements Serializable {
 
     @Id
     @Column(name = "id_account_type", nullable = false)
-    private Long idAccountDetail;
+    private Long idAccountType;
 
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
     @Column(name = "ceiling")
-    private int ceiling;
+    private double ceiling;
+
+    @Column(name = "rate")
+    private double rate;
 
 
-    public Long getIdAccountDetail() {
-        return idAccountDetail;
+    public Long getIdAccountType() {
+        return idAccountType;
     }
 
-    public void setIdAccountDetail(Long idAccountDetail) {
-        this.idAccountDetail = idAccountDetail;
+    public void setIdAccountType(Long idAccountDetail) {
+        this.idAccountType = idAccountDetail;
     }
 
-    public int getCeiling() {
+    public double getCeiling() {
         return ceiling;
     }
 
-    public void setCeiling(int plafonds) {
+    public void setCeiling(double plafonds) {
         this.ceiling = plafonds;
     }
 
@@ -48,5 +51,13 @@ public class AccountType implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public double getRate() {
+        return rate;
+    }
+
+    public void setRate(double rate) {
+        this.rate = rate;
     }
 }

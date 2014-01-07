@@ -17,6 +17,12 @@ public class Person extends Client {
     @Column(name = "lastname", nullable = false)
     private String lastname;
 
+    public Person(String firstname, String lastname) {
+        super();
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
+
     public String getFirstname() {
 		return firstname;
 	}

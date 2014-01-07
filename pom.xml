@@ -113,6 +113,13 @@
             <version>0.9.1.2</version>
         </dependency>
 
+        <!-- Hash generator -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.9</version>
+        </dependency>
+
     </dependencies>
 
     <build>

@@ -29,6 +29,9 @@ public class Client implements Serializable {
     @OneToMany(mappedBy = "id_client")
     private List<Action> actionList;
 
+    public Client() {
+    }
+
     public Long getIdClient() {
         return idClient;
     }
