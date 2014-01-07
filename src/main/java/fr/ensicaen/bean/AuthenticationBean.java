@@ -1,5 +1,8 @@
 package fr.ensicaen.bean;
 
+import fr.ensicaen.entity.Card;
+import fr.ensicaen.service.impl.CardService;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -20,8 +23,15 @@ public class AuthenticationBean implements Serializable {
     private List<Integer> keyboard;
     private List<Integer> cliqued;
 
+    @ManagedProperty("#{cardService}")
+    private CardService cardService;
+
+    @ManagedProperty("#{param.idCard}")
+    private Long idCard;
+
     @ManagedProperty("#{param.error}")
     private String error;
+
     @ManagedProperty("#{homeBean}")
     private HomeBean homeBean;
 
@@ -68,6 +78,30 @@ public class AuthenticationBean implements Serializable {
         return sb.toString();
     }
 
+    private String getClearPin() {
+        StringBuffer sb = new StringBuffer();
+        for (Integer i : this.cliqued) {
+            sb.append(i.toString());
+        }
+        return sb.toString();
+    }
+
+    public CardService getCardService() {
+        return cardService;
+    }
+
+    public void setCardService(CardService cardService) {
+        this.cardService = cardService;
+    }
+
+    public Long getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(Long idCard) {
+        this.idCard = idCard;
+    }
+
     public boolean isKeyboardDisabled() {
         return this.cliqued.size() >= 4;
     }
@@ -81,12 +115,19 @@ public class AuthenticationBean implements Serializable {
         return "authentication.xhtml";
     }
 
+    public Card getCard() {
+        return this.cardService.find(this.getIdCard());
+    }
+
     public String onPressValid() {
-        // TODO mettre la carte dans HomeBean
-        if (new Random().nextBoolean()) {
-            return "authentication.xhtml";
+        Card card = this.getCard();
+        if (card == null) {
+            return "/pages/index.html";
+        } else if (card.isPin(this.getClearPin())) {
+            this.homeBean.setCard(card);
+            return "/pages/home.xhtml";
         } else {
-            return "authentication.xhtml?error=index.wrong_pin";
+            return "/pages/authentication.xhtml?error=index.wrong_pin&idCard=" + this.idCard;
         }
     }
 }

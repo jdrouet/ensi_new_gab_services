@@ -35,7 +35,7 @@ public class PersonService implements IGenericService<Person> {
 	}
 
 	@Override
-	public List<Person> findAll() {
+	public List<Person> getAll() {
 		return dao.readAll();
 	}
 

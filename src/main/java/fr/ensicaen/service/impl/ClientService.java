@@ -35,7 +35,7 @@ public class ClientService implements IGenericService<Client> {
 	}
 
 	@Override
-	public List<Client> findAll() {
+	public List<Client> getAll() {
 		return dao.readAll();
 	}
 

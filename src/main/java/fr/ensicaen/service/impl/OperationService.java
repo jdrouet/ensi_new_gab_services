@@ -35,7 +35,7 @@ public class OperationService implements IGenericService<Operation> {
 	}
 
 	@Override
-	public List<Operation> findAll() {
+	public List<Operation> getAll() {
 		return dao.readAll();
 	}
 

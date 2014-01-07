@@ -35,7 +35,7 @@ public class OrganizationService implements IGenericService<Organization> {
 	}
 
 	@Override
-	public List<Organization> findAll() {
+	public List<Organization> getAll() {
 		return dao.readAll();
 	}
 

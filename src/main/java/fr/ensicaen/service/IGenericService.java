@@ -12,6 +12,6 @@ public interface IGenericService<T> {
 
 	public T find(Long id);
 
-	public List<T> findAll();
+	public List<T> getAll();
 
 }

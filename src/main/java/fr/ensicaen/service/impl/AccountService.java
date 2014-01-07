@@ -35,7 +35,7 @@ public class AccountService implements IGenericService<Account> {
 	}
 
 	@Override
-	public List<Account> findAll() {
+	public List<Account> getAll() {
 		return dao.readAll();
 	}
 

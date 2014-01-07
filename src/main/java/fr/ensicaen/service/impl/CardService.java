@@ -35,7 +35,7 @@ public class CardService implements IGenericService<Card> {
 	}
 
 	@Override
-	public List<Card> findAll() {
+	public List<Card> getAll() {
 		return dao.readAll();
 	}
 

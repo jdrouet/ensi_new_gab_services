@@ -13,8 +13,9 @@
             <p:graphicImage value="/img/diebold_logo.png" style="width: 600px;"/>
         </h:panelGrid>
 
-        <p:dataGrid value="#{accountService.accounts}" var="acc" columns="5">
-            <h:outputText value="#{acc.idAccount}"/>
+        <p:dataGrid value="#{cardService.all}" var="card" columns="3">
+            <p:commandButton value="#{card.pan}" ajax="false"
+                    action="#{indexBean.getAuthenticationPage(card)}"/>
         </p:dataGrid>
 
     </h:form>

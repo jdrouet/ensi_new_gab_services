@@ -35,7 +35,7 @@ public class TagService implements IGenericService<Tag> {
 	}
 
 	@Override
-	public List<Tag> findAll() {
+	public List<Tag> getAll() {
 		return dao.readAll();
 	}
 

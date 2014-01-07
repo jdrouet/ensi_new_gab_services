@@ -35,7 +35,7 @@ public class ServiceService implements IGenericService<Service> {
 	}
 
 	@Override
-	public List<Service> findAll() {
+	public List<Service> getAll() {
 		return dao.readAll();
 	}
 

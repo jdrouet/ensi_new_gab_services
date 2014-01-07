@@ -34,7 +34,7 @@ public class ActionService implements IGenericService<Action> {
 	}
 
 	@Override
-	public List<Action> findAll() {
+	public List<Action> getAll() {
 		return dao.readAll();
 	}
 
