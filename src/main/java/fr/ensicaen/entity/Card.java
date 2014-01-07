@@ -21,6 +21,7 @@ public class Card implements Serializable {
      * Identifiant unique de la carte
      */
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_card")
     private Long idCard;
 
@@ -42,7 +43,7 @@ public class Card implements Serializable {
     /**
      * Compte auquel est lié la carte
      */
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "account", nullable = false)
     private Account account;
 
@@ -97,6 +98,6 @@ public class Card implements Serializable {
     }
 
     private static String sha1(String pin) {
-        return new String(DigestUtils.sha1(pin));
+        return DigestUtils.sha1Hex(pin);
     }
 }

@@ -1,6 +1,7 @@
 package fr.ensicaen.bean;
 
 import fr.ensicaen.entity.Card;
+import fr.ensicaen.service.IGenericService;
 import fr.ensicaen.service.impl.CardService;
 
 import javax.faces.bean.ManagedBean;
@@ -16,21 +17,19 @@ import java.util.*;
  * Date: 06/01/14
  */
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class AuthenticationBean implements Serializable {
     private static final long serialVersionUID = -9052283682987963522L;
+    public static final String PAGE = "/pages/authentication.xhtml";
 
     private List<Integer> keyboard;
     private List<Integer> cliqued;
 
-    @ManagedProperty("#{cardService}")
-    private CardService cardService;
-
-    @ManagedProperty("#{param.idCard}")
-    private Long idCard;
-
-    @ManagedProperty("#{param.error}")
+    private Card card;
     private String error;
+
+    @ManagedProperty("#{cardService}")
+    private IGenericService<Card> cardService;
 
     @ManagedProperty("#{homeBean}")
     private HomeBean homeBean;
@@ -62,6 +61,14 @@ public class AuthenticationBean implements Serializable {
         this.homeBean = homeBean;
     }
 
+    public IGenericService<Card> getCardService() {
+        return cardService;
+    }
+
+    public void setCardService(IGenericService<Card> cardService) {
+        this.cardService = cardService;
+    }
+
     public String getButtonLabel(int i) {
         return this.keyboard.get(i) + "";
     }
@@ -86,20 +93,12 @@ public class AuthenticationBean implements Serializable {
         return sb.toString();
     }
 
-    public CardService getCardService() {
-        return cardService;
+    public Card getCard() {
+        return this.card;
     }
 
-    public void setCardService(CardService cardService) {
-        this.cardService = cardService;
-    }
-
-    public Long getIdCard() {
-        return idCard;
-    }
-
-    public void setIdCard(Long idCard) {
-        this.idCard = idCard;
+    public void setCard(Card card) {
+        this.card = card;
     }
 
     public boolean isKeyboardDisabled() {
@@ -111,23 +110,19 @@ public class AuthenticationBean implements Serializable {
     }
 
     public String onPressCancel() {
+        this.cliqued.clear();
         Collections.shuffle(this.keyboard);
-        return "authentication.xhtml";
-    }
-
-    public Card getCard() {
-        return this.cardService.find(this.getIdCard());
+        return PAGE;
     }
 
     public String onPressValid() {
-        Card card = this.getCard();
-        if (card == null) {
-            return "/pages/index.html";
-        } else if (card.isPin(this.getClearPin())) {
+        if (this.card == null) {
+            return IndexBean.PAGE;
+        } else if (this.card.isPin(this.getClearPin())) {
             this.homeBean.setCard(card);
-            return "/pages/home.xhtml";
+            return HomeBean.PAGE;
         } else {
-            return "/pages/authentication.xhtml?error=index.wrong_pin&idCard=" + this.idCard;
+            return PAGE;
         }
     }
 }

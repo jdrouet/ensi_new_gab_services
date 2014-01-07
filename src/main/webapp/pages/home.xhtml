@@ -1,20 +1,19 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
-<h:head>
-    <title>Keyboard</title>
-</h:head>
-<h:body>
-    <h:form>
-        <p:dataGrid var="service" value="#{homeBean.selectedServiceList}"
-                    style="width: 80%; margin: 0 auto;">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="template.xhtml">
+    <ui:define name="page_title">Home</ui:define>
+    <ui:define name="page_content">
+        <p:dataGrid var="service" value="#{homeBean.selectedServiceList}">
             <p:panel header="#{service.name}">
                 <h:panelGrid columns="1" style="width: 100%;">
                     <h:outputText value="#{service.description}"/>
+                    <p:commandButton value="#{lang['home.access']}"
+                                     action="#{homeBean.getServicePage(service)}"/>
                 </h:panelGrid>
             </p:panel>
         </p:dataGrid>
-    </h:form>
-</h:body>
-</html>
+    </ui:define>
+</ui:composition>

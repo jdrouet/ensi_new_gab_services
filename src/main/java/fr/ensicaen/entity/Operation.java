@@ -19,6 +19,7 @@ public class Operation implements Serializable {
      * Identifiant de la transaction
      */
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_operation")
     private Long idOperation;
 
@@ -31,14 +32,14 @@ public class Operation implements Serializable {
     /**
      * Compte source de la transaction
      */
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "source", nullable = false)
     private Account source;
 
     /**
      * Compte destination de la transaction
      */
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "destination", nullable = false)
     private Account destination;
 

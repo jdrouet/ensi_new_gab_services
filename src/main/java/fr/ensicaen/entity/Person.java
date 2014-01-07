@@ -1,6 +1,7 @@
 package fr.ensicaen.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
@@ -9,6 +10,7 @@ import javax.persistence.Table;
  * @author  Alexandre Cros
  * @date 06/01/14
  */
+@Entity
 @Table(name = "person")
 public class Person extends Client {
     private static final long serialVersionUID = 1418275098077928373L;
@@ -24,6 +26,9 @@ public class Person extends Client {
      */
     @Column(name = "lastname", nullable = false)
     private String lastname;
+
+    public Person() {
+    }
 
     public Person(String firstname, String lastname) {
         super();

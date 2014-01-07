@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html" id="fview">
+    <h:head>
+        <title><ui:insert name="page_title"/></title>
+    </h:head>
+    <h:body>
+        <h:panelGrid columns="3" style="width: 90%; margin: 0 auto; text-align: center;">
+            <p:graphicImage value="/img/ensicaen_logo.png" style="max-height: 100px;"/>
+            <p:graphicImage value="/img/unicaen_logo.png" style="max-height: 100px;"/>
+            <p:graphicImage value="/img/diebold_logo.png" style="max-height: 100px;"/>
+        </h:panelGrid>
+
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h:form id="form">
+                <ui:insert name="page_content"/>
+            </h:form>
+        </div>
+    </h:body>
+</f:view>
+</html>

@@ -19,6 +19,7 @@ public class AccountType implements Serializable {
      * Identifiant du type de compte
      */
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_account_type", nullable = false)
     private Long idAccountType;
 

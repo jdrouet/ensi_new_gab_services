@@ -1,23 +1,13 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
-<h:head>
-    <title>Home</title>
-</h:head>
-<h:body>
-    <h:form>
-
-        <h:panelGrid columns="1" style="margin: 0 auto; text-align: center">
-            <p:graphicImage value="/img/ensicaen_logo.jpg" style="width: 600px;"/>
-            <p:graphicImage value="/img/diebold_logo.png" style="width: 600px;"/>
-        </h:panelGrid>
-
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="template.xhtml">
+    <ui:define name="page_title">Index</ui:define>
+    <ui:define name="page_content">
         <p:dataGrid value="#{cardService.all}" var="card" columns="3">
-            <p:commandButton value="#{card.pan}" ajax="false"
-                    action="#{indexBean.getAuthenticationPage(card)}"/>
+            <p:commandButton value="#{card.pan}" action="#{indexBean.onSelectCard(card)}"/>
         </p:dataGrid>
-
-    </h:form>
-</h:body>
-</html>
+    </ui:define>
+</ui:composition>

@@ -16,6 +16,7 @@ public class Service implements Serializable {
     private static final long serialVersionUID = 3375875149325438194L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_service", nullable = false)
     private Long idService;
 
@@ -31,7 +32,7 @@ public class Service implements Serializable {
     @Column(name = "path", nullable = false)
     private String path;
 
-	@ManyToMany
+	@ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name = "service_tag",
             joinColumns = {@JoinColumn(name = "id_service")},
             inverseJoinColumns = {@JoinColumn(name = "id_tag")})

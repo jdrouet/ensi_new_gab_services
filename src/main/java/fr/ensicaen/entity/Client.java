@@ -1,5 +1,8 @@
 package fr.ensicaen.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -22,19 +25,21 @@ public class Client implements Serializable {
      * Identifiant du client dans la base de données
      */
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_client", nullable = false)
     private Long idClient;
 
     /**
      * Liste des comptes liés au client
      */
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client", cascade = {CascadeType.ALL})
     private List<Account> accountList;
 
     /**
      * Liste des services activés au client
      */
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @LazyCollection(value = LazyCollectionOption.FALSE)
     @JoinTable(name = "client_service",
             joinColumns = {@JoinColumn(name = "id_client")},
             inverseJoinColumns = {@JoinColumn(name = "id_service")})
@@ -43,7 +48,7 @@ public class Client implements Serializable {
     /**
      * Liste des actions d'activation et de desactivation des services par le client
      */
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client", cascade = {CascadeType.ALL})
     private List<Action> actionList;
 
     public Client() {

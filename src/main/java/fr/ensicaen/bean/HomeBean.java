@@ -17,6 +17,7 @@ import java.util.List;
 @SessionScoped
 public class HomeBean implements Serializable {
     private static final long serialVersionUID = -4523859625680715721L;
+    public static final String PAGE = "/pages/home.xhtml";
 
     private Card card;
 
@@ -38,5 +39,9 @@ public class HomeBean implements Serializable {
         } else {
             return this.card.getAccount().getClient().getServiceList();
         }
+    }
+
+    public String getServicePage(Service service) {
+        return "/pages/services/" + service.getPath() + "/index.xhtml";
     }
 }

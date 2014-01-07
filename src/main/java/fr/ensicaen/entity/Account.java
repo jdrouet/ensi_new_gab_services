@@ -3,13 +3,7 @@ package fr.ensicaen.entity;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Classe conteneur pour les comptes des utilisateurs
@@ -26,6 +20,7 @@ public class Account implements Serializable {
      * Identifiant du compte
      */
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_account", nullable = false)
     private Long idAccount;
 
@@ -38,33 +33,33 @@ public class Account implements Serializable {
     /**
      * Client à qui appartient le compte
      */
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "client", nullable = false)
     private Client client;
 
     /**
      * Type du compte
      */
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "account_type", nullable = false)
     private AccountType accountType;
 
     /**
      * Liste des cartes liées au compte
      */
-    @OneToMany(mappedBy = "account")
+    @OneToMany(mappedBy = "account", cascade = {CascadeType.ALL})
     private List<Card> cardList;
 
     /**
      * Liste des opérations débitées sur le compte
      */
-    @OneToMany(mappedBy = "source")
+    @OneToMany(mappedBy = "source", cascade = {CascadeType.ALL})
     private List<Operation> debitList;
 
     /**
      * Liste des opérations créditées sur le compte
      */
-    @OneToMany(mappedBy = "destination")
+    @OneToMany(mappedBy = "destination", cascade = {CascadeType.ALL})
     private List<Operation> creditList;
 
     public Account() {

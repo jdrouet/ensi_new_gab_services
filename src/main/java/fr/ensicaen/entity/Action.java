@@ -19,6 +19,7 @@ public class Action implements Serializable {
      * Identifiant de l'action
      */
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_action", nullable = false)
     private Long idAction;
 
@@ -31,14 +32,14 @@ public class Action implements Serializable {
     /**
      * Client effectuant l'action
      */
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "client", nullable = false)
     private Client client;
 
     /**
      * Service activé ou desactivé par le client
      */
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "service", nullable = false)
     private Service service;
 
