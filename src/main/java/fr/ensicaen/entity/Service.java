@@ -5,6 +5,11 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * Classe définissant un service
+ *
+ * @author Jérémie Drouet
+ */
 @Entity
 @Table(name = "service")
 public class Service implements Serializable {
@@ -20,7 +25,13 @@ public class Service implements Serializable {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @ManyToMany
+    /**
+     * Chemin d'accès au service
+     */
+    @Column(name = "path", nullable = false)
+    private String path;
+
+	@ManyToMany
     @JoinTable(name = "service_tag",
             joinColumns = {@JoinColumn(name = "id_service")},
             inverseJoinColumns = {@JoinColumn(name = "id_tag")})
@@ -29,9 +40,10 @@ public class Service implements Serializable {
     public Service() {
     }
 
-    public Service(String name, String description) {
+    public Service(String name, String description, String path) {
         this.name = name;
         this.description = description;
+        this.path = path;
     }
 
     public Long getIdService() {
@@ -65,4 +77,12 @@ public class Service implements Serializable {
     public void setTagList(List<Tag> tagList) {
         this.tagList = tagList;
     }
+    
+    public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
 }

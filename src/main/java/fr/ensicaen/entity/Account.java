@@ -12,99 +12,123 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * User: Jérémie Drouet Date: 06/01/14
+ * Classe conteneur pour les comptes des utilisateurs
+ *
+ * @author Jérémie Drouet
+ * @date 06/01/14
  */
 @Entity
 @Table(name = "account")
 public class Account implements Serializable {
-	private static final long serialVersionUID = 6095491421553685983L;
+    private static final long serialVersionUID = 6095491421553685983L;
 
-	@Id
-	@Column(name = "id_account", nullable = false)
-	private Long idAccount;
+    /**
+     * Identifiant du compte
+     */
+    @Id
+    @Column(name = "id_account", nullable = false)
+    private Long idAccount;
 
-	@Column(name = "balance", nullable = false)
-	private double balance;
+    /**
+     * Solde du compte
+     */
+    @Column(name = "balance", nullable = false)
+    private double balance;
 
-	@ManyToOne
-	@JoinColumn(name = "client", nullable = false)
-	private Client client;
+    /**
+     * Client à qui appartient le compte
+     */
+    @ManyToOne
+    @JoinColumn(name = "client", nullable = false)
+    private Client client;
 
-	@ManyToOne
-	@JoinColumn(name = "account_type", nullable = false)
-	private AccountType accountType;
+    /**
+     * Type du compte
+     */
+    @ManyToOne
+    @JoinColumn(name = "account_type", nullable = false)
+    private AccountType accountType;
 
-	@OneToMany(mappedBy = "account")
-	private List<Card> cardList;
+    /**
+     * Liste des cartes liées au compte
+     */
+    @OneToMany(mappedBy = "account")
+    private List<Card> cardList;
 
-	@OneToMany(mappedBy = "source")
-	private List<Operation> debitList;
+    /**
+     * Liste des opérations débitées sur le compte
+     */
+    @OneToMany(mappedBy = "source")
+    private List<Operation> debitList;
 
-	@OneToMany(mappedBy = "destination")
-	private List<Operation> creditList;
+    /**
+     * Liste des opérations créditées sur le compte
+     */
+    @OneToMany(mappedBy = "destination")
+    private List<Operation> creditList;
 
-	public Account() {
-	}
+    public Account() {
+    }
 
-	public Account(Client client, AccountType accountType, double balance) {
-		this.client = client;
-		this.accountType = accountType;
-		this.balance = balance;
-	}
+    public Account(Client client, AccountType accountType, double balance) {
+        this.client = client;
+        this.accountType = accountType;
+        this.balance = balance;
+    }
 
-	public Long getIdAccount() {
-		return idAccount;
-	}
+    public Long getIdAccount() {
+        return idAccount;
+    }
 
-	public void setIdAccount(Long idCompte) {
-		this.idAccount = idCompte;
-	}
+    public void setIdAccount(Long idCompte) {
+        this.idAccount = idCompte;
+    }
 
-	public double getBalance() {
-		return balance;
-	}
+    public double getBalance() {
+        return balance;
+    }
 
-	public void setBalance(double balance) {
-		this.balance = balance;
-	}
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
 
-	public Client getClient() {
-		return client;
-	}
+    public Client getClient() {
+        return client;
+    }
 
-	public void setClient(Client client) {
-		this.client = client;
-	}
+    public void setClient(Client client) {
+        this.client = client;
+    }
 
-	public AccountType getAccountType() {
-		return accountType;
-	}
+    public AccountType getAccountType() {
+        return accountType;
+    }
 
-	public void setAccountType(AccountType accountType) {
-		this.accountType = accountType;
-	}
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
+    }
 
-	public List<Operation> getDebitList() {
-		return debitList;
-	}
+    public List<Operation> getDebitList() {
+        return debitList;
+    }
 
-	public void setDebitList(List<Operation> debitList) {
-		this.debitList = debitList;
-	}
+    public void setDebitList(List<Operation> debitList) {
+        this.debitList = debitList;
+    }
 
-	public List<Operation> getCreditList() {
-		return creditList;
-	}
+    public List<Operation> getCreditList() {
+        return creditList;
+    }
 
-	public void setCreditList(List<Operation> creditList) {
-		this.creditList = creditList;
-	}
+    public void setCreditList(List<Operation> creditList) {
+        this.creditList = creditList;
+    }
 
-	public List<Card> getCardList() {
-		return cardList;
-	}
+    public List<Card> getCardList() {
+        return cardList;
+    }
 
-	public void setCardList(List<Card> cardList) {
-		this.cardList = cardList;
-	}
+    public void setCardList(List<Card> cardList) {
+        this.cardList = cardList;
+    }
 }

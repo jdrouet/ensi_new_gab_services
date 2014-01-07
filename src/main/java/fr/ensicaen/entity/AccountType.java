@@ -6,25 +6,37 @@ import javax.persistence.*;
 
 
 /**
- * 
- * @author mhiri
+ * Classe conteneur du type de compte
  *
+ * @author mhiri
  */
 @Entity
 @Table(name = "account_type")
 public class AccountType implements Serializable {
     private static final long serialVersionUID = 4270625962503463818L;
 
+    /**
+     * Identifiant du type de compte
+     */
     @Id
     @Column(name = "id_account_type", nullable = false)
     private Long idAccountType;
 
+    /**
+     * Nom du type
+     */
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
+    /**
+     * Plafond pour ce type de compte
+     */
     @Column(name = "ceiling")
-    private double ceiling;
+    private Double ceiling;
 
+    /**
+     * Taux pour ce type de compte
+     */
     @Column(name = "rate")
     private double rate;
 
@@ -37,11 +49,11 @@ public class AccountType implements Serializable {
         this.idAccountType = idAccountDetail;
     }
 
-    public double getCeiling() {
+    public Double getCeiling() {
         return ceiling;
     }
 
-    public void setCeiling(double plafonds) {
+    public void setCeiling(Double plafonds) {
         this.ceiling = plafonds;
     }
 
