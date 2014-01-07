@@ -6,7 +6,6 @@ import fr.ensicaen.entity.Service;
 import fr.ensicaen.entity.Tag;
 import fr.ensicaen.service.IGenericService;
 import fr.ensicaen.service.IServiceService;
-import fr.ensicaen.service.impl.ServiceService;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;

@@ -62,15 +62,7 @@ public class ServiceService implements IServiceService {
      */
     public List<Service> getServicesByTag(Client c, Tag tag) {
         List<Service> ret = getAll();
-        Iterator<Service> it = ret.iterator();
-        while (it.hasNext()) {
-            Service s = it.next();
-            if (!c.getServiceList().contains(s)) {
-                if (s.getTagList().contains(tag)) {
-                    ret.remove(ret);
-                }
-            }
-        }
+        ret.removeAll(c.getServiceList());
         return ret;
     }
 

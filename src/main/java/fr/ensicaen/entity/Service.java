@@ -32,7 +32,7 @@ public class Service implements Serializable {
     @Column(name = "path", nullable = false)
     private String path;
 
-	@ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name = "service_tag",
             joinColumns = {@JoinColumn(name = "id_service")},
             inverseJoinColumns = {@JoinColumn(name = "id_tag")})
@@ -78,12 +78,32 @@ public class Service implements Serializable {
     public void setTagList(List<Tag> tagList) {
         this.tagList = tagList;
     }
-    
-    public String getPath() {
-		return path;
-	}
 
-	public void setPath(String path) {
-		this.path = path;
-	}
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        } else {
+            if (o == null) {
+                return false;
+            } else if (this.getClass() != o.getClass()) {
+                return false;
+            } else {
+                Service service = (Service) o;
+                if (this.idService != null) {
+                    return this.idService == service.idService;
+                } else {
+                    return false;
+                }
+            }
+        }
+    }
 }
