@@ -23,12 +23,12 @@
 	<bean id="Tag" class="fr.ensicaen.entity.Tag"/> -->
 	
 	<!-- User Service Declaration -->
-	<bean id="AccountService" class="fr.ensicaen.service.impl.AccountService">
-		<property name="accountDAO" ref="AccountDAO" />
+	<bean id="accountService" class="fr.ensicaen.service.impl.AccountService">
+		<property name="accountDAO" ref="accountDAO" />
 	</bean>
 	
 	<!-- User DAO Declaration -->
-	<bean id="AccountDAO" class="fr.ensicaen.dao.impl.AccountDAO">
+	<bean id="accountDAO" class="fr.ensicaen.dao.impl.AccountDAO">
 		<property name="sessionFactory" ref="SessionFactory" />
 	</bean>
 
@@ -46,11 +46,7 @@
     <!-- Session Factory Declaration -->
     <bean id="SessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="DataSource"/>
-        <property name="annotatedPackages">
-            <list>
-                <value>fr.ensicaen.entity</value>
-            </list>
-        </property>
+        <property name="packagesToScan" value="fr.ensicaen.entity"/>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>

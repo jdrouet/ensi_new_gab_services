@@ -20,13 +20,17 @@ public class Client implements Serializable {
     @Column(name = "id_client", nullable = false)
     private Long idClient;
 
-    @OneToMany(mappedBy = "id_client")
+    @OneToMany(mappedBy = "client")
     private List<Account> accountList;
 
-    @OneToMany(mappedBy = "id_client")
+
+    @ManyToMany
+    @JoinTable(name = "client_service",
+            joinColumns = {@JoinColumn(name = "id_client")},
+            inverseJoinColumns = {@JoinColumn(name = "id_service")})
     private List<Service> serviceList;
 
-    @OneToMany(mappedBy = "id_client")
+    @OneToMany(mappedBy = "client")
     private List<Action> actionList;
 
     public Client() {
