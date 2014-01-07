@@ -15,43 +15,43 @@ public class GenerateDatabase {
         //
         AccountType t1 = new AccountType();
         t1.setName("Livret A");
-        t1.setCeiling(22000);
+        t1.setCeiling(22000.0);
         //
         AccountType t2 = new AccountType();
         t2.setName("Livret jeune");
-        t2.setCeiling(22000);
+        t2.setCeiling(22000.0);
         t2.setRate(0.0325);
         //
         AccountType t3 = new AccountType();
         t2.setName("Compte Diamant");
-        
+
         /** Tags **/
-        Tag tag1 =new Tag("SNCF");
-        Tag tag2 =new Tag("Signature");
-        Tag tag3 =new Tag("Reservation");
-        Tag tag4 =new Tag("Consultation");
-        Tag tag5 =new Tag("Compte");
-        
-        
+        Tag tag1 = new Tag("SNCF");
+        Tag tag2 = new Tag("Signature");
+        Tag tag3 = new Tag("Reservation");
+        Tag tag4 = new Tag("Consultation");
+        Tag tag5 = new Tag("Compte");
+
+
         /** Services **/
         //
-        Service s1 = new Service("SNCF", "Service d'achat de billets SNCF");
+        Service s1 = new Service("SNCF", "Service d'achat de billets SNCF", "sncf");
         List<Tag> tags = new ArrayList<Tag>();
         tags.add(tag1);
         tags.add(tag3);
         s1.setTagList(tags);
         //
-        Service s2 = new Service("Signature", "Signature de document");
+        Service s2 = new Service("Signature", "Signature de document", "sign");
         tags = new ArrayList<Tag>();
         tags.add(tag2);
         s2.setTagList(tags);
         //
-        Service s3 = new Service("Consultation", "Consultation des comptes");
+        Service s3 = new Service("Consultation", "Consultation des comptes", "consult");
         tags = new ArrayList<Tag>();
         tags.add(tag4);
         tags.add(tag5);
         s3.setTagList(tags);
-        		
+
         //
         /** Personne 1 **/
         //
@@ -70,7 +70,7 @@ public class GenerateDatabase {
         p1.setAccountList(Arrays.asList(a1));
         //
         p1.setServiceList(profile);
-        
+
         //
         /** Personne 2 **/
         //
@@ -89,7 +89,7 @@ public class GenerateDatabase {
         p2.setAccountList(Arrays.asList(a2));
         //
         p2.setServiceList(profile2);
-        
+
         //
         /** Personne 3 **/
         //
@@ -107,7 +107,7 @@ public class GenerateDatabase {
         p3.setAccountList(Arrays.asList(a3));
         //
         p3.setServiceList(profile3);
-        
+
         //
         /** Personne 4 **/
         //
@@ -132,7 +132,7 @@ public class GenerateDatabase {
         //
         p4.setAccountList(accountList);
         //
-        p4.setServiceList(profile4);     
+        p4.setServiceList(profile4);
 
     }
 
