@@ -10,20 +10,20 @@ import java.io.Serializable;
  * User: Jérémie Drouet
  * Date: 06/01/14
  */
-@Table(name = "compte")
 @Entity
-public class Compte implements Serializable {
+@Table(name = "account")
+public class Account implements Serializable {
     private static final long serialVersionUID = 6095491421553685983L;
 
     @Id
-    @Column(name = "id_compte", nullable = false)
-    private Long idCompte;
+    @Column(name = "id_account", nullable = false)
+    private Long idAccount;
 
-    public Long getIdCompte() {
-        return idCompte;
+    public Long getIdAccount() {
+        return idAccount;
     }
 
-    public void setIdCompte(Long idCompte) {
-        this.idCompte = idCompte;
+    public void setIdAccount(Long idCompte) {
+        this.idAccount = idCompte;
     }
 }

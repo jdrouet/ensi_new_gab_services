@@ -1,19 +1,60 @@
 package fr.ensicaen.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import java.io.Serializable;
 import java.util.List;
 
+@Entity
 @Table(name = "service")
-public class Service implements Serializable{
-	@Id
-    @Column(name = "id_Service", nullable = false)
-	private Long idService;
-	
-	@Column(nullable = false)
-	private List<String> tags;
-	
+public class Service implements Serializable {
+    private static final long serialVersionUID = 3375875149325438194L;
+
+    @Id
+    @Column(name = "id_service", nullable = false)
+    private Long idService;
+
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @Column(name = "description", nullable = false)
+    private String description;
+
+    @ManyToMany
+    @JoinTable(name = "service_tag",
+            joinColumns = {@JoinColumn(name = "id_service")},
+            inverseJoinColumns = {@JoinColumn(name = "id_tag")})
+    private List<Tag> tagList;
+
+    public Long getIdService() {
+        return idService;
+    }
+
+    public void setIdService(Long idService) {
+        this.idService = idService;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<Tag> getTagList() {
+        return tagList;
+    }
+
+    public void setTagList(List<Tag> tagList) {
+        this.tagList = tagList;
+    }
 }

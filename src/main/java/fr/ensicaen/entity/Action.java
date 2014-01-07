@@ -8,12 +8,14 @@ import javax.persistence.*;
  * User: Alexandre Cros
  * Date: 06/01/14
  */
-
+@Entity
 @Table (name = "action")
 public class Action implements Serializable {
-	@Id
+    private static final long serialVersionUID = -3280786224272692182L;
+    @Id
 	@Column(name = "id_action", nullable = false)
 	private Long idAction;
+
 	@Column(nullable = false)
 	private Date date;
 	

@@ -14,7 +14,7 @@ import java.util.*;
  */
 @ManagedBean
 @ViewScoped
-public class AuthentificationBean implements Serializable {
+public class AuthenticationBean implements Serializable {
     private static final long serialVersionUID = -9052283682987963522L;
 
     private List<Integer> keyboard;
@@ -22,8 +22,10 @@ public class AuthentificationBean implements Serializable {
 
     @ManagedProperty("#{param.error}")
     private String error;
+    @ManagedProperty("#{homeBean}")
+    private HomeBean homeBean;
 
-    public AuthentificationBean() {
+    public AuthenticationBean() {
         this.keyboard = new ArrayList<>();
         this.cliqued = new ArrayList<>();
         //
@@ -40,6 +42,14 @@ public class AuthentificationBean implements Serializable {
 
     public void setError(String error) {
         this.error = error;
+    }
+
+    public HomeBean getHomeBean() {
+        return homeBean;
+    }
+
+    public void setHomeBean(HomeBean homeBean) {
+        this.homeBean = homeBean;
     }
 
     public String getButtonLabel(int i) {
