@@ -20,5 +20,9 @@ http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
             <var>lang</var>
         </resource-bundle>
     </application>
-
+    <managed-bean>
+            <managed-bean-name>SNCFformBean</managed-bean-name>
+            <managed-bean-class>sncf.SNCFformBean</managed-bean-class>
+            <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean> 
 </faces-config>
