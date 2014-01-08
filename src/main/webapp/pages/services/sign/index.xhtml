@@ -4,13 +4,12 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 template="../../template.xhtml">
-    <ui:define name="page_title">Signature</ui:define>
+    <ui:define name="page_title">Signature de document</ui:define>
     <ui:define name="page_content">
-
-        <p:fileUpload fileUploadListener="#{signatureBean.handleFileUpload}" mode="advanced"
-                      update="messages" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
-
-        <p:growl id="messages" showDetail="true"/>
-
+	    <p:fileUpload fileUploadListener="#{signatureBean.handleFileUpload}" mode="advanced" dragDropSupport="true"
+	            update="messages" sizeLimit="500000" allowTypes="/(\.|\/)(jpe?g|png|pdf)$/" />
+	
+	    <p:growl id="messages" showDetail="true"/>
     </ui:define>
 </ui:composition>
+

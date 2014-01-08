@@ -2,11 +2,15 @@ package fr.ensicaen.bean.service.sign;
 
 import fr.ensicaen.bean.HomeBean;
 import fr.ensicaen.util.sign.PdfSign;
+
 import org.primefaces.event.FileUploadEvent;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
 import java.io.File;
 import java.io.Serializable;
 
@@ -51,8 +55,10 @@ public class SignatureBean implements Serializable {
         this.uploadedFile = uploadedFile;
     }
     */
-
     public void handleFileUpload(FileUploadEvent event) {
+    	FacesMessage msg = new FacesMessage("Succesful", event.getFile()
+				.getFileName() + " is uploaded.");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
         System.out.println(event);
         /*
         File tmp;
