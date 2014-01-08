@@ -28,6 +28,16 @@ public class Company extends Client implements Serializable {
 	@Column(name = "name")
 	private String name;
 
+        public Company() {
+            
+        }
+        
+        public Company(String address, String name) {
+            super();
+            this.address = address;
+            this.name = name;
+        }
+        
 	public String getAddress() {
 		return address;
 	}
@@ -35,7 +45,8 @@ public class Company extends Client implements Serializable {
 	public void setAddress(String adresse) {
 		this.address = adresse;
 	}
-
+        
+        @Override
 	public String getName() {
 		return name;
 	}

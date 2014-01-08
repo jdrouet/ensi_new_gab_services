@@ -48,6 +48,10 @@ public class GenerateBean implements Serializable {
         t2.setName("Compte Diamant");
         //
 
+        //
+        AccountType t4 = new AccountType();
+        t4.setName("Compte partenaire");
+        
         /** Tags **/
         Tag tag1 = new Tag("SNCF");
         Tag tag2 = new Tag("Signature");
@@ -70,7 +74,7 @@ public class GenerateBean implements Serializable {
         //
         /** Personne 1 **/
         //
-        Person p1 = new Person("Hervé", "Tété", "herve.tete@gmail.com");
+        Person p1 = new Person("Hervé", "Tété");
         //
         Account a1 = new Account(p1, t1, 42.0);
         //
@@ -86,7 +90,7 @@ public class GenerateBean implements Serializable {
         //
         /** Personne 2 **/
         //
-        Person p2 = new Person("Myriam", "Martin", "myriam.martin@gmail.com");
+        Person p2 = new Person("Myriam", "Martin");
         //
         Account a2 = new Account(p2, t2, -62.0);
         //
@@ -115,7 +119,7 @@ public class GenerateBean implements Serializable {
         //
         /** Personne 3 **/
         //
-        Person p3 = new Person("Bob", "Dupond", "bob.dupond@gmail.com");
+        Person p3 = new Person("Bob", "Dupond");
         //
         Account a3 = new Account(p3, t1, 6200.0);
         //
@@ -131,7 +135,7 @@ public class GenerateBean implements Serializable {
         //
         /** Personne 4 **/
         //
-        Person p4 = new Person("Johnny", "Haliday", "johny.haliday@gmail.com");
+        Person p4 = new Person("Johnny", "Haliday");
         //
         Account a4 = new Account(p4, t3, 2000000.0);
         Account a5 = new Account(p4, t3, 40000000.0);
@@ -147,6 +151,16 @@ public class GenerateBean implements Serializable {
         p4.setServiceList(Arrays.asList(s1, s2, s3));
         //
         // this.clientService.add(p4);
+        
+        //
+        /** SNCF **/
+        //
+        Company sncf = new Company("2 place de la Défense - CNIT 1 - BP 440 - 92053 Paris La Défense Cedex","sncf");
+        //
+        Account aSncf = new Account(sncf, t4, 0);
+        //
+        sncf.setAccountList(Arrays.asList(aSncf));
+        this.clientService.add(sncf);
     }
 
 }
