@@ -28,7 +28,7 @@ public class SignPdf {
 		t1.setName("Livret A");
 		t1.setCeiling(22000.0);
 
-		p1 = new Person("Hervé", "Tété", "herve.tete@gmail.com");
+		p1 = new Person("Hervé", "Tété", "herve.tete@gmail.com", null);
 		//
 		a1 = new Account(p1, t1, 42.0);
 		//

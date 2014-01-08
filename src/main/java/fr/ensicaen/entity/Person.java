@@ -63,6 +63,13 @@ public class Person extends Client {
 	@Column(name = "lastname", nullable = false)
 	private String lastname;
 
+	/**
+	 * Template chiffre de l'utilisateur (minuties). base64 pour eviter les
+	 * problemes d'encodage
+	 */
+	@Column(name = "cipherTemplate", columnDefinition = "text")
+	private String cipherTemplate;
+
 	public Person() {
 	}
 
@@ -77,10 +84,12 @@ public class Person extends Client {
 		this.lastname = lastname;
 	}
 
-	public Person(String firstname, String lastname, String email) {
+	public Person(String firstname, String lastname, String email,
+			String _cipherTemplate) {
 		this(firstname, lastname);
 		setEmail(email);
 		generateP12();
+		cipherTemplate = _cipherTemplate;
 	}
 
 	public String getFirstname() {
