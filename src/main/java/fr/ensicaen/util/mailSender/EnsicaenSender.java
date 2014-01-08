@@ -20,6 +20,12 @@ import javax.mail.internet.*;
 import javax.mail.util.*;
 
 
+
+/** 
+* @author Yassir Mohamed Bouhaddaoui  yassir.bouhaddaoui@gmail.com
+*/
+
+
 public class EnsicaenSender {
 
 	

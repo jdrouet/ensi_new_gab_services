@@ -6,6 +6,12 @@ import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 
 
+
+/** 
+* @author Yassir Mohamed Bouhaddaoui  yassir.bouhaddaoui@gmail.com
+*/
+
+
 public class MainEnsicaen {
 
 	
