@@ -10,6 +10,7 @@ import fr.ensicaen.service.ICompanyService;
 import fr.ensicaen.service.IGenericService;
 import fr.ensicaen.service.impl.CompanyService;
 import fr.ensicaen.service.impl.PartnerService;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
@@ -30,9 +31,9 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @SessionScoped
 public class SncfBean implements Serializable {
-    
+
     private static final long serialVersionUID = -4134614781118798187L;
-    
+
     @ManagedProperty("#{homeBean}")
     private HomeBean homeBean;
 
@@ -41,7 +42,7 @@ public class SncfBean implements Serializable {
 
     @ManagedProperty("#{companyService}")
     private ICompanyService companyService;
-    
+
     private String source;
     private String destination;
     private Date start = new Date();
@@ -51,7 +52,7 @@ public class SncfBean implements Serializable {
     public IGenericService<Account> getAccountService() {
         return accountService;
     }
-    
+
     public void setAccountService(IGenericService<Account> accountService) {
         this.accountService = accountService;
     }
@@ -63,7 +64,7 @@ public class SncfBean implements Serializable {
     public void setCompanyService(ICompanyService companyService) {
         this.companyService = companyService;
     }
-    
+
     public HomeBean getHomeBean() {
         return homeBean;
     }
@@ -71,7 +72,7 @@ public class SncfBean implements Serializable {
     public void setHomeBean(HomeBean homeBean) {
         this.homeBean = homeBean;
     }
-    
+
     public String getSource() {
         return source;
     }
@@ -95,37 +96,38 @@ public class SncfBean implements Serializable {
     public void setStart(Date start) {
         this.start = start;
     }
-    
+
     public List<Voyage> getVoyages() {
         return voyages;
     }
-    
+
     public void setVoyages(List<Voyage> voyages) {
         this.voyages = voyages;
     }
-    
+
     public Voyage getSelectedVoyage() {
         return this.selectedVoyage;
     }
-    
+
     public void setSelectedVoyage(Voyage voyage) {
         this.selectedVoyage = voyage;
     }
-    
+
     public void rechercherVoyages() {
-        int[] minutes = {10,36,55};
+        int[] minutes = {10, 36, 55};
         this.voyages = new ArrayList<>();
         DateFormat dateFormat = new SimpleDateFormat("dd/MM");
         DateFormat timeFormat = new SimpleDateFormat("HH");
         int c = 1;
-        for(int i=0; i<6; i++) {
-            if(i>3)
+        for (int i = 0; i < 6; i++) {
+            if (i > 3) {
                 c = 2;
-            Voyage v = new Voyage(this.source, this.destination, dateFormat.format(this.start), Integer.parseInt(timeFormat.format(this.start))+c+"h"+minutes[i%3], "Intercité", new Float(35.80), i);
+            }
+            Voyage v = new Voyage(this.source, this.destination, dateFormat.format(this.start), Integer.parseInt(timeFormat.format(this.start)) + c + "h" + minutes[i % 3], "Intercité", new Float(35.80), i);
             this.voyages.add(v);
         }
     }
-    
+
     public void reserverVoyage(Voyage v) {
         Company sncf = this.companyService.getCompanyByName("sncf");
         Account sncfAccount = sncf.getAccountList().get(0);
