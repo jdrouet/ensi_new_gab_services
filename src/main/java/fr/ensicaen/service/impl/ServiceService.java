@@ -1,9 +1,6 @@
 package fr.ensicaen.service.impl;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import fr.ensicaen.service.IServiceService;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,8 +58,22 @@ public class ServiceService implements IServiceService {
      * @return
      */
     public List<Service> getServicesByTag(Client c, Tag tag) {
+        List<Service> tmp = new ArrayList<>();
         List<Service> ret = getAll();
         ret.removeAll(c.getServiceList());
+        if (tag != null) {
+            for (Service srv : ret) {
+                boolean b = false;
+                if (srv.getTagList() != null) {
+                    for (Tag t : srv.getTagList()) {
+                        b |= t.getIdTag().equals(tag.getIdTag());
+                    }
+                }
+                if (b) {
+                    tmp.add(srv);
+                }
+            }
+        }
         return ret;
     }
 

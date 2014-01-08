@@ -17,7 +17,7 @@ public class PersonDAO implements IGenericDAO<Person> {
 
 	@Override
 	public void create(Person obj) {
-		sessionFactory.getCurrentSession().save(obj);
+		sessionFactory.getCurrentSession().saveOrUpdate(obj);
 	}
 
 	@Override

@@ -16,7 +16,7 @@ public class OrganizationDAO implements IGenericDAO<Organization> {
 
 	@Override
 	public void create(Organization obj) {
-		sessionFactory.getCurrentSession().save(obj);
+		sessionFactory.getCurrentSession().saveOrUpdate(obj);
 	}
 
 	@Override

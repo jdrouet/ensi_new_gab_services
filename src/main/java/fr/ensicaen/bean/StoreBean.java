@@ -79,7 +79,7 @@ public class StoreBean implements Serializable {
     public void addService(Service service) {
         this.client.getServiceList().add(service);
         this.clientService.update(this.client);
-        this.actionService.add(new Action(this.client, service, true));
+        // this.actionService.add(new Action(this.client, service, true));
     }
 
 

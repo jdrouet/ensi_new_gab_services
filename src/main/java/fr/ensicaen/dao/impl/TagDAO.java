@@ -17,7 +17,7 @@ public class TagDAO implements IGenericDAO<Tag> {
 
 	@Override
 	public void create(Tag obj) {
-		sessionFactory.getCurrentSession().save(obj);
+		sessionFactory.getCurrentSession().saveOrUpdate(obj);
 	}
 
 	@Override

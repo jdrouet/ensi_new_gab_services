@@ -26,6 +26,10 @@ public class IndexBean implements Serializable {
         this.authenticationBean = authenticationBean;
     }
 
+    public String getPicturePath(Card card) {
+        return String.format("/img/fake_card_%d.jpg", (card.getIdCard() % 2) + 1);
+    }
+
     public String onSelectCard(Card card) {
         this.authenticationBean.setCard(card);
         return AuthenticationBean.PAGE;

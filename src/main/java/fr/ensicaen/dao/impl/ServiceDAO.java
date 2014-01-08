@@ -13,52 +13,54 @@ import fr.ensicaen.entity.Service;
  * Hibernate implementation of GenericDao A typesafe implementation of CRUD.
  */
 public class ServiceDAO implements IGenericDAO<Service> {
-	private SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
-	@Override
-	public void create(Service obj) {
-		sessionFactory.getCurrentSession().save(obj);
-	}
+    @Override
+    public void create(Service obj) {
+        sessionFactory.getCurrentSession().merge(obj);
+        sessionFactory.getCurrentSession().save(obj);
+    }
 
-	@Override
-	public Service find(Long id) {
-		List list = sessionFactory
-				.getCurrentSession()
-				.createQuery(
-						"from " + Service.class.getName()
-								+ " where id_service=?").setParameter(0, id)
-				.list();
-		if (list != null && !list.isEmpty())
-			return (Service) list.get(0);
-		return null;
-	}
+    @Override
+    public Service find(Long id) {
+        List list = sessionFactory
+                .getCurrentSession()
+                .createQuery(
+                        "from " + Service.class.getName()
+                                + " where id_service=?").setParameter(0, id)
+                .list();
+        if (list != null && !list.isEmpty())
+            return (Service) list.get(0);
+        return null;
+    }
 
-	@Override
-	public void update(Service obj) {
-		sessionFactory.getCurrentSession().update(obj);
-	}
+    @Override
+    public void update(Service obj) {
+        sessionFactory.getCurrentSession().merge(obj);
+        sessionFactory.getCurrentSession().update(obj);
+    }
 
-	@Override
-	public void delete(Service obj) {
-		sessionFactory.getCurrentSession().delete(obj);
-	}
+    @Override
+    public void delete(Service obj) {
+        sessionFactory.getCurrentSession().delete(obj);
+    }
 
-	@Override
-	public List<Service> readAll() {
-		return sessionFactory.getCurrentSession()
-				.createQuery("from " + Service.class.getName()).list();
-	}
+    @Override
+    public List<Service> readAll() {
+        return sessionFactory.getCurrentSession()
+                .createQuery("from " + Service.class.getName()).list();
+    }
 
-	/**
-	 * Injection via Spring
-	 * 
-	 * @param sessionFactory
-	 */
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+    /**
+     * Injection via Spring
+     *
+     * @param sessionFactory
+     */
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
 }
