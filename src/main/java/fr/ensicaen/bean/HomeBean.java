@@ -7,7 +7,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
@@ -92,5 +94,12 @@ public class HomeBean implements Serializable {
                         service.getName() + " removed"
                 )
         );
+    }
+
+    public String disconnect() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
+        session.invalidate();
+        return "/pages/disconnect.xhtml";
     }
 }

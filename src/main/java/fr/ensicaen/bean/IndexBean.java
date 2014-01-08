@@ -10,7 +10,7 @@ import java.io.Serializable;
  * Date: 07/01/14
  */
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class IndexBean implements Serializable {
     private static final long serialVersionUID = -7049223030318943085L;
     public static final String PAGE = "/pages/index.xhtml";

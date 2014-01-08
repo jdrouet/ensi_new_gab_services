@@ -10,6 +10,7 @@ import fr.ensicaen.service.IServiceService;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
 import java.util.List;
 
@@ -18,7 +19,7 @@ import java.util.List;
  * Date: 07/01/14
  */
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class StoreBean implements Serializable {
     private static final long serialVersionUID = 1980070445064631124L;
 
@@ -31,17 +32,21 @@ public class StoreBean implements Serializable {
     @ManagedProperty("#{actionService}")
     private IGenericService<Action> actionService;
 
-    @ManagedProperty("#{homeBean.client}")
-    private Client client;
+    @ManagedProperty("#{homeBean}")
+    private HomeBean homeBean;
 
     private Tag selectedTag;
 
-    public Client getClient() {
-        return client;
+    public HomeBean getHomeBean() {
+        return homeBean;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setHomeBean(HomeBean homeBean) {
+        this.homeBean = homeBean;
+    }
+
+    public Client getClient() {
+        return this.homeBean.getClient();
     }
 
     public IGenericService<Client> getClientService() {
@@ -77,13 +82,13 @@ public class StoreBean implements Serializable {
     }
 
     public void addService(Service service) {
-        this.client.getServiceList().add(service);
-        this.clientService.update(this.client);
+        this.getClient().getServiceList().add(service);
+        this.clientService.update(this.getClient());
         // this.actionService.add(new Action(this.client, service, true));
     }
 
 
     public List<Service> getServiceList() {
-        return this.serviceService.getServicesByTag(this.client, this.selectedTag);
+        return this.serviceService.getServicesByTag(this.getClient(), this.selectedTag);
     }
 }
