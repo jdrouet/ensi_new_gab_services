@@ -1,0 +1,105 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="template.xhtml">
+    <ui:define name="page_title">Morpion</ui:define>
+    <ui:define name="page_content">
+        <h:form id="form">
+            <p:panelGrid style="margin: 0 auto; text-align: center;">
+                <p:row>
+                    <p:column styleClass="ui-widget-header"
+                              colspan="3">
+                        <h:outputText value=""/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column>
+                        <p:commandButton update=":form" value=""
+                                         actionListener="#{misterBean.playAt(0)}"
+                                         rendered="#{misterBean.isClickable(0)}"/>
+                        <h:outputText rendered="#{misterBean.isClicked(0)}"
+                                      style="margin: 0 auto;"
+                                      styleClass="ui-icon #{misterBean.getIcon(0)}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton update=":form" value=""
+                                         actionListener="#{misterBean.playAt(1)}"
+                                         rendered="#{misterBean.isClickable(1)}"/>
+                        <h:outputText rendered="#{misterBean.isClicked(1)}"
+                                      style="margin: 0 auto;"
+                                      styleClass="ui-icon #{misterBean.getIcon(1)}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton update=":form" value=""
+                                         actionListener="#{misterBean.playAt(2)}"
+                                         rendered="#{misterBean.isClickable(2)}"/>
+                        <h:outputText rendered="#{misterBean.isClicked(2)}"
+                                      style="margin: 0 auto;"
+                                      styleClass="ui-icon #{misterBean.getIcon(2)}"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column>
+                        <p:commandButton update=":form" value=""
+                                         actionListener="#{misterBean.playAt(3)}"
+                                         rendered="#{misterBean.isClickable(3)}"/>
+                        <h:outputText rendered="#{misterBean.isClicked(3)}"
+                                      style="margin: 0 auto;"
+                                      styleClass="ui-icon #{misterBean.getIcon(3)}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton update=":form" value=""
+                                         actionListener="#{misterBean.playAt(4)}"
+                                         rendered="#{misterBean.isClickable(4)}"/>
+                        <h:outputText rendered="#{misterBean.isClicked(4)}"
+                                      style="margin: 0 auto;"
+                                      styleClass="ui-icon #{misterBean.getIcon(4)}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton update=":form" value=""
+                                         actionListener="#{misterBean.playAt(5)}"
+                                         rendered="#{misterBean.isClickable(5)}"/>
+                        <h:outputText rendered="#{misterBean.isClicked(5)}"
+                                      style="margin: 0 auto;"
+                                      styleClass="ui-icon #{misterBean.getIcon(5)}"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column>
+                        <p:commandButton update=":form" value=""
+                                         actionListener="#{misterBean.playAt(6)}"
+                                         rendered="#{misterBean.isClickable(6)}"/>
+                        <h:outputText rendered="#{misterBean.isClicked(6)}"
+                                      style="margin: 0 auto;"
+                                      styleClass="ui-icon #{misterBean.getIcon(6)}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton update=":form" value=""
+                                         actionListener="#{misterBean.playAt(7)}"
+                                         rendered="#{misterBean.isClickable(7)}"/>
+                        <h:outputText rendered="#{misterBean.isClicked(7)}"
+                                      style="margin: 0 auto;"
+                                      styleClass="ui-icon #{misterBean.getIcon(7)}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton update=":form" value=""
+                                         actionListener="#{misterBean.playAt(8)}"
+                                         rendered="#{misterBean.isClickable(8)}"/>
+                        <h:outputText rendered="#{misterBean.isClicked(8)}"
+                                      style="margin: 0 auto;"
+                                      styleClass="ui-icon #{misterBean.getIcon(8)}"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column colspan="3" styleClass="ui-widget-header"
+                              style="text-align: center;">
+                        <p:commandButton update=":form" value="Restart"
+                                         actionListener="#{misterBean.initPanel}"/>
+                    </p:column>
+                </p:row>
+            </p:panelGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>

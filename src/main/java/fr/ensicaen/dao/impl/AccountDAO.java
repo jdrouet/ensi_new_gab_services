@@ -27,9 +27,11 @@ public class AccountDAO implements IGenericDAO<Account> {
                         "from " + Account.class.getName()
                                 + " where id_account=?").setParameter(0, id)
                 .list();
-        if (list != null && !list.isEmpty())
+        if (list != null && !list.isEmpty()) {
             return (Account) list.get(0);
-        return null;
+        } else {
+            return null;
+        }
     }
 
     @Override

@@ -22,6 +22,8 @@ public class FingerBean extends AbstractBean {
     @ManagedProperty("#{homeBean}")
     private HomeBean homeBean;
 
+    private String result;
+
     public HomeBean getHomeBean() {
         return homeBean;
     }
@@ -40,5 +42,13 @@ public class FingerBean extends AbstractBean {
 
     public Card getCard() {
         return this.homeBean.getCard();
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
 }

@@ -8,12 +8,16 @@
         <title><ui:insert name="page_title"/></title>
     </h:head>
     <h:body>
-        <h:panelGrid columns="3"
-                     style="width: 90%; margin: 0 auto; margin-bottom: 20px; text-align: center;">
-            <p:graphicImage value="/img/unicaen_logo.jpg" style="max-height: 100px;"/>
-            <p:graphicImage value="/img/ensicaen_logo.png" style="max-height: 100px;"/>
-            <p:graphicImage value="/img/diebold_logo.png" style="max-height: 100px;"/>
-        </h:panelGrid>
+        <h:form>
+            <h:panelGrid columns="3"
+                         style="width: 90%; margin: 0 auto; margin-bottom: 20px; text-align: center;">
+                <p:graphicImage value="/img/unicaen_logo.jpg" style="max-height: 100px;"/>
+                <p:commandLink action="/pages/hiddenGame.xhtml">
+                    <p:graphicImage value="/img/ensicaen_logo.png" style="max-height: 100px;"/>
+                </p:commandLink>
+                <p:graphicImage value="/img/diebold_logo.png" style="max-height: 100px;"/>
+            </h:panelGrid>
+        </h:form>
 
         <p:dialog header="#{lang['general.progress']}" closable="false"
                   widgetVar="pgrDial" modal="true" visible="false">
