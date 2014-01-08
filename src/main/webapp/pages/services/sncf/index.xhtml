@@ -6,64 +6,72 @@
                 template="../../template.xhtml">
     <ui:define name="page_title">SNCF</ui:define>
     <ui:define name="page_content">
-        <h:form id="form">
-            <p:panelGrid style="width: 100%;">
-                <f:facet name="header">
-                    <p:row>
-                        <p:column colspan="3">
-                            <h:outputText value="Réservez votre voyage"/>
-                        </p:column>
-                    </p:row>
-                </f:facet>
+        <p:panelGrid style="width: 100%;">
+            <f:facet name="header">
                 <p:row>
-                    <p:column rowspan="3" style="text-align: center;">
-                        <p:graphicImage value="/pages/services/sncf/img/logo.png"/>
-                    </p:column>
-                    <p:column styleClass="ui-widget-header">
-                        <h:outputText value="Départ"/>
-                    </p:column>
-                    <p:column>
-                        <p:inputText id="source" value="#{sncfBean.source}"/>
+                    <p:column colspan="3">
+                        <h:outputText value="Réservez votre voyage"/>
                     </p:column>
                 </p:row>
+            </f:facet>
+            <p:row>
+                <p:column rowspan="3" style="text-align: center;">
+                    <p:graphicImage value="/pages/services/sncf/img/logo.png"/>
+                </p:column>
+                <p:column styleClass="ui-widget-header">
+                    <h:outputText value="Départ"/>
+                </p:column>
+                <p:column>
+                    <p:inputText id="source" value="#{sncfBean.source}"/>
+                </p:column>
+            </p:row>
+            <p:row>
+                <p:column styleClass="ui-widget-header">
+                    <h:outputText value="Arrivée"/>
+                </p:column>
+                <p:column>
+                    <p:inputText id="destination" value="#{sncfBean.destination}"/>
+                </p:column>
+            </p:row>
+            <p:row>
+                <p:column styleClass="ui-widget-header">
+                    <h:outputText value="A partir de"/>
+                </p:column>
+                <p:column>
+                    <p:calendar pattern="dd/MM/yyyy HH:mm" id="start" value="#{sncfBean.start}"/>
+                </p:column>
+            </p:row>
+            <f:facet name="footer">
                 <p:row>
-                    <p:column styleClass="ui-widget-header">
-                        <h:outputText value="Arrivée"/>
-                    </p:column>
-                    <p:column>
-                        <p:inputText id="destination" value="#{sncfBean.destination}"/>
+                    <p:column colspan="3" style="text-align: center;">
+                        <p:commandButton value="Annuler" action="/pages/home.xhtml"/>
+                        <p:commandButton update="voyages" value="Rechercher" actionListener="#{sncfBean.rechercherVoyages}"/>
                     </p:column>
                 </p:row>
-                <p:row>
-                    <p:column styleClass="ui-widget-header">
-                        <h:outputText value="A partir de"/>
-                    </p:column>
-                    <p:column>
-                        <p:calendar pattern="dd/MM/yyyy HH:mm" id="start" value="#{sncfBean.start}"/>
-                    </p:column>
-                </p:row>
-                <f:facet name="footer">
-                    <p:row>
-                        <p:column colspan="3" style="text-align: center;">
-                            <p:commandButton value="Annuler" action="/pages/home.xhtml"/>
-                            <p:commandButton update="voyages" value="Rechercher"
-                                             actionListener="#{sncfBean.rechercherVoyages}"/>
-                        </p:column>
-                    </p:row>
-                </f:facet>
-            </p:panelGrid>
-            <p:dataGrid id="voyages" var="voyage" value="#{sncfBean.voyages}" columns="3" rows="2">
-                <p:panel header="#{voyage.source} - #{voyage.destination}" style="text-align:center">
-                    <h:panelGrid columns="1" style="width:100%">
-                        <h:outputLabel value="Départ : #{voyage.source}"/>
-                        <h:outputLabel value="Arrivée : #{voyage.destination}"/>
-                        <h:outputLabel value="Le #{voyage.date} à #{voyage.heure}"/>
-                        <h:outputLabel value="#{voyage.type}" style="text-stransform: uppercase; color: grey;"/>
-                        <p:commandButton value="Réserver"/>
-                    </h:panelGrid>
-                </p:panel>
-            </p:dataGrid>
-        </h:form>
+            </f:facet>
+        </p:panelGrid>
+        <p:dataGrid id="voyages" var="v" value="#{sncfBean.voyages}" columns="3" rows="4" rendered="true">
+            <p:panel header="#{v.source} - #{v.destination}" style="text-align:center">
+                <h:panelGrid columns="1" style="width:100%">
+                    <h:outputLabel value="Départ : #{v.source}" />
+                    <h:outputLabel value="Arrivée : #{v.destination}"/>
+                    <h:outputLabel value="Le #{v.date} à #{v.heure}"/>
+                    <h:outputLabel value="#{v.prix.toString()} €"/>
+                    <h:outputLabel value="#{v.type}" style="text-transform: uppercase; color: grey;"/>
+                    <p:commandButton value="Réserver" onclick="PF('dlgc#{v.numero}').show();"/>
+                    <p:dialog width="600" id="confdial#{v.numero}" header="Confirmer l'achat" widgetVar="dlgc#{v.numero}" modal="true">
+                        <h:panelGrid columns="2" style="width:100%">
+                            <h:outputLabel value="Objet :"/><h:outputLabel value="Billet #{v.type} #{v.source} - #{v.destination} le #{v.date} à #{v.heure}"/>
+                            <h:outputLabel value="Montant :"/><h:outputLabel value="#{v.prix.toString()} €"/>
+                        </h:panelGrid>
+                        <h:panelGrid columns="2" style="margin: 0 auto">
+                            <p:commandButton value="Réserver" icon="ui-icon-check" actionListener="#{sncfBean.reserverVoyage(v)}" onclick="PF('dlgc#{v.numero}').hide();"/>  
+                            <p:commandButton value="Annuler" type="button" icon="ui-icon-close" onclick="PF('dlgc#{v.numero}').hide();"/>
+                        </h:panelGrid>
+                    </p:dialog>
+                </h:panelGrid>
+            </p:panel>
+        </p:dataGrid>
+        
     </ui:define>
 </ui:composition>
-

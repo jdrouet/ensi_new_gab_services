@@ -7,12 +7,12 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.ensicaen.dao.IGenericDAO;
 import fr.ensicaen.entity.Company;
 import fr.ensicaen.service.IGenericService;
+import java.util.ArrayList;
 
 @Transactional
 public class CompanyService implements IGenericService<Company> {
 
-    private static final long serialVersionUID = -4411556260080223870L;
-    private IGenericDAO<Company> dao;
+	private IGenericDAO<Company> dao;
 
 	@Override
 	public void add(Company user) {
@@ -47,5 +47,15 @@ public class CompanyService implements IGenericService<Company> {
 	public void setDao(IGenericDAO<Company> dao) {
 		this.dao = dao;
 	}
+        
+        public Company getCompanyByName(String name) {
+            List<Company> companies = getAll();
+            for (Company company : companies) {
+                if (company.getName() != null)
+                    if(company.getName().equals(name))
+                        return company;
+            }
+            return null;
+        }
 
 }
