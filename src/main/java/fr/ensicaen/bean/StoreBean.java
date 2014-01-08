@@ -20,7 +20,7 @@ import java.util.List;
  */
 @ManagedBean
 @ViewScoped
-public class StoreBean implements Serializable {
+public class StoreBean extends AbstractBean {
     private static final long serialVersionUID = 1980070445064631124L;
 
     @ManagedProperty("#{serviceService}")

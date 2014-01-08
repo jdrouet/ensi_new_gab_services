@@ -18,7 +18,7 @@ import java.util.List;
  */
 @ManagedBean
 @ViewScoped
-public class GenerateBean implements Serializable {
+public class GenerateBean extends AbstractBean {
     private static final long serialVersionUID = 4046950810051100853L;
 
     @ManagedProperty("#{clientService}")

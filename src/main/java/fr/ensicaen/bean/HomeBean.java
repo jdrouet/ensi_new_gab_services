@@ -20,7 +20,7 @@ import java.util.List;
  */
 @ManagedBean
 @SessionScoped
-public class HomeBean implements Serializable {
+public class HomeBean extends AbstractBean {
     private static final long serialVersionUID = -4523859625680715721L;
     public static final String PAGE = "/pages/home.xhtml";
 

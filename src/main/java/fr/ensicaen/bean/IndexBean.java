@@ -11,7 +11,7 @@ import java.io.Serializable;
  */
 @ManagedBean
 @ViewScoped
-public class IndexBean implements Serializable {
+public class IndexBean extends AbstractBean {
     private static final long serialVersionUID = -7049223030318943085L;
     public static final String PAGE = "/pages/index.xhtml";
 
@@ -27,7 +27,7 @@ public class IndexBean implements Serializable {
     }
 
     public String getPicturePath(Card card) {
-        return String.format("/img/fake_card_%d.jpg", (card.getIdCard() % 2) + 1);
+        return String.format("/img/fake_card_%d.jpg", (card.getIdCard() % 3) + 1);
     }
 
     public String onSelectCard(Card card) {

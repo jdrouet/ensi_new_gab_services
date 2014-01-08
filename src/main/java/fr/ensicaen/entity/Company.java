@@ -8,56 +8,56 @@ import javax.persistence.Table;
 
 /**
  * Classe héritant de la classe client, pour définir une entreprise
- * 
+ *
  * @author mhiri
  */
 @Entity
 @Table(name = "company")
 public class Company extends Client implements Serializable {
-	private static final long serialVersionUID = 2611603814153599254L;
+    private static final long serialVersionUID = 2611603814153599254L;
 
-	/**
-	 * Adresse de l'entreprise
-	 */
-	@Column(name = "address")
-	private String address;
+    /**
+     * Adresse de l'entreprise
+     */
+    @Column(name = "address")
+    private String address;
 
-	/**
-	 * Nome de l'entreprise
-	 */
-	@Column(name = "name")
-	private String name;
+    /**
+     * Nome de l'entreprise
+     */
+    @Column(name = "name")
+    private String name;
 
-        public Company() {
-            
-        }
-        
-        public Company(String address, String name) {
-            super();
-            this.address = address;
-            this.name = name;
-        }
-        
-	public String getAddress() {
-		return address;
-	}
+    public Company() {
 
-	public void setAddress(String adresse) {
-		this.address = adresse;
-	}
-        
-        @Override
-	public String getName() {
-		return name;
-	}
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public Company(String address, String name) {
+        super();
+        this.address = address;
+        this.name = name;
+    }
 
-	@Override
-	public void generateP12() {
-		// TODO Auto-generated method stub
+    public String getAddress() {
+        return address;
+    }
 
-	}
+    public void setAddress(String adresse) {
+        this.address = adresse;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void generateP12() {
+        // TODO Auto-generated method stub
+
+    }
 }

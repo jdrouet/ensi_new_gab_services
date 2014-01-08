@@ -6,6 +6,7 @@ import fr.ensicaen.entity.Card;
 import fr.ensicaen.entity.Client;
 import fr.ensicaen.entity.Company;
 import fr.ensicaen.entity.Operation;
+import fr.ensicaen.service.ICompanyService;
 import fr.ensicaen.service.IGenericService;
 import fr.ensicaen.service.impl.CompanyService;
 import fr.ensicaen.service.impl.PartnerService;
@@ -34,31 +35,32 @@ public class SncfBean implements Serializable {
     
     @ManagedProperty("#{homeBean}")
     private HomeBean homeBean;
+
+    @ManagedProperty("#{accountService}")
+    private IGenericService<Account> accountService;
+
+    @ManagedProperty("#{companyService}")
+    private ICompanyService companyService;
     
     private String source;
     private String destination;
     private Date start = new Date();
     private List<Voyage> voyages;
     private Voyage selectedVoyage;
-    
-    @ManagedProperty("#{accountService}")
-    private IGenericService<Account> accountService;
 
     public IGenericService<Account> getAccountService() {
         return accountService;
     }
-
-    private CompanyService companyService;
     
     public void setAccountService(IGenericService<Account> accountService) {
         this.accountService = accountService;
     }
 
-    public CompanyService getCompanyService() {
+    public ICompanyService getCompanyService() {
         return companyService;
     }
 
-    public void setCompanyService(CompanyService companyService) {
+    public void setCompanyService(ICompanyService companyService) {
         this.companyService = companyService;
     }
     
@@ -128,10 +130,10 @@ public class SncfBean implements Serializable {
         Company sncf = this.companyService.getCompanyByName("sncf");
         Account sncfAccount = sncf.getAccountList().get(0);
         Account clientAccount = this.homeBean.getAccount();
-        Float amount = v.getPrix();
+        float amount = v.getPrix();
         Operation op = new Operation(sncfAccount, clientAccount, amount);
-        clientAccount.debit(op, amount);
-        sncfAccount.credit(op, amount);
+        clientAccount.debit(op);
+        sncfAccount.credit(op);
         accountService.update(sncfAccount);
         accountService.update(clientAccount);
     }

@@ -18,7 +18,8 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class Voyage implements Serializable {
-    
+    private static final long serialVersionUID = 6299352329909236785L;
+
     private String source;
     private String destination;
     private String date;
@@ -31,7 +32,7 @@ public class Voyage implements Serializable {
         
     }
     
-    public Voyage(String source, String destination, String date, String heure, String type, Float prix, int numero) {
+    public Voyage(String source, String destination, String date, String heure, String type, float prix, int numero) {
         this.source = source;
         this.destination = destination;
         this.date = date;
@@ -81,11 +82,11 @@ public class Voyage implements Serializable {
         this.type = type;
     }
     
-    public Float getPrix() {
+    public float getPrix() {
         return prix;
     }
 
-    public void setPrix(Float prix) {
+    public void setPrix(float prix) {
         this.prix = prix;
     }
     

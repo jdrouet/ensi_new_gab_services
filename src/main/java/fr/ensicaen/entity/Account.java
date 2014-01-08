@@ -134,14 +134,14 @@ public class Account implements Serializable {
     public void setCardList(List<Card> cardList) {
         this.cardList = cardList;
     }
-    
-    public void credit(Operation op, Float amount) {
-        this.balance += amount;
+
+    public void credit(Operation op) {
+        this.balance += op.getAmount();
         this.creditList.add(op);
     }
-    
-    public void debit(Operation op, Float amount) {
-        this.balance -= amount;
+
+    public void debit(Operation op) {
+        this.balance -= op.getAmount();
         this.debitList.add(op);
     }
 }

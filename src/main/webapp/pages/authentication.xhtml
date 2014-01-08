@@ -7,101 +7,106 @@
     <ui:define name="page_title">Authentication</ui:define>
     <ui:define name="page_content">
         <h:form id="form">
-        <p:panelGrid id="keyboard" style="margin: 0 auto; text-align: center;">
-            <f:facet name="header">
+            <p:panelGrid id="keyboard" style="margin: 0 auto; text-align: center;">
+                <f:facet name="header">
+                    <p:row>
+                        <p:column colspan="3">
+                            <h:outputText value="#{lang['index.insert_pin_code']}"/>
+                        </p:column>
+                    </p:row>
+                </f:facet>
                 <p:row>
                     <p:column colspan="3">
-                        <h:outputText value="#{lang['index.insert_pin_code']}"/>
+                        <p:inputText style="text-align: center;"
+                                     readonly="true" id="cliqued_stars"
+                                     value="#{authenticationBean.stars}"/>
                     </p:column>
                 </p:row>
-            </f:facet>
-            <p:row>
-                <p:column colspan="3">
-                    <p:inputText style="text-align: center;"
-                                 readonly="true" id="cliqued_stars"
-                                 value="#{authenticationBean.stars}"/>
-                </p:column>
-            </p:row>
-            <p:row>
-                <p:column>
-                    <p:commandButton update=":form:keyboard"
-                                     disabled="#{authenticationBean.keyboardDisabled}"
-                                     actionListener="#{authenticationBean.clickKeyboard(0)}"
-                                     value="#{authenticationBean.getButtonLabel(0)}"/>
-                </p:column>
-                <p:column>
-                    <p:commandButton update=":form:keyboard"
-                                     disabled="#{authenticationBean.keyboardDisabled}"
-                                     actionListener="#{authenticationBean.clickKeyboard(1)}"
-                                     value="#{authenticationBean.getButtonLabel(1)}"/>
-                </p:column>
-                <p:column>
-                    <p:commandButton update=":form:keyboard"
-                                     disabled="#{authenticationBean.keyboardDisabled}"
-                                     actionListener="#{authenticationBean.clickKeyboard(2)}"
-                                     value="#{authenticationBean.getButtonLabel(2)}"/>
-                </p:column>
-            </p:row>
-            <p:row>
-                <p:column>
-                    <p:commandButton update=":form:keyboard"
-                                     disabled="#{authenticationBean.keyboardDisabled}"
-                                     actionListener="#{authenticationBean.clickKeyboard(3)}"
-                                     value="#{authenticationBean.getButtonLabel(3)}"/>
-                </p:column>
-                <p:column>
-                    <p:commandButton update=":form:keyboard"
-                                     disabled="#{authenticationBean.keyboardDisabled}"
-                                     actionListener="#{authenticationBean.clickKeyboard(4)}"
-                                     value="#{authenticationBean.getButtonLabel(4)}"/>
-                </p:column>
-                <p:column>
-                    <p:commandButton update=":form:keyboard"
-                                     disabled="#{authenticationBean.keyboardDisabled}"
-                                     actionListener="#{authenticationBean.clickKeyboard(5)}"
-                                     value="#{authenticationBean.getButtonLabel(5)}"/>
-                </p:column>
-            </p:row>
-            <p:row>
-                <p:column>
-                    <p:commandButton update=":form:keyboard"
-                                     disabled="#{authenticationBean.keyboardDisabled}"
-                                     actionListener="#{authenticationBean.clickKeyboard(6)}"
-                                     value="#{authenticationBean.getButtonLabel(6)}"/>
-                </p:column>
-                <p:column>
-                    <p:commandButton update=":form:keyboard"
-                                     disabled="#{authenticationBean.keyboardDisabled}"
-                                     actionListener="#{authenticationBean.clickKeyboard(7)}"
-                                     value="#{authenticationBean.getButtonLabel(7)}"/>
-                </p:column>
-                <p:column>
-                    <p:commandButton update=":form:keyboard"
-                                     disabled="#{authenticationBean.keyboardDisabled}"
-                                     actionListener="#{authenticationBean.clickKeyboard(8)}"
-                                     value="#{authenticationBean.getButtonLabel(8)}"/>
-                </p:column>
-            </p:row>
-            <p:row>
-                <p:column>
-                    <p:commandButton icon="ui-icon-close" update="@all"
-                                     title="#{lang['index.cancel']}"
-                                     action="#{authenticationBean.onPressCancel}"/>
-                </p:column>
-                <p:column>
-                    <p:commandButton update=":form:keyboard"
-                                     disabled="#{authenticationBean.keyboardDisabled}"
-                                     actionListener="#{authenticationBean.clickKeyboard(9)}"
-                                     value="#{authenticationBean.getButtonLabel(9)}"/>
-                </p:column>
-                <p:column>
-                    <p:commandButton icon="ui-icon-check" update="@all"
-                                     title="#{lang['index.valid']}"
-                                     disabled="#{authenticationBean.validButtonDisabled}"
-                                     action="#{authenticationBean.onPressValid}"/>
-                </p:column>
-            </p:row>
-        </p:panelGrid>
+                <p:row rendered="#{authenticationBean.error != null}">
+                    <p:column colspan="3">
+                        <h:outputText value="#{authenticationBean.error}"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column>
+                        <p:commandButton update=":form:keyboard"
+                                         disabled="#{authenticationBean.keyboardDisabled}"
+                                         actionListener="#{authenticationBean.clickKeyboard(0)}"
+                                         value="#{authenticationBean.getButtonLabel(0)}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton update=":form:keyboard"
+                                         disabled="#{authenticationBean.keyboardDisabled}"
+                                         actionListener="#{authenticationBean.clickKeyboard(1)}"
+                                         value="#{authenticationBean.getButtonLabel(1)}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton update=":form:keyboard"
+                                         disabled="#{authenticationBean.keyboardDisabled}"
+                                         actionListener="#{authenticationBean.clickKeyboard(2)}"
+                                         value="#{authenticationBean.getButtonLabel(2)}"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column>
+                        <p:commandButton update=":form:keyboard"
+                                         disabled="#{authenticationBean.keyboardDisabled}"
+                                         actionListener="#{authenticationBean.clickKeyboard(3)}"
+                                         value="#{authenticationBean.getButtonLabel(3)}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton update=":form:keyboard"
+                                         disabled="#{authenticationBean.keyboardDisabled}"
+                                         actionListener="#{authenticationBean.clickKeyboard(4)}"
+                                         value="#{authenticationBean.getButtonLabel(4)}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton update=":form:keyboard"
+                                         disabled="#{authenticationBean.keyboardDisabled}"
+                                         actionListener="#{authenticationBean.clickKeyboard(5)}"
+                                         value="#{authenticationBean.getButtonLabel(5)}"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column>
+                        <p:commandButton update=":form:keyboard"
+                                         disabled="#{authenticationBean.keyboardDisabled}"
+                                         actionListener="#{authenticationBean.clickKeyboard(6)}"
+                                         value="#{authenticationBean.getButtonLabel(6)}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton update=":form:keyboard"
+                                         disabled="#{authenticationBean.keyboardDisabled}"
+                                         actionListener="#{authenticationBean.clickKeyboard(7)}"
+                                         value="#{authenticationBean.getButtonLabel(7)}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton update=":form:keyboard"
+                                         disabled="#{authenticationBean.keyboardDisabled}"
+                                         actionListener="#{authenticationBean.clickKeyboard(8)}"
+                                         value="#{authenticationBean.getButtonLabel(8)}"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column>
+                        <p:commandButton icon="ui-icon-close" update="@all"
+                                         title="#{lang['index.cancel']}"
+                                         action="#{authenticationBean.onPressCancel}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton update=":form:keyboard"
+                                         disabled="#{authenticationBean.keyboardDisabled}"
+                                         actionListener="#{authenticationBean.clickKeyboard(9)}"
+                                         value="#{authenticationBean.getButtonLabel(9)}"/>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton icon="ui-icon-check" update="@all"
+                                         title="#{lang['index.valid']}"
+                                         disabled="#{authenticationBean.validButtonDisabled}"
+                                         action="#{authenticationBean.onPressValid}"/>
+                    </p:column>
+                </p:row>
+            </p:panelGrid>
         </h:form>
     </ui:define>
 </ui:composition>

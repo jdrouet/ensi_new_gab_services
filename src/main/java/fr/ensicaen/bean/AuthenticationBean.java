@@ -20,7 +20,7 @@ import java.util.*;
  */
 @ManagedBean
 @SessionScoped
-public class AuthenticationBean implements Serializable {
+public class AuthenticationBean extends AbstractBean {
     private static final long serialVersionUID = -9052283682987963522L;
     public static final String PAGE = "/pages/authentication.xhtml";
 
@@ -28,6 +28,7 @@ public class AuthenticationBean implements Serializable {
     private List<Integer> cliqued;
 
     private Card card;
+    private String error;
 
     @ManagedProperty("#{cardService}")
     private IGenericService<Card> cardService;
@@ -94,6 +95,14 @@ public class AuthenticationBean implements Serializable {
         this.card = card;
     }
 
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
     public boolean isKeyboardDisabled() {
         return this.cliqued.size() >= 4;
     }
@@ -109,7 +118,6 @@ public class AuthenticationBean implements Serializable {
     }
 
     public String onPressValid() {
-        FacesContext context = FacesContext.getCurrentInstance();
         if (this.card == null) {
             return IndexBean.PAGE;
         } else if (this.card.isPin(this.getClearPin())) {
