@@ -1,0 +1,16 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="../../template.xhtml">
+    <ui:define name="page_title">Signature</ui:define>
+    <ui:define name="page_content">
+
+        <p:fileUpload fileUploadListener="#{signatureBean.handleFileUpload}" mode="advanced"
+                      update="messages" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+
+        <p:growl id="messages" showDetail="true"/>
+
+    </ui:define>
+</ui:composition>
