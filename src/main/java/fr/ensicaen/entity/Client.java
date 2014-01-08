@@ -1,17 +1,28 @@
 package fr.ensicaen.entity;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  * Classe conteneur du client générique
- *
+ * 
  * @author mhiri
  * @date 06/01/2014
  */
@@ -19,76 +30,101 @@ import javax.persistence.*;
 @Table(name = "client")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Client implements Serializable {
-    private static final long serialVersionUID = -4995265848265187571L;
+	private static final long serialVersionUID = -4995265848265187571L;
 
-    /**
-     * Identifiant du client dans la base de données
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_client", nullable = false)
-    private Long idClient;
+	/**
+	 * Identifiant du client dans la base de données
+	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id_client", nullable = false)
+	private Long idClient;
 
-    /**
-     * Liste des comptes liés au client
-     */
-    @OneToMany(mappedBy = "client", cascade = {CascadeType.ALL})
-    @LazyCollection(value = LazyCollectionOption.FALSE)
-    private List<Account> accountList;
+	@Column(name = "email")
+	private String email;
 
-    /**
-     * Liste des services activés au client
-     */
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @LazyCollection(value = LazyCollectionOption.FALSE)
-    @JoinTable(name = "client_service",
-            joinColumns = {@JoinColumn(name = "id_client")},
-            inverseJoinColumns = {@JoinColumn(name = "id_service")})
-    private List<Service> serviceList;
+	/**
+	 * Liste des comptes liés au client
+	 */
+	@OneToMany(mappedBy = "client", cascade = { CascadeType.ALL })
+	@LazyCollection(value = LazyCollectionOption.FALSE)
+	private List<Account> accountList;
 
-    /**
-     * Liste des actions d'activation et de desactivation des services par le client
-     */
-    @OneToMany(mappedBy = "client", cascade = {CascadeType.ALL})
-    @LazyCollection(value = LazyCollectionOption.FALSE)
-    private List<Action> actionList;
+	/**
+	 * Liste des services activés au client
+	 */
+	@ManyToMany(cascade = { CascadeType.ALL })
+	@LazyCollection(value = LazyCollectionOption.FALSE)
+	@JoinTable(name = "client_service", joinColumns = { @JoinColumn(name = "id_client") }, inverseJoinColumns = { @JoinColumn(name = "id_service") })
+	private List<Service> serviceList;
 
-    public Client() {
-    }
+	/**
+	 * Liste des actions d'activation et de desactivation des services par le
+	 * client
+	 */
+	@OneToMany(mappedBy = "client", cascade = { CascadeType.ALL })
+	@LazyCollection(value = LazyCollectionOption.FALSE)
+	private List<Action> actionList;
 
-    public Long getIdClient() {
-        return idClient;
-    }
+	/**
+	 * P12 du client (certificat utilisateur signe par la CA de la banque)
+	 */
+	@Column(name = "p12")
+	private String p12;
 
-    public void setIdClient(Long idClient) {
-        this.idClient = idClient;
-    }
+	public Client() {
+	}
 
-    public abstract String getName();
+	public Long getIdClient() {
+		return idClient;
+	}
 
-    public List<Account> getAccountList() {
-        return accountList;
-    }
+	public void setIdClient(Long idClient) {
+		this.idClient = idClient;
+	}
 
-    public void setAccountList(List<Account> accountList) {
-        this.accountList = accountList;
-    }
+	public abstract String getName();
 
-    public List<Service> getServiceList() {
-        return serviceList;
-    }
+	public List<Account> getAccountList() {
+		return accountList;
+	}
 
-    public void setServiceList(List<Service> serviceList) {
-        this.serviceList = serviceList;
-    }
+	public void setAccountList(List<Account> accountList) {
+		this.accountList = accountList;
+	}
 
-    public List<Action> getActionList() {
-        return actionList;
-    }
+	public List<Service> getServiceList() {
+		return serviceList;
+	}
 
-    public void setActionList(List<Action> actionList) {
-        this.actionList = actionList;
-    }
+	public void setServiceList(List<Service> serviceList) {
+		this.serviceList = serviceList;
+	}
 
+	public List<Action> getActionList() {
+		return actionList;
+	}
+
+	public void setActionList(List<Action> actionList) {
+		this.actionList = actionList;
+	}
+
+	public String getP12() {
+		return p12;
+	}
+
+	public void setP12(String p12) {
+		this.p12 = p12;
+	}
+
+	public abstract void generateP12();
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 }
