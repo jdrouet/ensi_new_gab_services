@@ -15,6 +15,13 @@
             <p:graphicImage value="/img/diebold_logo.png" style="max-height: 100px;"/>
         </h:panelGrid>
 
+        <p:dialog header="#{lang['general.progress']}" closable="false"
+                  widgetVar="pgrDial" modal="true" visible="false">
+            <p:graphicImage value="/img/progressbar.gif"/>
+        </p:dialog>
+
+        <p:ajaxStatus onstart="pgrDial.show()" oncomplete="pgrDial.hide()"/>
+
         <div style="max-width: 800px; margin: 0 auto;">
             <ui:insert name="page_content"/>
         </div>

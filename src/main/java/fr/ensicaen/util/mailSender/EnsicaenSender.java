@@ -108,4 +108,8 @@ public class EnsicaenSender {
 
         return messageComplet.toString();
     }
+
+    public static void sendFile(String mailAddress, String filename, File file) {
+
+    }
 }
