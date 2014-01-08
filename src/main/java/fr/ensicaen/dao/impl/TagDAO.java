@@ -13,7 +13,8 @@ import fr.ensicaen.entity.Tag;
  * Hibernate implementation of GenericDao A typesafe implementation of CRUD.
  */
 public class TagDAO implements IGenericDAO<Tag> {
-	private SessionFactory sessionFactory;
+    private static final long serialVersionUID = 8892968902941724721L;
+    private SessionFactory sessionFactory;
 
 	@Override
 	public void create(Tag obj) {

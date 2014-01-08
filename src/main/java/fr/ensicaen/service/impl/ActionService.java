@@ -11,7 +11,8 @@ import fr.ensicaen.service.IGenericService;
 @Transactional
 public class ActionService implements IGenericService<Action> {
 
-	private IGenericDAO<Action> dao;
+    private static final long serialVersionUID = -3615872587970639669L;
+    private IGenericDAO<Action> dao;
 
 	@Override
 	public void add(Action user) {

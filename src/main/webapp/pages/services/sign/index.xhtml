@@ -4,12 +4,58 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 template="../../template.xhtml">
-    <ui:define name="page_title">Signature de document</ui:define>
+    <ui:define name="page_title">Signature</ui:define>
     <ui:define name="page_content">
-	    <p:fileUpload fileUploadListener="#{signatureBean.handleFileUpload}" mode="advanced" dragDropSupport="true"
-	            update="messages" sizeLimit="500000" allowTypes="/(\.|\/)(jpe?g|png|pdf)$/" />
-	
-	    <p:growl id="messages" showDetail="true"/>
+
+        <p:panelGrid style="width: 100%">
+            <p:row>
+                <p:column styleClass="ui-widget-header" colspan="2">
+                    <h:outputText value="#{lang['signature.send_certified_document']}"/>
+                </p:column>
+            </p:row>
+        </p:panelGrid>
+
+        <h:form enctype="multipart/form-data" acceptcharset="utf-8" id="file_form">
+
+            <p:fileUpload mode="advanced" auto="true" update=":param_form"
+                          fileUploadListener="#{signatureBean.handleFileUpload}"/>
+
+        </h:form>
+
+
+        <h:form enctype="multipart/form-data" acceptcharset="utf-8" id="param_form">
+
+            <p:panelGrid style="width: 100%" id="parameters">
+                <p:row>
+                    <p:column styleClass="ui-widget-header">
+                        <h:outputText value="#{lang['signature.mail_recipient']}"/>
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="recipient" value="#{signatureBean.mailRecipient}">
+                            <f:validateRegex
+                                    pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                        </p:inputText>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column styleClass="ui-widget-header">
+                        <h:outputText value="#{lang['signature.document']}"/>
+                    </p:column>
+                    <p:column>
+                        <h:outputText id="filename" value="#{signatureBean.filename}"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column styleClass="ui-widget-header" colspan="2">
+                        <p:commandButton value="#{lang['signature.cancel']}"
+                                         action="/pages/home.xhtml"/>
+                        <p:commandButton value="#{lang['signature.send']}"
+                                         action="#{signatureBean.sendFile()}"/>
+                    </p:column>
+                </p:row>
+            </p:panelGrid>
+
+        </h:form>
+
     </ui:define>
 </ui:composition>
-

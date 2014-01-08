@@ -6,21 +6,23 @@
                 template="template.xhtml">
     <ui:define name="page_title">Store</ui:define>
     <ui:define name="page_content">
-        <p:dataGrid id="services" value="#{storeBean.serviceList}" var="srv" columns="2">
-            <f:facet name="header">
-                <h:outputText value="#{lang['store.available_services']}"/>
-            </f:facet>
-            <p:panel header="#{srv.name}">
-                <h:panelGrid columns="1" style="width: 100%; text-align: center">
-                    <h:outputText value="#{srv.description}"/>
-                    <p:commandButton value="#{lang['store.add_service']}" update="@all"
-                                     actionListener="#{storeBean.addService(srv)}"/>
-                </h:panelGrid>
-            </p:panel>
-            <f:facet name="footer">
-                <p:commandButton value="#{lang['store.back_to_home']}"
-                                 action="/pages/home.xhtml"/>
-            </f:facet>
-        </p:dataGrid>
+        <h:form id="form">
+            <p:dataGrid id="services" value="#{storeBean.serviceList}" var="srv" columns="2">
+                <f:facet name="header">
+                    <h:outputText value="#{lang['store.available_services']}"/>
+                </f:facet>
+                <p:panel header="#{srv.name}">
+                    <h:panelGrid columns="1" style="width: 100%; text-align: center">
+                        <h:outputText value="#{srv.description}"/>
+                        <p:commandButton value="#{lang['store.add_service']}" update="@all"
+                                         actionListener="#{storeBean.addService(srv)}"/>
+                    </h:panelGrid>
+                </p:panel>
+                <f:facet name="footer">
+                    <p:commandButton value="#{lang['store.back_to_home']}"
+                                     action="/pages/home.xhtml"/>
+                </f:facet>
+            </p:dataGrid>
+        </h:form>
     </ui:define>
 </ui:composition>

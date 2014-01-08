@@ -12,6 +12,7 @@ import fr.ensicaen.entity.Client;
  * Hibernate implementation of GenericDao A typesafe implementation of CRUD.
  */
 public class ClientDAO implements IGenericDAO<Client> {
+    private static final long serialVersionUID = -8418581889541568118L;
     private SessionFactory sessionFactory;
 
     @Override

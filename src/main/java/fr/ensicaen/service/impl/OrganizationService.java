@@ -11,7 +11,8 @@ import fr.ensicaen.service.IGenericService;
 @Transactional
 public class OrganizationService implements IGenericService<Organization> {
 
-	private IGenericDAO<Organization> dao;
+    private static final long serialVersionUID = 4572538062281636600L;
+    private IGenericDAO<Organization> dao;
 
 	@Override
 	public void add(Organization user) {

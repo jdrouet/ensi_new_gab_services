@@ -1,8 +1,9 @@
 package fr.ensicaen.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
-public interface IGenericDAO<T> {
+public interface IGenericDAO<T> extends Serializable {
 
 	public void create(T obj);
 

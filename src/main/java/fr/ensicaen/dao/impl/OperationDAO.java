@@ -12,7 +12,8 @@ import fr.ensicaen.entity.Operation;
  * Hibernate implementation of GenericDao A typesafe implementation of CRUD.
  */
 public class OperationDAO implements IGenericDAO<Operation> {
-	private SessionFactory sessionFactory;
+    private static final long serialVersionUID = 3384270473692720501L;
+    private SessionFactory sessionFactory;
 
 	@Override
 	public void create(Operation obj) {

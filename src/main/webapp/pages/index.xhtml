@@ -6,17 +6,17 @@
                 template="template.xhtml">
     <ui:define name="page_title">Index</ui:define>
     <ui:define name="page_content">
-
-        <p:dataGrid value="#{cardService.all}" var="card" columns="3">
-            <p:panel header="#{card.pan}">
-                <h:panelGrid columns="1" style="text-align: center; width: 100%;">
-                    <p:graphicImage value="#{indexBean.getPicturePath(card)}"
-                                    style="max-width: 200px;"/>
-                    <p:commandButton value="#{lang['index.insert_card']}"
-                                     action="#{indexBean.onSelectCard(card)}"/>
-                </h:panelGrid>
-            </p:panel>
-        </p:dataGrid>
-
+        <h:form id="form">
+            <p:dataGrid value="#{cardService.all}" var="card" columns="3">
+                <p:panel header="#{card.pan}">
+                    <h:panelGrid columns="1" style="text-align: center; width: 100%;">
+                        <p:graphicImage value="#{indexBean.getPicturePath(card)}"
+                                        style="max-width: 200px;"/>
+                        <p:commandButton value="#{lang['index.insert_card']}"
+                                         action="#{indexBean.onSelectCard(card)}"/>
+                    </h:panelGrid>
+                </p:panel>
+            </p:dataGrid>
+        </h:form>
     </ui:define>
 </ui:composition>

@@ -10,8 +10,9 @@ import fr.ensicaen.service.IGenericService;
 
 @Transactional
 public class AccountService implements IGenericService<Account> {
+    private static final long serialVersionUID = 4256391571347769886L;
 
-	private IGenericDAO<Account> dao;
+    private IGenericDAO<Account> dao;
 
 	@Override
 	public void add(Account user) {

@@ -11,7 +11,8 @@ import fr.ensicaen.service.IGenericService;
 @Transactional
 public class TagService implements IGenericService<Tag> {
 
-	private IGenericDAO<Tag> dao;
+    private static final long serialVersionUID = 4932036295751608041L;
+    private IGenericDAO<Tag> dao;
 
 	@Override
 	public void add(Tag user) {

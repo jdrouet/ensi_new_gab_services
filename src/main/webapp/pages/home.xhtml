@@ -6,27 +6,29 @@
                 template="template.xhtml">
     <ui:define name="page_title">Home</ui:define>
     <ui:define name="page_content">
-        <p:dataGrid id="services" var="srv"
-                    value="#{homeBean.selectedServiceList}" columns="2">
-            <f:facet name="header">
-                <h:outputText value="#{lang['home.your_services']}"/>
-            </f:facet>
-            <p:panel header="#{srv.name}">
-                <h:outputText value="#{srv.description}"/>
-                <h:panelGrid columns="2" style="width: 100%; text-align: center">
-                    <p:commandButton value="#{lang['home.access']}"
-                                     action="#{homeBean.getServicePage(srv)}"/>
-                    <p:commandButton value="#{lang['home.remove_service']}"
-                                     update=":form:services"
-                                     actionListener="#{homeBean.removeService(srv)}"/>
-                </h:panelGrid>
-            </p:panel>
-            <f:facet name="footer">
-                <p:commandButton value="#{lang['home.add_services']}"
-                                 action="/pages/store.xhtml"/>
-                <p:commandButton value="#{lang['home.disconnect']}"
-                                 action="#{homeBean.disconnect()}"/>
-            </f:facet>
-        </p:dataGrid>
+        <h:form id="form">
+            <p:dataGrid id="services" var="srv"
+                        value="#{homeBean.selectedServiceList}" columns="2">
+                <f:facet name="header">
+                    <h:outputText value="#{lang['home.your_services']}"/>
+                </f:facet>
+                <p:panel header="#{srv.name}">
+                    <h:outputText value="#{srv.description}"/>
+                    <h:panelGrid columns="2" style="width: 100%; text-align: center">
+                        <p:commandButton value="#{lang['home.access']}"
+                                         action="#{homeBean.getServicePage(srv)}"/>
+                        <p:commandButton value="#{lang['home.remove_service']}"
+                                         update=":form:services"
+                                         actionListener="#{homeBean.removeService(srv)}"/>
+                    </h:panelGrid>
+                </p:panel>
+                <f:facet name="footer">
+                    <p:commandButton value="#{lang['home.add_services']}"
+                                     action="/pages/store.xhtml"/>
+                    <p:commandButton value="#{lang['home.disconnect']}"
+                                     action="#{homeBean.disconnect()}"/>
+                </f:facet>
+            </p:dataGrid>
+        </h:form>
     </ui:define>
 </ui:composition>

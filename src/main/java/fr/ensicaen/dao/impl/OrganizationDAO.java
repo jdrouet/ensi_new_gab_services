@@ -12,7 +12,8 @@ import fr.ensicaen.entity.Organization;
  * Hibernate implementation of GenericDao A typesafe implementation of CRUD.
  */
 public class OrganizationDAO implements IGenericDAO<Organization> {
-	private SessionFactory sessionFactory;
+    private static final long serialVersionUID = -2049396457747392602L;
+    private SessionFactory sessionFactory;
 
 	@Override
 	public void create(Organization obj) {

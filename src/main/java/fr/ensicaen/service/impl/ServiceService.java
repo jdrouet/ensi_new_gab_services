@@ -14,6 +14,7 @@ import fr.ensicaen.service.IGenericService;
 @Transactional
 public class ServiceService implements IServiceService {
 
+    private static final long serialVersionUID = -1188064387928596879L;
     private IGenericDAO<Service> dao;
 
     @Override

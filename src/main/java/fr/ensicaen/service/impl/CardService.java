@@ -1,5 +1,6 @@
 package fr.ensicaen.service.impl;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -9,9 +10,9 @@ import fr.ensicaen.entity.Card;
 import fr.ensicaen.service.IGenericService;
 
 @Transactional
-public class CardService implements IGenericService<Card> {
-
-	private IGenericDAO<Card> dao;
+public class CardService implements IGenericService<Card>, Serializable {
+    private static final long serialVersionUID = -1261662918422965156L;
+    private IGenericDAO<Card> dao;
 
 	@Override
 	public void add(Card user) {

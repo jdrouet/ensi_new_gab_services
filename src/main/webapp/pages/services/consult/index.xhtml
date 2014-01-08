@@ -6,6 +6,7 @@
                 template="../../template.xhtml">
     <ui:define name="page_title">Consultation</ui:define>
     <ui:define name="page_content">
+        <h:form id="form">
         <p:dataTable value="#{consultationBean.accountList}" var="acc" scrollable="true">
             <f:facet name="header">
                 <h:outputText value="#{lang['consult.operation_list']}"/>
@@ -53,6 +54,7 @@
                                  action="/pages/home.xhtml"/>
             </f:facet>
         </p:dataTable>
+        </h:form>
     </ui:define>
 </ui:composition>
 

@@ -11,7 +11,8 @@ import fr.ensicaen.entity.Account;
  * Hibernate implementation of GenericDao A typesafe implementation of CRUD.
  */
 public class AccountDAO implements IGenericDAO<Account> {
-	private SessionFactory sessionFactory;
+    private static final long serialVersionUID = -2918570853513861374L;
+    private SessionFactory sessionFactory;
 
 	@Override
 	public void create(Account obj) {

@@ -11,7 +11,8 @@ import fr.ensicaen.service.IGenericService;
 @Transactional
 public class PersonService implements IGenericService<Person> {
 
-	private IGenericDAO<Person> dao;
+    private static final long serialVersionUID = 3075731259155656089L;
+    private IGenericDAO<Person> dao;
 
 	@Override
 	public void add(Person user) {

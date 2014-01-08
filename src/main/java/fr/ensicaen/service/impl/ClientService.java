@@ -11,7 +11,8 @@ import fr.ensicaen.service.IGenericService;
 @Transactional
 public class ClientService implements IGenericService<Client> {
 
-	private IGenericDAO<Client> dao;
+    private static final long serialVersionUID = -1632491601431516349L;
+    private IGenericDAO<Client> dao;
 
 	@Override
 	public void add(Client user) {

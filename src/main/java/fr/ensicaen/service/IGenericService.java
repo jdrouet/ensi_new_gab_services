@@ -1,8 +1,9 @@
 package fr.ensicaen.service;
 
+import java.io.Serializable;
 import java.util.List;
 
-public interface IGenericService<T> {
+public interface IGenericService<T> extends Serializable {
 
 	public void add(T user);
 

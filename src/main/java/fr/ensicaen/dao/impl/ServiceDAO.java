@@ -13,6 +13,7 @@ import fr.ensicaen.entity.Service;
  * Hibernate implementation of GenericDao A typesafe implementation of CRUD.
  */
 public class ServiceDAO implements IGenericDAO<Service> {
+    private static final long serialVersionUID = -5452974058955362841L;
     private SessionFactory sessionFactory;
 
     @Override

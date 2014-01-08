@@ -12,6 +12,7 @@ import fr.ensicaen.entity.Action;
  * Hibernate implementation of GenericDao A typesafe implementation of CRUD.
  */
 public class ActionDAO implements IGenericDAO<Action> {
+    private static final long serialVersionUID = -4411284987447661302L;
     private SessionFactory sessionFactory;
 
     @Override

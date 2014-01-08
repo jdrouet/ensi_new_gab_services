@@ -70,7 +70,7 @@ public class GenerateBean implements Serializable {
         //
         /** Personne 1 **/
         //
-        Person p1 = new Person("Hervé", "Tété");
+        Person p1 = new Person("Hervé", "Tété", "herve.tete@gmail.com");
         //
         Account a1 = new Account(p1, t1, 42.0);
         //
@@ -86,7 +86,7 @@ public class GenerateBean implements Serializable {
         //
         /** Personne 2 **/
         //
-        Person p2 = new Person("Myriam", "Martin");
+        Person p2 = new Person("Myriam", "Martin", "myriam.martin@gmail.com");
         //
         Account a2 = new Account(p2, t2, -62.0);
         //
@@ -115,7 +115,7 @@ public class GenerateBean implements Serializable {
         //
         /** Personne 3 **/
         //
-        Person p3 = new Person("Bob", "Dupond");
+        Person p3 = new Person("Bob", "Dupond", "bob.dupond@gmail.com");
         //
         Account a3 = new Account(p3, t1, 6200.0);
         //
@@ -131,7 +131,7 @@ public class GenerateBean implements Serializable {
         //
         /** Personne 4 **/
         //
-        Person p4 = new Person("Johnny", "Haliday");
+        Person p4 = new Person("Johnny", "Haliday", "johny.haliday@gmail.com");
         //
         Account a4 = new Account(p4, t3, 2000000.0);
         Account a5 = new Account(p4, t3, 40000000.0);

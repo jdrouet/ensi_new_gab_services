@@ -13,7 +13,8 @@ import fr.ensicaen.entity.Person;
  * Hibernate implementation of GenericDao A typesafe implementation of CRUD.
  */
 public class PersonDAO implements IGenericDAO<Person> {
-	private SessionFactory sessionFactory;
+    private static final long serialVersionUID = 3757905726142171015L;
+    private SessionFactory sessionFactory;
 
 	@Override
 	public void create(Person obj) {
