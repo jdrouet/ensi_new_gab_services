@@ -1,4 +1,4 @@
-package fr.ensicaen.generateurBiocode;
+package fr.ensicaen.util.generateurBiocode;
 
 
 

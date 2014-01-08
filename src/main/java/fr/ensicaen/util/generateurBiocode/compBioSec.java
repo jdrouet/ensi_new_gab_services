@@ -1,4 +1,4 @@
-package fr.ensicaen.generateurBiocode;
+package fr.ensicaen.util.generateurBiocode;
 
 /** 
 * @author Yassir Mohamed Bouhaddaoui  yassir.bouhaddaoui@gmail.com
