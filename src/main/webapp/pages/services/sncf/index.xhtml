@@ -73,7 +73,7 @@
                             <h:panelGrid columns="2" style="margin: 0 auto">
                                 <p:commandButton value="#{lang['sncf.confirm']}" icon="ui-icon-check"
                                                  actionListener="#{sncfBean.reserverVoyage(v)}"
-                                                 onclick="PF('dlgc#{v.numero}').hide();"/>
+                                                 action="/pages/services/sncf/print.xhtml"/>
                                 <p:commandButton value="#{lang['sncf.cancel']}" type="button" icon="ui-icon-close"
                                                  onclick="PF('dlgc#{v.numero}').hide();"/>
                             </h:panelGrid>

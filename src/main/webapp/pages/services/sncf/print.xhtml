@@ -1,0 +1,34 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="../../template.xhtml">
+    <ui:define name="page_title">SNCF - #{lang['sncf.ticket_print']}</ui:define>
+    <ui:define name="page_content">
+
+        <h:form>
+            <p:panelGrid style="width: 100%;">
+                <p:row>
+                    <p:column styleClass="ui-widget-header">
+                        <h:outputText value="#{lang['sncf.ticket_print']}"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column style="text-align: center;">
+                        <h:outputText value="#{lang['sncf.thank_you']}."/>
+                        <h:outputText value="#{lang['sncf.take_your_ticket']}."/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column style="text-align: center;">
+                        <p:commandLink action="/pages/home.xhtml">
+                            <p:graphicImage value="/pages/services/sncf/img/billet.jpg"
+                                            style="max-width: 300px;"/>
+                            </p:commandLink>
+                    </p:column>
+                </p:row>
+            </p:panelGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>

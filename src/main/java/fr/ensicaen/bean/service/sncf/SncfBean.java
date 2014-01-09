@@ -48,7 +48,6 @@ public class SncfBean extends AbstractBean {
     private String destination;
     private Date start = new Date();
     private List<Voyage> voyages;
-    private Voyage selectedVoyage;
 
     public IGenericService<Account> getAccountService() {
         return accountService;
@@ -104,14 +103,6 @@ public class SncfBean extends AbstractBean {
 
     public void setVoyages(List<Voyage> voyages) {
         this.voyages = voyages;
-    }
-
-    public Voyage getSelectedVoyage() {
-        return this.selectedVoyage;
-    }
-
-    public void setSelectedVoyage(Voyage voyage) {
-        this.selectedVoyage = voyage;
     }
 
     public void rechercherVoyages() {
