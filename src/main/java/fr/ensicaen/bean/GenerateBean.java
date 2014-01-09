@@ -33,6 +33,9 @@ public class GenerateBean extends AbstractBean {
 
     @ManagedProperty("#{clientService}")
     private IGenericService<Client> clientService;
+    
+    @ManagedProperty("#{serviceService}")
+    private IGenericService<Service> serviceService;
 
     public IGenericService<Client> getClientService() {
         return clientService;
@@ -40,6 +43,14 @@ public class GenerateBean extends AbstractBean {
 
     public void setClientService(IGenericService<Client> clientService) {
         this.clientService = clientService;
+    }
+
+    public IGenericService<Service> getServiceService() {
+        return serviceService;
+    }
+
+    public void setServiceService(IGenericService<Service> serviceService) {
+        this.serviceService = serviceService;
     }
 
     public void generate() throws IOException, URISyntaxException {
@@ -69,11 +80,12 @@ public class GenerateBean extends AbstractBean {
         Tag tag4 = new Tag("Consultation");
         Tag tag5 = new Tag("Compte");
         Tag tag6 = new Tag("Paiement");
+        Tag tag7 = new Tag("Retrait");
 
         /** Services **/
         //
         Service s1 = new Service(
-                "SNCF", "Service d'achat de billets SNCF", "sncf");
+                "SNCF", "Service d'achat de billets SNCF", "sncf", (float)4.9);
         s1.setTagList(Arrays.asList(tag1, tag3));
         //
         Service s2 = new Service(
@@ -81,13 +93,17 @@ public class GenerateBean extends AbstractBean {
         s2.setTagList(Arrays.asList(tag2));
         //
         Service s3 = new Service(
-                "Consultation", "Consultation des comptes", "consult", false);
+                "Consultation", "Consultation des comptes", "consult", (float)0, false);
         s3.setTagList(Arrays.asList(tag4, tag5));
         //
         Service s4 = new Service(
-                "Paiement NFC", "Paiement de personne à personne à l'aide du GAB", "p2p");
+                "Paiement NFC", "Paiement de personne à personne à l\'aide du GAB", "p2p");
         s4.setTagList(Arrays.asList(tag6));
         //
+        Service s5 = new Service("Retrait d\'argent", "Retrait d\'argent en espèce", "cashout", (float)0, false);
+        //
+        s5.setTagList(Arrays.asList(tag7));
+        
         /** Personne 1 **/
         //
         Person p1 = new Person("Hervé", "Tété", "herve.tete@peugeot_cycle.fr");
@@ -102,10 +118,11 @@ public class GenerateBean extends AbstractBean {
         //
         p1.setAccountList(Arrays.asList(a1));
         //
-        p1.setServiceList(Arrays.asList(s1, s3, s4));
+        //p1.setServiceList(Arrays.asList(s1, s3, s4));
         //
         this.clientService.add(p1);
         //
+        
         /** Personne 2 **/
         //
         Person p2 = new Person("Jean-Luc", "Asec", "jeanluc.asec@vaseline.com");
@@ -117,8 +134,11 @@ public class GenerateBean extends AbstractBean {
         Card card2 = new Card(a2, "4973166250789456", "1234", data);
         //
         List<Service> profile2 = new ArrayList<Service>();
+        profile2.add(s1);
         profile2.add(s2);
         profile2.add(s3);
+        profile2.add(s4);
+        profile2.add(s5);
         //
         a2.setCardList(Arrays.asList(card2));
         //

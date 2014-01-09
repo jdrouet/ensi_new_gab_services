@@ -2,6 +2,8 @@ package fr.ensicaen.bean;
 
 import fr.ensicaen.entity.*;
 import fr.ensicaen.service.IGenericService;
+import fr.ensicaen.service.IServiceService;
+import fr.ensicaen.service.impl.ServiceService;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -29,6 +31,9 @@ public class HomeBean extends AbstractBean {
 
     @ManagedProperty("#{actionService}")
     private IGenericService<Action> actionService;
+    
+    @ManagedProperty("#{serviceService}")
+    private IServiceService serviceService;
 
     private Card card;
 
@@ -64,6 +69,14 @@ public class HomeBean extends AbstractBean {
         this.clientService = clientService;
     }
 
+    public IServiceService getServiceService() {
+        return serviceService;
+    }
+
+    public void setServiceService(IServiceService serviceService) {
+        this.serviceService = serviceService;
+    }
+
     public List<Service> getSelectedServiceList() {
         if (this.card == null) {
             return Collections.emptyList();
@@ -74,6 +87,10 @@ public class HomeBean extends AbstractBean {
         } else {
             return this.card.getAccount().getClient().getServiceList();
         }
+    }
+    
+    public List<Service> getNonRemovableServicesList() {
+        return this.serviceService.getNonRemovableServices();
     }
 
     public String getServicePage(Service service) {

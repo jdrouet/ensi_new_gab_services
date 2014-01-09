@@ -25,6 +25,9 @@ public class Service implements Serializable {
 
     @Column(name = "description", nullable = false)
     private String description;
+    
+    @Column(name = "cost", nullable = false)
+    private float cost;
 
     @Column(name = "removable", nullable = false)
     private boolean removable;
@@ -43,16 +46,21 @@ public class Service implements Serializable {
 
     public Service() {
     }
-
+    
     public Service(String name, String description, String path) {
-        this(name, description, path, true);
+        this(name, description, path, 0, true);
+    }
+    
+    public Service(String name, String description, String path, float cost) {
+        this(name, description, path, cost, true);
     }
 
-    public Service(String name, String description, String path, boolean removable) {
+    public Service(String name, String description, String path, float cost, boolean removable) {
         this.name = name;
         this.description = description;
         this.removable = removable;
         this.path = path;
+        this.cost = cost;
     }
 
     public Long getIdService() {
@@ -101,6 +109,14 @@ public class Service implements Serializable {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public float getCost() {
+        return cost;
+    }
+
+    public void setCost(float cost) {
+        this.cost = cost;
     }
 
     @Override

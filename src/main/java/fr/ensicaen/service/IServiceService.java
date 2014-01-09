@@ -14,6 +14,8 @@ import java.util.Map;
 public interface IServiceService extends IGenericService<Service> {
 
     public List<Service> getServicesByTag(Client c, Tag tag);
+    
+    public List<Service> getNonRemovableServices();
 
     public Map<Tag, Integer> getOccTag();
 

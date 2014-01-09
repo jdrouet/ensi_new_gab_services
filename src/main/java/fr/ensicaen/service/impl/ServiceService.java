@@ -77,6 +77,17 @@ public class ServiceService implements IServiceService {
         }
         return ret;
     }
+    
+    public List<Service> getNonRemovableServices() {
+        List<Service> tmp = new ArrayList<>();
+        List<Service> ret = getAll();
+        for(Service src : ret){
+            if(!src.isRemovable()) {
+                tmp.add(src);
+            }
+        }
+        return tmp;
+    }
 
     /**
      * counts the number of occurrences of tag

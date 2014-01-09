@@ -7,12 +7,26 @@
     <ui:define name="page_title">Home</ui:define>
     <ui:define name="page_content">
         <h:form id="form">
-            <p:dataGrid id="services" var="srv"
-                        value="#{homeBean.selectedServiceList}" columns="2">
+            <p:dataGrid id="nonRemovablesServices" var="srv"
+                        value="#{homeBean.nonRemovableServicesList}" columns="2">
                 <f:facet name="header">
-                    <h:outputText value="#{lang['home.your_services']}"/>
+                    <h:outputText value="#{lang['home.services']}"/>
                 </f:facet>
                 <p:panel header="#{srv.name}">
+                    <h:outputText value="#{srv.description}"/>
+                    <h:panelGrid columns="2" style="width: 100%; text-align: center">
+                        <p:commandButton value="#{lang['home.access']}"
+                                         action="#{homeBean.getServicePage(srv)}"/>
+                    </h:panelGrid>
+                </p:panel>
+            </p:dataGrid>
+            
+            <p:dataGrid id="services" var="srv"
+                        value="#{homeBean.selectedServiceList}" columns="2" emptyMessage="">
+                <f:facet name="header">
+                    <h:outputText value="#{lang['home.additional_services']}"/>
+                </f:facet>
+                <p:panel header="#{srv.name}" rendered="#{srv.removable}">
                     <h:outputText value="#{srv.description}"/>
                     <h:panelGrid columns="2" style="width: 100%; text-align: center">
                         <p:commandButton value="#{lang['home.access']}"
