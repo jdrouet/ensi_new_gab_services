@@ -121,14 +121,18 @@ public class SncfBean extends AbstractBean {
     }
 
     public void reserverVoyage(Voyage v) {
-        Company sncf = this.companyService.getCompanyByName("sncf");
-        Account sncfAccount = sncf.getAccountList().get(0);
-        Account clientAccount = this.homeBean.getAccount();
-        float amount = v.getPrix();
-        Operation op = new Operation(sncfAccount, clientAccount, amount);
-        clientAccount.debit(op);
-        sncfAccount.credit(op);
-        accountService.update(sncfAccount);
-        accountService.update(clientAccount);
+        Company sncf = this.companyService.getCompanyByName("SNCF");
+        //if(sncf != null) {
+            Account sncfAccount = sncf.getAccountList().get(0);
+            //if(sncfAccount != null) {
+                Account clientAccount = this.homeBean.getAccount();
+                float amount = v.getPrix();
+                Operation op = new Operation(clientAccount, sncfAccount, amount);
+                clientAccount.debit(op);
+                sncfAccount.credit(op);
+                accountService.update(sncfAccount);
+                accountService.update(clientAccount);
+            //}
+        //}
     }
 }

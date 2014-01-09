@@ -39,7 +39,7 @@ public class EnsicaenSender {
 	
 	
 	
-	public void EnvoyerMail(String to,String messageHTML,String filename,File attachments) throws AddressException, MessagingException, IOException{
+	public void EnvoyerMail(String to,String messageHTML,File attachments) throws AddressException, MessagingException, IOException{
 	
 		   
 			
@@ -205,14 +205,14 @@ public class EnsicaenSender {
 	 
 	 
 	 
-	 public void  sendFile(String name,String mailAddress, String filename, File file) throws AddressException, MessagingException, IOException {
+	 public void  sendFile(String Sendername,String mailAddress, File file) throws AddressException, MessagingException, IOException {
           
 
         
           
-          String messageenv = ConstruireMessage(name);
+          String messageenv = ConstruireMessage(Sendername);
           
-          EnvoyerMail(mailAddress, messageenv,filename,file);
+          EnvoyerMail(mailAddress, messageenv,file);
           
 	 }
 }
