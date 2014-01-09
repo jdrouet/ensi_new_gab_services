@@ -79,7 +79,7 @@ public class MisterBean extends AbstractBean {
         if (this.getAt(2) == this.getAt(4) && this.getAt(0) == this.getAt(6) && this.getAt(0) != 0) {
             return true;
         }
-        if (this.getPlayable().size() == 0) {
+        if (this.getPlayable().isEmpty()) {
             return true;
         }
         return false;

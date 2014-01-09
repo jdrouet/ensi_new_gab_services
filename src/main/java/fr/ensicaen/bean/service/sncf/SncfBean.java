@@ -1,6 +1,7 @@
 package fr.ensicaen.bean.service.sncf;
 
 import fr.ensicaen.bean.AbstractBean;
+import fr.ensicaen.bean.FingerBean;
 import fr.ensicaen.bean.HomeBean;
 import fr.ensicaen.entity.Account;
 import fr.ensicaen.entity.Card;
@@ -43,6 +44,9 @@ public class SncfBean extends AbstractBean {
 
     @ManagedProperty("#{companyService}")
     private ICompanyService companyService;
+    
+    @ManagedProperty("#{fingerBean}")
+    private FingerBean fingerBean;
 
     private String source;
     private String destination;
@@ -63,6 +67,14 @@ public class SncfBean extends AbstractBean {
 
     public void setCompanyService(ICompanyService companyService) {
         this.companyService = companyService;
+    }
+
+    public FingerBean getFingerBean() {
+        return fingerBean;
+    }
+
+    public void setFingerBean(FingerBean fingerBean) {
+        this.fingerBean = fingerBean;
     }
 
     public HomeBean getHomeBean() {
@@ -104,6 +116,8 @@ public class SncfBean extends AbstractBean {
     public void setVoyages(List<Voyage> voyages) {
         this.voyages = voyages;
     }
+    
+    
 
     public void rechercherVoyages() {
         int[] minutes = {10, 36, 55};
@@ -122,17 +136,21 @@ public class SncfBean extends AbstractBean {
 
     public void reserverVoyage(Voyage v) {
         Company sncf = this.companyService.getCompanyByName("SNCF");
-        //if(sncf != null) {
+        if(sncf != null) {
             Account sncfAccount = sncf.getAccountList().get(0);
-            //if(sncfAccount != null) {
+            if(sncfAccount != null) {
                 Account clientAccount = this.homeBean.getAccount();
                 float amount = v.getPrix();
                 Operation op = new Operation(clientAccount, sncfAccount, amount);
                 clientAccount.debit(op);
                 sncfAccount.credit(op);
-                accountService.update(sncfAccount);
-                accountService.update(clientAccount);
-            //}
-        //}
+                this.accountService.update(sncfAccount);
+                this.accountService.update(clientAccount);
+            }
+            else
+                System.err.println("SNCF Account unreachable !");
+        }
+        else
+            System.err.println("SNCF company unreachable !");
     }
 }
