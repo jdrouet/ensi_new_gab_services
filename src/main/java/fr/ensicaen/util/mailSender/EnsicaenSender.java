@@ -16,6 +16,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+
 /** 
 * @author Yassir Mohamed Bouhaddaoui  yassir.bouhaddaoui@gmail.com
 */
