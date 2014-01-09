@@ -100,28 +100,9 @@ public class StoreBean extends AbstractBean {
         return this.serviceService.getServicesByTag(this.getClient(), this.selectedTag);
     }
 
-    public void addService(final Service service) {
-        this.fingerBean.openDialog(new FingerBean.Command() {
-            private static final long serialVersionUID = -643446979098888225L;
-
-            @Override
-            public void onSuccess() {
-                buyService(service);
-                RequestContext.getCurrentInstance().update(":form");
-            }
-
-            @Override
-            public void onFail() {
-                //To change body of implemented methods use File | Settings | File Templates.
-            }
-
-        });
-    }
-
-    public void buyService(Service service) {
+    public void addService(Service service) {
         this.getClient().getServiceList().add(service);
         this.clientService.update(this.getClient());
-        // this.getClient().getActionList().add(new Action(this.getClient(), service, true));
     }
 
 }

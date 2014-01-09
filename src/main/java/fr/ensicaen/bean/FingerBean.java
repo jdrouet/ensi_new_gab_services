@@ -27,6 +27,7 @@ public class FingerBean extends AbstractBean {
 
     private Command command;
     private int result;
+    private String after;
 
 
     public HomeBean getHomeBean() {
@@ -65,25 +66,23 @@ public class FingerBean extends AbstractBean {
         this.result = result;
     }
 
-    public void openDialog(Command command) {
+    public String getAfter() {
+        return after;
+    }
+
+    public void setAfter(String after) {
+        this.after = after;
+    }
+
+    public void initialize(Command command, String after) {
         this.setCommand(command);
-        this.setResult(-1);
-        //
-        Map<String, Object> options = new HashMap<>();
-        options.put("modal", true);
-        options.put("draggable", false);
-        options.put("closable", false);
-        options.put("contentWidth", 250);
-        options.put("contentHeight", 350);
-        //hint: available options are modal, draggable, resizable, width, height, contentWidth and contentHeight
-        RequestContext.getCurrentInstance().openDialog("finger/finger", options, null);
+        this.setAfter(after);
     }
 
     public void proceed() {
         if (this.result == 0) {
             this.getCommand().onSuccess();
             this.pushInfoNotification("Succes", "Operation effectuée, vous pouvez fermer la fenetre");
-            RequestContext.getCurrentInstance().closeDialog(null);
         } else {
             this.getCommand().onFail();
             this.pushErrorNotification("Erreur", "Authentification echouée");

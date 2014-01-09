@@ -22,6 +22,7 @@ import fr.ensicaen.service.IGenericService;
 @SessionScoped
 public class P2PBean extends AbstractBean {
     private static final long serialVersionUID = 6055540180053992038L;
+    private static final String PAGE = "/pages/services/p2p/index.xhtml";
 
     @ManagedProperty("#{accountService}")
     private IGenericService<Account> accountService;
@@ -99,7 +100,7 @@ public class P2PBean extends AbstractBean {
      * Fausse lecture de tag, on prend un compte aléatoire dans la base de
      * données et on fait une transaction
      */
-    public void readTag() {
+    public String readTag() {
         List<Account> lst = this.accountService.getAll();
         if (this.senderAccount == null) {
             this.recipientAccount = null;
@@ -112,22 +113,11 @@ public class P2PBean extends AbstractBean {
                 this.recipientAccount = null;
             }
         }
+        return PAGE;
     }
 
-    public void execute() {
-        this.fingerBean.openDialog(new FingerBean.Command() {
-            private static final long serialVersionUID = 8735276544234605809L;
-
-            @Override
-            public void onSuccess() {
-                generateTransfer();
-            }
-
-            @Override
-            public void onFail() {
-
-            }
-        });
+    public String execute() {
+        return FingerBean.PAGE;
     }
 
     public void generateTransfer() {

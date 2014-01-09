@@ -46,12 +46,16 @@
                 </p:row>
                 <p:row>
                     <p:column styleClass="ui-widget-header" colspan="3" style="text-align: center;">
+
                         <p:commandButton value="#{lang['p2p.cancel']}"
                                          action="/pages/home.xhtml"/>
+
                         <p:commandButton value="#{lang['p2p.read_tag']}"
-                                         actionListener="#{p2PBean.readTag}"/>
+                                         action="#{p2PBean.readTag}"/>
+
                         <p:commandButton value="#{lang['p2p.make']}"
-                                         actionListener="#{p2PBean.execute}"/>
+                                         action="#{p2PBean.execute}"/>
+
                     </p:column>
                 </p:row>
             </p:panelGrid>
