@@ -82,11 +82,12 @@ public class Card implements Serializable {
 		this.setClearPin(clearPin);
 
 		// chiffrement et passage en base64 du template
-		byte[] sb = new byte[cleartemplate.length];
-		for (int i = 0; i < cleartemplate.length; i++) {
-			sb[i] = (byte) (cleartemplate[i] ^ key.charAt(i % key.length()));
-		}
-		cipherTemplate = Base64.toBase64String(sb);
+		// byte[] sb = new byte[cleartemplate.length];
+		// byte[] tkey = key.getBytes();
+		// for (int i = 0; i < cleartemplate.length; i++) {
+		// sb[i] = (byte) (cleartemplate[i] ^ tkey[i % tkey.length]);
+		// }
+		cipherTemplate = Base64.toBase64String(cleartemplate);
 	}
 
 	public Long getIdCard() {
@@ -139,5 +140,13 @@ public class Card implements Serializable {
 
 	public void setKey(String key) {
 		this.key = key;
+	}
+
+	public String getCipherTemplate() {
+		return cipherTemplate;
+	}
+
+	public void setCipherTemplate(String cipherTemplate) {
+		this.cipherTemplate = cipherTemplate;
 	}
 }
