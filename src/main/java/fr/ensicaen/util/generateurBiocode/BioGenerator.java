@@ -2,7 +2,6 @@ package fr.ensicaen.util.generateurBiocode;
 
 
 
-
 /** 
 * @author Yassir Mohamed Bouhaddaoui  yassir.bouhaddaoui@gmail.com
 */
@@ -29,19 +28,37 @@ public class BioGenerator {
 		}	
 		
 		public void calculebiocode(){
-		
+			double med = calculeMediane(B);
 			
 			for (int i =0;i<B.getCol();i++){
-				if(B.getVecteurs()[0][i] > 1){
+				if(B.getVecteurs()[0][i] > med){
 					biocode[0][i]=1;
+				
 				}else{
 					
 					biocode[0][i]=0;
 				}
+				
+				
 			}
 			
 		}
 
+		
+		public double calculeMediane(Matrice M){
+			
+			double med=0.0;
+			int count = 0;
+			
+			for(int i =0;i<M.getCol();i++){
+				med+=M.getVecteurs()[0][i];
+				count++;
+			}
+			return (double)med/count;
+		}
+		
+		
+		
 	
 		public String biocodegenServeur(RandomVector randomV,Matrice finger ){
 		   
@@ -106,6 +123,9 @@ public class BioGenerator {
 		public void setB(Matrice b) {
 			B = b;
 		}
+
+
+
 
 
 

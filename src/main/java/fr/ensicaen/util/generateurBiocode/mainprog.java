@@ -21,7 +21,7 @@ public class mainprog {
 		  BioGenerator bioServeur = new BioGenerator();
 		  
 		  //lire l'empreinte à partire du fichier txt
-		  String chem =tmp.lireFileTemplate("./src/bio/I1_S5.txt");
+		  String chem =tmp.lireFileTemplate("./src/bio/templates/I1_S1.txt");
 		  
 		  // mettre l'enpeinte dans une matrice
 		  Matrice fingerserveur =  tmp.getKeyFromFile(chem);
@@ -49,7 +49,7 @@ public class mainprog {
 			Matrice fingerClient;
 		    Template tempclient = new Template();
 		    
-		    String chem2 =tempclient.lireFileTemplate("./src/bio/I1_S1.txt");
+		    String chem2 =tempclient.lireFileTemplate("./src/bio/templates/I1_S2.txt");
 		    
 		    fingerClient = tempclient.getKeyFromFile(chem2);
 		  
