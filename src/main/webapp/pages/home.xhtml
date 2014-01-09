@@ -18,6 +18,7 @@
                         <p:commandButton value="#{lang['home.access']}"
                                          action="#{homeBean.getServicePage(srv)}"/>
                         <p:commandButton value="#{lang['home.remove_service']}"
+                                         rendered="#{srv.removable}"
                                          update=":form:services"
                                          actionListener="#{homeBean.removeService(srv)}"/>
                     </h:panelGrid>

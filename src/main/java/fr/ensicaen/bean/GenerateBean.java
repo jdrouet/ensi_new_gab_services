@@ -81,7 +81,7 @@ public class GenerateBean extends AbstractBean {
         s2.setTagList(Arrays.asList(tag2));
         //
         Service s3 = new Service(
-                "Consultation", "Consultation des comptes", "consult");
+                "Consultation", "Consultation des comptes", "consult", false);
         s3.setTagList(Arrays.asList(tag4, tag5));
         //
         Service s4 = new Service(

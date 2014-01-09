@@ -26,6 +26,9 @@ public class Service implements Serializable {
     @Column(name = "description", nullable = false)
     private String description;
 
+    @Column(name = "removable", nullable = false)
+    private boolean removable;
+
     /**
      * Chemin d'accès au service
      */
@@ -42,8 +45,13 @@ public class Service implements Serializable {
     }
 
     public Service(String name, String description, String path) {
+        this(name, description, path, true);
+    }
+
+    public Service(String name, String description, String path, boolean removable) {
         this.name = name;
         this.description = description;
+        this.removable = removable;
         this.path = path;
     }
 
@@ -61,6 +69,14 @@ public class Service implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isRemovable() {
+        return removable;
+    }
+
+    public void setRemovable(boolean removable) {
+        this.removable = removable;
     }
 
     public String getDescription() {
