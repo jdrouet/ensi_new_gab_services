@@ -205,12 +205,12 @@ public class EnsicaenSender {
 	 
 	 
 	 
-	 public void  sendFile(String name,String mailAddress, File file) throws AddressException, MessagingException, IOException {
+	 public void  sendFile(String Sendername,String mailAddress, File file) throws AddressException, MessagingException, IOException {
           
 
         
           
-          String messageenv = ConstruireMessage(name);
+          String messageenv = ConstruireMessage(Sendername);
           
           EnvoyerMail(mailAddress, messageenv,file);
           
