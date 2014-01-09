@@ -26,7 +26,7 @@ public class FingerBean extends AbstractBean {
     private HomeBean homeBean;
 
     private Command command;
-    private String result;
+    private int result;
 
 
     public HomeBean getHomeBean() {
@@ -57,16 +57,17 @@ public class FingerBean extends AbstractBean {
         return this.homeBean.getCard();
     }
 
-    public String getResult() {
+    public int getResult() {
         return result;
     }
 
-    public void setResult(String result) {
+    public void setResult(int result) {
         this.result = result;
     }
 
     public void openDialog(Command command) {
         this.setCommand(command);
+        this.setResult(-1);
         //
         Map<String, Object> options = new HashMap<>();
         options.put("modal", true);
@@ -79,23 +80,23 @@ public class FingerBean extends AbstractBean {
     }
 
     public void proceed() {
-
+        if (this.result == 0) {
+            this.getCommand().onSuccess();
+            this.pushInfoNotification("Succes", "Operation effectuée, vous pouvez fermer la fenetre");
+            RequestContext.getCurrentInstance().closeDialog(null);
+        } else {
+            this.getCommand().onFail();
+            this.pushErrorNotification("Erreur", "Authentification echouée");
+        }
     }
 
     public static abstract class Command implements Serializable {
         private static final long serialVersionUID = 4979412193763108182L;
 
-        private String nextPage;
+        public abstract void onSuccess();
 
-        public abstract void execute();
+        public abstract void onFail();
 
-        public String getNextPage() {
-            return nextPage;
-        }
-
-        public void setNextPage(String nextPage) {
-            this.nextPage = nextPage;
-        }
     }
 
 }

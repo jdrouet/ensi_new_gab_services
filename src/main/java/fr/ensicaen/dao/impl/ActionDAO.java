@@ -17,7 +17,10 @@ public class ActionDAO implements IGenericDAO<Action> {
 
     @Override
     public void create(Action obj) {
-        sessionFactory.getCurrentSession().save(obj);
+        Action tmp = (Action) sessionFactory.getCurrentSession().merge(obj);
+        sessionFactory.getCurrentSession().save(tmp);
+        obj.setIdAction(tmp.getIdAction());
+        sessionFactory.getCurrentSession().refresh(obj);
     }
 
     @Override

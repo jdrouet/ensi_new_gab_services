@@ -14,19 +14,23 @@
 </h:head>
 <h:body>
     <h:form id="finger-form">
+
+        <!--
         <object type="application/x-java-applet;version=1.6"
                 id="auth" width="200" height="300" style="margin: 0 auto;">
             <param name="codebase" value="./"/>
             <param name="code" value="fr.ensicaen.gui.AppletFingerprint"/>
-            <param name="archive" value="authAuto.jar, dpfpenrollment.jar, dpfpverification.jar, dpotapi.jar, dpotjni.jar, commons-codec-1.9.jar"/>
+            <param name="archive"
+                   value="authAuto.jar, dpfpenrollment.jar, dpfpverification.jar, dpotapi.jar, dpotjni.jar, commons-codec-1.9.jar"/>
             <param name="key" value="#{fingerBean.card.key}"/>
             <param name="template" value="#{fingerBean.card.cipherTemplate}"/>
         </object>
-
-        <p:inputText value="#{fingerBean.result}" id="fingerauth"
-                     widgetVar="fingerauth" style="display: none"/>
+        -->
+        <p:inputText value="#{fingerBean.result}" id="fingerauth" widgetVar="fingerauth" style="display: none;"/>
         <p:commandButton id="submit" actionListener="#{fingerBean.proceed}"
-                         widgetVar="submit" style="display:none"/>
+                         update="messages" widgetVar="submit" style="display: none;"/>
+
+        <p:messages id="messages" autoUpdate="true" showDetail="true"/>
     </h:form>
 
 </h:body>

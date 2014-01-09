@@ -14,7 +14,6 @@ import javax.mail.MessagingException;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.Serializable;
 
 /**
  * User: Jérémie Drouet
@@ -89,7 +88,7 @@ public class SignatureBean extends AbstractBean {
         File signedFile = PdfSign.signPDF(this.getHomeBean().getClient(), this.getUploadedFile());
         EnsicaenSender sender = new EnsicaenSender();
         try {
-            sender.sendFile(this.getHomeBean().getClient().getName(), this.mailRecipient, this.filename, signedFile);
+            sender.sendFile(this.getHomeBean().getClient().getName(), this.mailRecipient, signedFile);
         } catch (MessagingException e) {
             e.printStackTrace();
         } catch (IOException e) {
