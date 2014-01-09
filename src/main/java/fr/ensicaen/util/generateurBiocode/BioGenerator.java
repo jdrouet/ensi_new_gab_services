@@ -3,7 +3,6 @@ package fr.ensicaen.util.generateurBiocode;
 
 
 
-
 /** 
 * @author Yassir Mohamed Bouhaddaoui  yassir.bouhaddaoui@gmail.com
 */
@@ -14,7 +13,7 @@ public class BioGenerator {
 		
 		private int biocode[][];
 		private Matrice B;
-		RandomVector randomV;
+		
 		
 		
 		public BioGenerator(Matrice b){
@@ -44,22 +43,18 @@ public class BioGenerator {
 		}
 
 	
-		public String biocodegenServeur(Matrice m){
+		public String biocodegenServeur(RandomVector randomV,Matrice finger ){
 		   
-	       GramShmitt a = new GramShmitt();
+	         GramShmitt a = new GramShmitt();
 	    
-		   
-		     randomV = new RandomVector(m.getCol(),20);
-		     randomV.generateMatrice();
-		   
-		     
-		     a.afficher(randomV.getRandV());
+
 		     Matrice gram = a.calculeVecteur(randomV.getRandV());
-		     Matrice bio =  a.MultiplyMatrice(m, gram);
+		     Matrice bio =  a.MultiplyMatrice(finger, gram);
+		     a.afficher(bio);
 		     BioGenerator p = new BioGenerator(bio);
 		     p.calculebiocode();
 		    
-		     a.afficher(p.getBiocode());
+		     //a.afficher(p.getBiocode());
 		     return toTable(p.getBiocode(),p.getB().getCol());
 	}
 		
@@ -68,16 +63,15 @@ public class BioGenerator {
 		public String biocodegenClient(Matrice vector, Matrice finger){
 
 	         GramShmitt a = new GramShmitt();
-	     
-
-		     
-		     a.afficher(vector);
+	 	     
+		    // a.afficher(vector);
 		     Matrice gram = a.calculeVecteur(vector);
 		     Matrice bio =  a.MultiplyMatrice(finger, gram);
+		     a.afficher(bio);
 		     BioGenerator p = new BioGenerator(bio);
 		     p.calculebiocode();
 		    
-		     a.afficher(p.getBiocode());
+		    // a.afficher(p.getBiocode());
 		     return toTable(p.getBiocode(),p.getB().getCol());
 	}
 		
@@ -114,16 +108,7 @@ public class BioGenerator {
 		}
 
 
-		public RandomVector getRandomV() {
-			return randomV;
-		}
 
-
-		public void setRandomV(RandomVector randomV) {
-			this.randomV = randomV;
-		}
-		
 	
 	
 }
-

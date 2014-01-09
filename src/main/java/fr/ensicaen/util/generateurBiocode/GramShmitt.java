@@ -1,6 +1,5 @@
 package fr.ensicaen.util.generateurBiocode;
 
-
 import java.util.ArrayList;
 
 /** 

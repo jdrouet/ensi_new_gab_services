@@ -2,6 +2,7 @@ package fr.ensicaen.util.generateurBiocode;
 
 
 
+
 /** 
 * @author Yassir Mohamed Bouhaddaoui  yassir.bouhaddaoui@gmail.com
 */
@@ -16,50 +17,61 @@ public class mainprog {
 
 
 		 /* generer template coté serveur  (enrolement)  */
-		
 		  Template tmp = new Template();
 		  BioGenerator bioServeur = new BioGenerator();
-		  String chem =tmp.lireFileTemplate("finger.txt");
+		  
+		  //lire l'empreinte à partire du fichier txt
+		  String chem =tmp.lireFileTemplate("./src/bio/I1_S5.txt");
+		  
+		  // mettre l'enpeinte dans une matrice
 		  Matrice fingerserveur =  tmp.getKeyFromFile(chem);
 		  
+		  // generer le vecteur aleatoire
+          RandomVector randomV = new RandomVector(fingerserveur.getCol(),200);
+		  randomV.generateMatrice();
+		   
+		  // generation de biocode coté serveur     
+		 String biocodeServeur = bioServeur.biocodegenServeur(randomV,fingerserveur);
+		
+		 System.out.println("S ="+biocodeServeur);
 		  
-		// la fonction biocodgen genere la matrice des vect automatiquement
-		// on peut la récuperer par  var.getRandomV()
+		//stocker les vecteurs ( dans un fichier  --dans la BD-- ) 
 		  
-		   String biocodeServeur = bioServeur.biocodegenServeur(fingerserveur); // generation de biocode coté serveur 
-		//
-		  System.out.println("biocode serveur = "+bioServeur);
+		  randomV.EnregistrerVector("./src/bio/randomVector.txt");
 		  
-		/*stocker les vecteurs ( dans un fichier  --dans la BD-- ) */ 
 		  
-		  bioServeur.getRandomV().EnregistrerVector("randomVector.txt");
-		  		  
+		  
+		  
 	   //coté client
+		
 		  
 			Matrice randomVectClient;
 			Matrice fingerClient;
 		    Template tempclient = new Template();
 		    
-		    String chem2 =tempclient.lireFileTemplate("finger.txt");
-			fingerClient = tempclient.getKeyFromFile(chem2);
+		    String chem2 =tempclient.lireFileTemplate("./src/bio/I1_S1.txt");
 		    
-			RandomVector randV = new RandomVector(fingerClient.getCol(),20);
-			randV.lireVector("randomVector.txt");
+		    fingerClient = tempclient.getKeyFromFile(chem2);
+		  
+			RandomVector randV = new RandomVector(fingerClient.getCol(),200);
+		
+			randV.lireVector("./src/bio/randomVector.txt");
+	
 			randomVectClient = randV.getRandV();
-		    
+			
 		    
 		    BioGenerator bioClient =  new BioGenerator();
 			String biocodeClient = bioClient.biocodegenClient(randomVectClient, fingerClient);
-			System.out.println(biocodeClient);
 			
-			
+			System.out.println("C ="+biocodeClient);
+		
 			
 			//comparaison des deux biocodes
 			
 		    compBioSec comparaison = new compBioSec();
 		    
 		    
-           double pourcentage= comparaison.pourcentageHaming(comparaison.Hamming(biocodeClient,biocodeServeur,20), 20);
+           double pourcentage= comparaison.pourcentageHaming(comparaison.Hamming(biocodeClient,biocodeServeur,200), 200);
   
     	   System.out.println("pourcentage -------"+pourcentage);
    	    
