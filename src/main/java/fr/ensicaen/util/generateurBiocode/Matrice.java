@@ -1,7 +1,6 @@
 package fr.ensicaen.util.generateurBiocode;
 
 
-
 /** 
 * @author Yassir Mohamed Bouhaddaoui  yassir.bouhaddaoui@gmail.com
 */
@@ -38,24 +37,7 @@ public class Matrice {
 	}
 	
 	
-   /**
-     * Constructeur d'une matrice colonne (vecteur) à partir d'un tableau
-     * de double de dimension 1.
-     * @param t tableau de nombres
-     * (je ne l'ai pas utilisé dans le prog !!)
-     */
-	public Matrice(double t[]){
-
-
-		this.row=t.length;
-		this.col= 1;
-		this.vecteurs = new double[this.row][1];
-		
-		for ( int i = 0; i < row; i++ ) {
-		    vecteurs[i][0] = t[i];
-		}
-	}
-	
+  
 
     /** 
      * Constructeur d'une matrice à partir d'une existante.
