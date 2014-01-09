@@ -90,7 +90,7 @@ public class GenerateBean extends AbstractBean {
         //
         /** Personne 1 **/
         //
-        Person p1 = new Person("Hervé", "Tété");
+        Person p1 = new Person("Hervé", "Tété", "herve.tete@peugeot_cycle.fr");
         //
         Account a1 = new Account(p1, t1, 42.0);
         //
@@ -108,7 +108,7 @@ public class GenerateBean extends AbstractBean {
         //
         /** Personne 2 **/
         //
-        Person p2 = new Person("Jean-Luc", "Asec");
+        Person p2 = new Person("Jean-Luc", "Asec", "jeanluc.asec@vaseline.com");
         //
         Account a2 = new Account(p2, t2, -62.0);
         //
@@ -139,7 +139,7 @@ public class GenerateBean extends AbstractBean {
         //
         /** Personne 3 **/
         //
-        Person p3 = new Person("Jean-Paul", "Laculisse");
+        Person p3 = new Person("Jean-Paul", "Laculisse", "jeanpaul.laculise@gendarmerie.fr");
         //
         Account a3 = new Account(p3, t1, 6200.0);
         //

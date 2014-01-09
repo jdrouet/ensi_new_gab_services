@@ -77,8 +77,7 @@ public class Person extends Client {
 		this.lastname = lastname;
 	}
 
-	public Person(String firstname, String lastname, String email,
-			String _cipherTemplate) {
+	public Person(String firstname, String lastname, String email) {
 		this(firstname, lastname);
 		setEmail(email);
 		generateP12();
