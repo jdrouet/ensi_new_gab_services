@@ -54,7 +54,7 @@ public class RandomVector {
 		
 		 for (int i = 0; i < randV.getRow(); i++ ) {
 				for (int j = 0; j < randV.getCol(); j++ ) {
-				    randV.getVecteurs()[i][j] =(int) (Math.random() * ( 20 - 0 )); 
+				    randV.getVecteurs()[i][j] =(int) (Math.random() * ( 400 - 0 )); 
 			    } 		
 	     }
 		
