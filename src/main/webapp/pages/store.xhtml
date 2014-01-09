@@ -14,6 +14,7 @@
                 <p:panel header="#{srv.name}">
                     <h:panelGrid columns="1" style="width: 100%; text-align: center">
                         <h:outputText value="#{srv.description}"/>
+                        
                         <p:commandButton value="#{lang['store.add_service']}" update="@all"
                                          actionListener="#{storeBean.addService(srv)}"/>
                     </h:panelGrid>

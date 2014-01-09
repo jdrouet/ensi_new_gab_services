@@ -6,13 +6,16 @@ import fr.ensicaen.entity.Service;
 import fr.ensicaen.entity.Tag;
 import fr.ensicaen.service.IGenericService;
 import fr.ensicaen.service.IServiceService;
+import org.primefaces.context.RequestContext;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * User: Jérémie Drouet
@@ -35,6 +38,9 @@ public class StoreBean extends AbstractBean {
     @ManagedProperty("#{homeBean}")
     private HomeBean homeBean;
 
+    @ManagedProperty("#{fingerBean}")
+    private FingerBean fingerBean;
+
     private Tag selectedTag;
 
     public HomeBean getHomeBean() {
@@ -43,6 +49,14 @@ public class StoreBean extends AbstractBean {
 
     public void setHomeBean(HomeBean homeBean) {
         this.homeBean = homeBean;
+    }
+
+    public FingerBean getFingerBean() {
+        return fingerBean;
+    }
+
+    public void setFingerBean(FingerBean fingerBean) {
+        this.fingerBean = fingerBean;
     }
 
     public Client getClient() {
@@ -81,14 +95,32 @@ public class StoreBean extends AbstractBean {
         this.serviceService = serviceService;
     }
 
-    public void addService(Service service) {
-        this.getClient().getServiceList().add(service);
-        this.clientService.update(this.getClient());
-        // this.actionService.add(new Action(this.client, service, true));
-    }
-
 
     public List<Service> getServiceList() {
         return this.serviceService.getServicesByTag(this.getClient(), this.selectedTag);
+    }
+
+    public void addService(Service service) {
+        // this.getClient().getServiceList().add(service);
+        // this.clientService.update(this.getClient());
+        // this.actionService.add(new Action(this.getClient(), service, true));
+        this.fingerBean.openDialog(new BuyCommand(this.getClient(), service));
+    }
+
+    public class BuyCommand extends FingerBean.Command {
+        private static final long serialVersionUID = 501359891577246740L;
+
+        private Client client;
+        private Service service;
+
+        public BuyCommand(Client client, Service service) {
+            this.client = client;
+            this.service = service;
+        }
+
+        @Override
+        public void execute() {
+
+        }
     }
 }
