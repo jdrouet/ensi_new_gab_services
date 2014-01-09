@@ -14,6 +14,7 @@ import fr.ensicaen.bean.AbstractBean;
 import fr.ensicaen.bean.FingerBean;
 import fr.ensicaen.bean.HomeBean;
 import fr.ensicaen.entity.Account;
+import fr.ensicaen.entity.Client;
 import fr.ensicaen.entity.Operation;
 import fr.ensicaen.service.IGenericService;
 
@@ -28,6 +29,9 @@ public class P2PBean extends AbstractBean {
 
     @ManagedProperty("#{accountService}")
     private IGenericService<Account> accountService;
+
+    @ManagedProperty("#{clientService}")
+    private IGenericService<Client> clientService;
 
     @ManagedProperty("#{homeBean}")
     private HomeBean homeBean;
@@ -53,6 +57,14 @@ public class P2PBean extends AbstractBean {
 
     public void setRecipientAccount(Account recipientAccount) {
         this.recipientAccount = recipientAccount;
+    }
+
+    public IGenericService<Client> getClientService() {
+        return clientService;
+    }
+
+    public void setClientService(IGenericService<Client> clientService) {
+        this.clientService = clientService;
     }
 
     public IGenericService<Account> getAccountService() {
@@ -94,13 +106,24 @@ public class P2PBean extends AbstractBean {
         return lst.get(0);
     }
 
+    public void executeTransfer() {
+        this.recipientAccount = this.getRandomAccount(); // A modifier si NFC
+        Operation op = new Operation(this.senderAccount, this.recipientAccount, this.amount);
+        if (this.senderAccount.getDebitList() == null) {
+            this.senderAccount.setDebitList(Arrays.asList(op));
+        } else {
+            this.senderAccount.getDebitList().add(op);
+        }
+        this.clientService.update(this.senderAccount.getClient());
+    }
+
     public String execute() {
         this.fingerBean.initialize(new FingerBean.Command() {
             private static final long serialVersionUID = 9047155031690329826L;
 
             @Override
             public void onSuccess() {
-                //To change body of implemented methods use File | Settings | File Templates.
+                executeTransfer();
             }
 
             @Override
