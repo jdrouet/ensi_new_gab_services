@@ -12,6 +12,17 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
+
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.StringTokenizer;
+
 /** 
 * @author Yassir Mohamed Bouhaddaoui  yassir.bouhaddaoui@gmail.com
 */
@@ -43,7 +54,7 @@ public class RandomVector {
 		
 		 for (int i = 0; i < randV.getRow(); i++ ) {
 				for (int j = 0; j < randV.getCol(); j++ ) {
-				    randV.getVecteurs()[i][j] =(int) (Math.random() * ( 1000000000 - 0 )); 
+				    randV.getVecteurs()[i][j] =(int) (Math.random() * ( 20 - 0 )); 
 			    } 		
 	     }
 		
@@ -70,7 +81,7 @@ public class RandomVector {
 					for (int j = 0; j < randV.getCol(); j++ ) {
 					    chaine = chaine+ randV.getVecteurs()[i][j]+" "; 
 				    } 		
-					System.out.println(chaine);
+					//System.out.println(chaine);
 				    fichierSortie.println (chaine);
 				    chaine = "";
 		     }
@@ -124,7 +135,7 @@ public class RandomVector {
 				int i=0;
 				while ((ligne=br.readLine())!=null){
 					chaine=ligne;
-					System.out.println(chaine);
+					//System.out.println(chaine);
 					getKeyFromFile(chaine, i, 0);
 					i++;
 				}

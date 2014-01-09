@@ -1,5 +1,8 @@
 package fr.ensicaen.util.generateurBiocode;
 
+
+
+
 /** 
 * @author Yassir Mohamed Bouhaddaoui  yassir.bouhaddaoui@gmail.com
 */
@@ -38,7 +41,7 @@ public class compBioSec {
             if (ham1[i] != ham2[i])
                count++;
         }
-		System.out.println("count--"+count);
+		//System.out.println("count--"+count);
 		return taille-count;
 		
 		
@@ -64,7 +67,7 @@ public class compBioSec {
 		    
 		    for (int i = 0; i < chars.length; i++) {
 		        characters[i]=Integer.parseInt(String.valueOf(chars[i]).toString());
-		        System.out.println(chars[i]);
+		       // System.out.println(chars[i]);
 		    }
 		
 		
@@ -93,4 +96,3 @@ public class compBioSec {
 	
 	
 }
-
