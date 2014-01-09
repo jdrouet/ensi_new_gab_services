@@ -21,7 +21,7 @@
 	<bean id="Person" class="fr.ensicaen.entity.Person"/>
 	<bean id="Service" class="fr.ensicaen.entity.Service"/>
 	<bean id="Tag" class="fr.ensicaen.entity.Tag"/> -->
-	
+
 	<!-- User Service Declaration -->
 	<bean id="accountService" class="fr.ensicaen.service.impl.AccountService">
 		<property name="dao" ref="accountDAO" />
@@ -56,45 +56,45 @@
 	<bean id="tagService" class="fr.ensicaen.service.impl.TagService">
 		<property name="dao" ref="tagDAO" />
 	</bean>
-	
-	
+
+
 	<!-- User DAO Declaration -->
 	<bean id="accountDAO" class="fr.ensicaen.dao.impl.AccountDAO">
-		<property name="sessionFactory" ref="SessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="accountTypeDAO" class="fr.ensicaen.dao.impl.AccountTypeDAO">
-		<property name="sessionFactory" ref="SessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="actionDAO" class="fr.ensicaen.dao.impl.ActionDAO">
-		<property name="sessionFactory" ref="SessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="cardDAO" class="fr.ensicaen.dao.impl.CardDAO">
-		<property name="sessionFactory" ref="SessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="clientDAO" class="fr.ensicaen.dao.impl.ClientDAO">
-		<property name="sessionFactory" ref="SessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="companyDAO" class="fr.ensicaen.dao.impl.CompanyDAO">
-		<property name="sessionFactory" ref="SessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="operationDAO" class="fr.ensicaen.dao.impl.OperationDAO">
-		<property name="sessionFactory" ref="SessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="organizationDAO" class="fr.ensicaen.dao.impl.OrganizationDAO">
-		<property name="sessionFactory" ref="SessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="personDAO" class="fr.ensicaen.dao.impl.PersonDAO">
-		<property name="sessionFactory" ref="SessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="serviceDAO" class="fr.ensicaen.dao.impl.ServiceDAO">
-		<property name="sessionFactory" ref="SessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="tagDAO" class="fr.ensicaen.dao.impl.TagDAO">
-		<property name="sessionFactory" ref="SessionFactory" />
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
     <!-- Data Source Declaration -->
-    <bean id="DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/ensi_new_gab"/>
         <property name="user" value="ensi_new_gab"/>
@@ -105,8 +105,8 @@
     </bean>
 
     <!-- Session Factory Declaration -->
-    <bean id="SessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-        <property name="dataSource" ref="DataSource"/>
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan" value="fr.ensicaen.entity"/>
         <property name="hibernateProperties">
             <props>
@@ -122,7 +122,7 @@
 
     <!-- Transaction Manager is defined -->
     <bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory" ref="SessionFactory"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
 </beans>
