@@ -32,7 +32,8 @@ public class SignPdf {
 		//
 		a1 = new Account(p1, t1, 42.0);
 		//
-		card = new Card(a1, "123456789012345", "1234");
+
+		card = new Card(a1, "123456789012345", "1234", null);
 		a1.setCardList(Arrays.asList(card));
 		//
 		p1.setAccountList(Arrays.asList(a1));
