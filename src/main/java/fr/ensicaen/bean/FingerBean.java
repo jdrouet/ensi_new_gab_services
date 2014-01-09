@@ -8,6 +8,7 @@ import org.primefaces.context.RequestContext;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -83,6 +84,9 @@ public class FingerBean extends AbstractBean {
         if (this.result == 0) {
             this.getCommand().onSuccess();
             this.pushInfoNotification("Succes", "Operation effectuée, vous pouvez fermer la fenetre");
+            //
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            facesContext.getApplication().getNavigationHandler().handleNavigation(facesContext, null, this.after);
         } else {
             this.getCommand().onFail();
             this.pushErrorNotification("Erreur", "Authentification echouée");
