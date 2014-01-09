@@ -1,5 +1,6 @@
 package fr.ensicaen.bean.service.consult;
 
+import fr.ensicaen.bean.AbstractBean;
 import fr.ensicaen.entity.Account;
 import fr.ensicaen.entity.Client;
 import fr.ensicaen.entity.Operation;
@@ -20,7 +21,7 @@ import java.util.List;
  */
 @ManagedBean
 @SessionScoped
-public class ConsultationBean implements Serializable {
+public class ConsultationBean extends AbstractBean {
     private static final long serialVersionUID = 1725763280813270527L;
 
     @ManagedProperty("#{operationService}")

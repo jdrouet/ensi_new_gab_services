@@ -21,17 +21,8 @@ public class AccountDAO implements IGenericDAO<Account> {
 
     @Override
     public Account find(Long id) {
-        List list = sessionFactory
-                .getCurrentSession()
-                .createQuery(
-                        "from " + Account.class.getName()
-                                + " where id_account=?").setParameter(0, id)
-                .list();
-        if (list != null && !list.isEmpty()) {
-            return (Account) list.get(0);
-        } else {
-            return null;
-        }
+        return (Account) sessionFactory
+                .getCurrentSession().get(Account.class, id);
     }
 
     @Override

@@ -12,7 +12,7 @@
             <p:panelGrid style="width: 100%;">
                 <p:row>
                     <p:column colspan="3" styleClass="ui-widget-header">
-                        <h:outputText value="Réservez votre voyage"/>
+                        <h:outputText value="#{lang['sncf.reservation']}"/>
                     </p:column>
                 </p:row>
                 <p:row>
@@ -20,7 +20,7 @@
                         <p:graphicImage value="/pages/services/sncf/img/logo.png"/>
                     </p:column>
                     <p:column styleClass="ui-widget-header">
-                        <h:outputText value="Départ"/>
+                        <h:outputText value="#{lang['sncf.departing_from']}"/>
                     </p:column>
                     <p:column>
                         <p:inputText id="source" value="#{sncfBean.source}"/>
@@ -28,7 +28,7 @@
                 </p:row>
                 <p:row>
                     <p:column styleClass="ui-widget-header">
-                        <h:outputText value="Arrivée"/>
+                        <h:outputText value="#{lang['sncf.going_to']}"/>
                     </p:column>
                     <p:column>
                         <p:inputText id="destination" value="#{sncfBean.destination}"/>
@@ -36,7 +36,7 @@
                 </p:row>
                 <p:row>
                     <p:column styleClass="ui-widget-header">
-                        <h:outputText value="A partir de"/>
+                        <h:outputText value="#{lang['sncf.departure']}"/>
                     </p:column>
                     <p:column>
                         <p:calendar pattern="dd/MM/yyyy HH:mm" id="start" value="#{sncfBean.start}"/>
@@ -45,36 +45,36 @@
                 <p:row>
                     <p:column colspan="3" style="text-align: center;" styleClass="ui-widget-header">
                         <p:commandButton value="Annuler" action="/pages/home.xhtml"/>
-                        <p:commandButton update="voyages" value="Rechercher"
+                        <p:commandButton update="voyages" value="#{lang['sncf.search']}"
                                          actionListener="#{sncfBean.rechercherVoyages}"/>
                     </p:column>
                 </p:row>
             </p:panelGrid>
 
-            <p:dataGrid id="voyages" var="v" value="#{sncfBean.voyages}" columns="3" rows="4" rendered="true">
+            <p:dataGrid id="voyages" var="v" value="#{sncfBean.voyages}" columns="3" rows="4">
                 <p:panel header="#{v.source} - #{v.destination}" style="text-align:center">
                     <h:panelGrid columns="1" style="width:100%">
-                        <h:outputLabel value="Départ : #{v.source}"/>
-                        <h:outputLabel value="Arrivée : #{v.destination}"/>
-                        <h:outputLabel value="Le #{v.date} à #{v.heure}"/>
-                        <h:outputLabel value="#{v.prix.toString()} €"/>
+                        <h:outputLabel value="#{lang['sncf.departing_from']} : #{v.source}"/>
+                        <h:outputLabel value="#{lang['sncf.going_to']} : #{v.destination}"/>
+                        <h:outputLabel value="#{lang['sncf.the']} #{v.date} #{lang['sncf.at']} #{v.heure}"/>
+                        <h:outputLabel value="#{v.prix} €"/>
                         <h:outputLabel value="#{v.type}" style="text-transform: uppercase; color: grey;"/>
-                        <p:commandButton value="Réserver" onclick="PF('dlgc#{v.numero}').show();"/>
+                        <p:commandButton value="#{lang['sncf.book']}" onclick="PF('dlgc#{v.numero}').show();"/>
 
-                        <p:dialog width="600" id="confdial#{v.numero}" header="Confirmer l'achat"
+                        <p:dialog width="600" id="confdial#{v.numero}" header="#{lang['sncf.confirm_purchase']}"
                                   widgetVar="dlgc#{v.numero}" modal="true">
                             <h:panelGrid columns="2" style="width:100%">
-                                <h:outputLabel value="Objet :"/>
+                                <h:outputLabel value="#{lang['sncf.object']} :"/>
                                 <h:outputLabel
-                                        value="Billet #{v.type} #{v.source} - #{v.destination} le #{v.date} à #{v.heure}"/>
-                                <h:outputLabel value="Montant :"/>
-                                <h:outputLabel value="#{v.prix.toString()} €"/>
+                                        value="#{lang['sncf.ticket']} #{v.type} #{v.source} - #{v.destination} le #{v.date} à #{v.heure}"/>
+                                <h:outputLabel value="#{lang['sncf.amount']} :"/>
+                                <h:outputLabel value="#{v.prix} €"/>
                             </h:panelGrid>
                             <h:panelGrid columns="2" style="margin: 0 auto">
-                                <p:commandButton value="Réserver" icon="ui-icon-check"
+                                <p:commandButton value="#{lang['sncf.confirm']}" icon="ui-icon-check"
                                                  actionListener="#{sncfBean.reserverVoyage(v)}"
                                                  onclick="PF('dlgc#{v.numero}').hide();"/>
-                                <p:commandButton value="Annuler" type="button" icon="ui-icon-close"
+                                <p:commandButton value="#{lang['sncf.cancel']}" type="button" icon="ui-icon-close"
                                                  onclick="PF('dlgc#{v.numero}').hide();"/>
                             </h:panelGrid>
                         </p:dialog>
