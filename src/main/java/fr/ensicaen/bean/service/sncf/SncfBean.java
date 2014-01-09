@@ -1,5 +1,6 @@
 package fr.ensicaen.bean.service.sncf;
 
+import fr.ensicaen.bean.AbstractBean;
 import fr.ensicaen.bean.HomeBean;
 import fr.ensicaen.entity.Account;
 import fr.ensicaen.entity.Card;
@@ -30,7 +31,7 @@ import javax.faces.bean.RequestScoped;
  */
 @ManagedBean
 @SessionScoped
-public class SncfBean implements Serializable {
+public class SncfBean extends AbstractBean {
 
     private static final long serialVersionUID = -4134614781118798187L;
 
