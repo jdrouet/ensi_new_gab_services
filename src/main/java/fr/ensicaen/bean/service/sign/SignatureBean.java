@@ -86,14 +86,10 @@ public class SignatureBean extends AbstractBean {
     }
 
     public String sendFile() {
-        System.out.println("SEND FILE");
-        System.out.println(this.getMailRecipient());
         File signedFile = PdfSign.signPDF(this.getHomeBean().getClient(), this.getUploadedFile());
         EnsicaenSender sender = new EnsicaenSender();
-        String title = "Document signé";
-        String content = "Voici un document signé.";
         try {
-            sender.sendMail(this.mailRecipient, content, title, new File[]{signedFile});
+            sender.sendFile(this.getHomeBean().getClient().getName(), this.mailRecipient, this.filename, signedFile);
         } catch (MessagingException e) {
             e.printStackTrace();
         } catch (IOException e) {
