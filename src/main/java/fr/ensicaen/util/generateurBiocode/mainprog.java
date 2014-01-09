@@ -2,7 +2,6 @@ package fr.ensicaen.util.generateurBiocode;
 
 
 
-
 /** 
 * @author Yassir Mohamed Bouhaddaoui  yassir.bouhaddaoui@gmail.com
 */
@@ -28,8 +27,8 @@ public class mainprog {
 		  
 		  // generer le vecteur aleatoire
           RandomVector randomV = new RandomVector(fingerserveur.getCol(),200);
-		  randomV.generateMatrice();
-		   
+		 // randomV.generateMatrice();
+          randomV.lireVector("./src/bio/randomVector.txt");
 		  // generation de biocode coté serveur     
 		 String biocodeServeur = bioServeur.biocodegenServeur(randomV,fingerserveur);
 		
@@ -49,7 +48,7 @@ public class mainprog {
 			Matrice fingerClient;
 		    Template tempclient = new Template();
 		    
-		    String chem2 =tempclient.lireFileTemplate("./src/bio/templates/I1_S2.txt");
+		    String chem2 =tempclient.lireFileTemplate("./src/bio/templates/I2_S5.txt");
 		    
 		    fingerClient = tempclient.getKeyFromFile(chem2);
 		  
