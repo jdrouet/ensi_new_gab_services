@@ -51,6 +51,7 @@ public class CompanyService implements ICompanyService {
         this.dao = dao;
     }
 
+    @Override
     public Company getCompanyByName(String name) {
         List<Company> companies = getAll();
         for (Company company : companies) {
