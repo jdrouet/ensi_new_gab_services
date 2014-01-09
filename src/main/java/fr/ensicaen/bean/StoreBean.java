@@ -1,9 +1,13 @@
 package fr.ensicaen.bean;
 
+import fr.ensicaen.entity.Account;
 import fr.ensicaen.entity.Action;
 import fr.ensicaen.entity.Client;
+import fr.ensicaen.entity.Company;
+import fr.ensicaen.entity.Operation;
 import fr.ensicaen.entity.Service;
 import fr.ensicaen.entity.Tag;
+import fr.ensicaen.service.ICompanyService;
 import fr.ensicaen.service.IGenericService;
 import fr.ensicaen.service.IServiceService;
 import org.primefaces.context.RequestContext;
@@ -37,6 +41,12 @@ public class StoreBean extends AbstractBean {
 
     @ManagedProperty("#{homeBean}")
     private HomeBean homeBean;
+
+    @ManagedProperty("#{accountService}")
+    private IGenericService<Account> accountService;
+
+    @ManagedProperty("#{companyService}")
+    private ICompanyService companyService;
 
     @ManagedProperty("#{fingerBean}")
     private FingerBean fingerBean;
@@ -95,14 +105,50 @@ public class StoreBean extends AbstractBean {
         this.serviceService = serviceService;
     }
 
+    public IGenericService<Account> getAccountService() {
+        return accountService;
+    }
+
+    public void setAccountService(IGenericService<Account> accountService) {
+        this.accountService = accountService;
+    }
+
+    public ICompanyService getCompanyService() {
+        return companyService;
+    }
+
+    public void setCompanyService(ICompanyService companyService) {
+        this.companyService = companyService;
+    }
 
     public List<Service> getServiceList() {
         return this.serviceService.getServicesByTag(this.getClient(), this.selectedTag);
     }
 
     public void addService(Service service) {
-        this.getClient().getServiceList().add(service);
-        this.clientService.update(this.getClient());
+            this.getClient().getServiceList().add(service);
+            this.clientService.update(this.getClient());
+    }
+    
+    public void buyService(Service service) {
+        Company bank = this.companyService.getCompanyByName("Banque");
+        if(bank != null) {
+            Account bankAccount = bank.getAccountList().get(0);
+            if(bankAccount != null) {
+                Account clientAccount = this.homeBean.getAccount();
+                float amount = service.getCost();
+                Operation op = new Operation(clientAccount, bankAccount, amount);
+                clientAccount.debit(op);
+                bankAccount.credit(op);
+                this.accountService.update(bankAccount);
+                this.accountService.update(clientAccount);
+                this.addService(service);
+            }
+            else
+                System.err.println("Banque Account unreachable !");
+        }
+        else
+            System.err.println("Banque company unreachable !");
     }
 
 }

@@ -203,6 +203,15 @@ public class GenerateBean extends AbstractBean {
         //
         sncf.setAccountList(Arrays.asList(aSncf));
         this.clientService.add(sncf);
+        
+        Company bank = new Company(
+                "osef",
+                "Banque");
+        //
+        Account aBank = new Account(bank, t4, 100000000);
+        //
+        bank.setAccountList(Arrays.asList(aBank));
+        this.clientService.add(bank);
     }
 
 }
