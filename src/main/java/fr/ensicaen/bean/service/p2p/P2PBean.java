@@ -7,6 +7,8 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.event.ActionEvent;
+import javax.faces.event.ActionListener;
 
 import fr.ensicaen.bean.AbstractBean;
 import fr.ensicaen.bean.FingerBean;
@@ -21,128 +23,92 @@ import fr.ensicaen.service.IGenericService;
 @ManagedBean
 @SessionScoped
 public class P2PBean extends AbstractBean {
-	private static final long serialVersionUID = 6055540180053992038L;
-	private static final String PAGE = "/pages/services/p2p/index.xhtml";
+    private static final long serialVersionUID = 6055540180053992038L;
+    private static final String PAGE = "/pages/services/p2p/index.xhtml";
 
-	@ManagedProperty("#{accountService}")
-	private IGenericService<Account> accountService;
+    @ManagedProperty("#{accountService}")
+    private IGenericService<Account> accountService;
 
-	@ManagedProperty("#{homeBean}")
-	private HomeBean homeBean;
+    @ManagedProperty("#{homeBean}")
+    private HomeBean homeBean;
 
-	@ManagedProperty("#{fingerBean}")
-	private FingerBean fingerBean;
+    @ManagedProperty("#{fingerBean}")
+    private FingerBean fingerBean;
 
-	private Account senderAccount;
-	private Account recipientAccount;
+    private Account senderAccount;
+    private Account recipientAccount;
+    private float amount;
 
-	private float amount;
+    public Account getSenderAccount() {
+        return senderAccount;
+    }
 
-	public String getRecipientText() {
-		if (this.recipientAccount == null) {
-			System.out.println("READ TEXT ACCOUNT null");
-			return "";
-		} else {
-			System.out.println("READ TEXT ACCOUNT ");
-			return String.format("%s - %s - %d", this.recipientAccount
-					.getClient().getName(), this.recipientAccount
-					.getAccountType().getName(), this.recipientAccount
-					.getIdAccount());
-		}
-	}
+    public void setSenderAccount(Account senderAccount) {
+        this.senderAccount = senderAccount;
+    }
 
-	/**
-	 * Fausse lecture de tag, on prend un compte aléatoire dans la base de
-	 * données et on fait une transaction
-	 */
-	public String readTag() {
-		System.out.println("READ TAG []");
-		List<Account> lst = this.accountService.getAll();
-		if (this.senderAccount == null) {
-			this.recipientAccount = null;
-		} else {
-			lst.removeAll(this.getHomeBean().getClient().getAccountList());
-			if (lst.size() > 0) {
-				Collections.shuffle(lst);
-				this.recipientAccount = lst.get(0);
-				System.out
-						.println("ACCOUNT " + recipientAccount.getIdAccount());
-			} else {
-				this.recipientAccount = null;
-			}
-		}
+    public Account getRecipientAccount() {
+        return recipientAccount;
+    }
 
-		return PAGE;
-	}
+    public void setRecipientAccount(Account recipientAccount) {
+        this.recipientAccount = recipientAccount;
+    }
 
-	public String execute() {
-		return FingerBean.PAGE;
-	}
+    public IGenericService<Account> getAccountService() {
+        return accountService;
+    }
 
-	public void generateTransfer() {
-		System.out.println("OP []");
-		Operation op = new Operation(this.senderAccount, this.recipientAccount,
-				this.amount);
-		if (this.senderAccount.getDebitList() != null) {
-			this.senderAccount.getDebitList().add(op);
-		} else {
-			this.senderAccount.setDebitList(Arrays.asList(op));
-		}
-		if (this.recipientAccount.getCreditList() != null) {
-			this.recipientAccount.getCreditList().add(op);
-		} else {
-			this.recipientAccount.setCreditList(Arrays.asList(op));
-		}
-		this.accountService.update(this.senderAccount);
-		this.accountService.update(this.recipientAccount);
-	}
+    public void setAccountService(IGenericService<Account> accountService) {
+        this.accountService = accountService;
+    }
 
-	public Account getSenderAccount() {
-		return senderAccount;
-	}
+    public HomeBean getHomeBean() {
+        return homeBean;
+    }
 
-	public void setSenderAccount(Account senderAccount) {
-		this.senderAccount = senderAccount;
-	}
+    public void setHomeBean(HomeBean homeBean) {
+        this.homeBean = homeBean;
+    }
 
-	public IGenericService<Account> getAccountService() {
-		return accountService;
-	}
+    public FingerBean getFingerBean() {
+        return fingerBean;
+    }
 
-	public void setAccountService(IGenericService<Account> accountService) {
-		this.accountService = accountService;
-	}
+    public void setFingerBean(FingerBean fingerBean) {
+        this.fingerBean = fingerBean;
+    }
 
-	public FingerBean getFingerBean() {
-		return fingerBean;
-	}
+    public float getAmount() {
+        return amount;
+    }
 
-	public void setFingerBean(FingerBean fingerBean) {
-		this.fingerBean = fingerBean;
-	}
+    public void setAmount(float amount) {
+        this.amount = amount;
+    }
 
-	public HomeBean getHomeBean() {
-		return homeBean;
-	}
+    public Account getRandomAccount() {
+        List<Account> lst = this.accountService.getAll();
+        lst.removeAll(this.getHomeBean().getClient().getAccountList());
+        Collections.shuffle(lst);
+        return lst.get(0);
+    }
 
-	public void setHomeBean(HomeBean homeBean) {
-		this.homeBean = homeBean;
-	}
+    public String execute() {
+        this.fingerBean.initialize(new FingerBean.Command() {
+            private static final long serialVersionUID = 9047155031690329826L;
 
-	public float getAmount() {
-		return amount;
-	}
+            @Override
+            public void onSuccess() {
+                //To change body of implemented methods use File | Settings | File Templates.
+            }
 
-	public void setAmount(float amount) {
-		this.amount = amount;
-	}
-
-	public Account getRecipientAccount() {
-		return recipientAccount;
-	}
-
-	public void setRecipientAccount(Account recipientAccount) {
-		this.recipientAccount = recipientAccount;
-	}
+            @Override
+            public void onFail() {
+                //To change body of implemented methods use File | Settings | File Templates.
+            }
+        }, HomeBean.PAGE);
+        return FingerBean.PAGE;
+    }
 
 }

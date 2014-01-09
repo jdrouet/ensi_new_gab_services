@@ -6,25 +6,24 @@
                 template="../../template.xhtml">
     <ui:define name="page_title">Signature</ui:define>
     <ui:define name="page_content">
-        <h:form>
+        <h:form id="form">
+
             <p:panelGrid style="width: 100%;">
                 <p:row>
-                    <p:column colspan="3" styleClass="ui-widget-header">
+                    <p:column styleClass="ui-widget-header" colspan="2">
                         <h:outputText value="#{lang['p2p.title']}"/>
                     </p:column>
                 </p:row>
                 <p:row>
-                    <p:column rowspan="3" style="margin: 0 auto">
-                        <p:graphicImage value="/pages/services/p2p/img/logo.png"
-                                        style="max-width: 100px; max-height: 100px"/>
-                    </p:column>
                     <p:column styleClass="ui-widget-header">
                         <h:outputText value="#{lang['p2p.sender_account']}"/>
                     </p:column>
                     <p:column>
-                        <p:selectOneMenu value="#{p2PBean.senderAccount}" converter="#{converterBean}">
-                            <f:selectItems value="#{homeBean.client.accountList}" var="acc"
-                                           itemValue="#{acc}" itemLabel="#{acc.accountType.name} - #{acc.idAccount}"/>
+                        <p:selectOneMenu value="#{p2PBean.senderAccount}"
+                                         converter="#{converterBean}">
+                            <f:selectItems value="#{homeBean.client.accountList}"
+                                           var="acc" itemValue="#{acc}"
+                                           itemLabel="#{acc.accountType.name}"/>
                         </p:selectOneMenu>
                     </p:column>
                 </p:row>
@@ -41,24 +40,22 @@
                         <h:outputText value="#{lang['p2p.recipient_account']}"/>
                     </p:column>
                     <p:column>
-                        <h:outputText value="#{p2PBean.recipientText}"/>
+                        <h:outputText value="RANDOM"/>
                     </p:column>
                 </p:row>
                 <p:row>
-                    <p:column styleClass="ui-widget-header" colspan="3" style="text-align: center">
-
+                    <p:column styleClass="ui-widget-header">
                         <p:commandButton value="#{lang['p2p.cancel']}"
                                          action="/pages/home.xhtml"/>
-
-                        <p:commandButton value="#{lang['p2p.read_tag']}"
-                                         action="#{p2PBean.readTag}" oncomplete="javascript:location.reload(true)"/>
-
-                        <p:commandButton value="#{lang['p2p.make']}"
-                                         action="#{p2PBean.execute}"/>
-
+                    </p:column>
+                    <p:column styleClass="ui-widget-header">
+                        <p:commandButton value="#{lang['p2p.transfer']}" id="transfer_btn"
+                                         action="/pages/finger/finger.xhtml"/>
                     </p:column>
                 </p:row>
             </p:panelGrid>
+
         </h:form>
+
     </ui:define>
 </ui:composition>
