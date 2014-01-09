@@ -3,17 +3,18 @@ package fr.ensicaen.dao.impl;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import fr.ensicaen.dao.IGenericDAO;
-import fr.ensicaen.entity.Account;
 import fr.ensicaen.entity.Operation;
 
 /**
  * Hibernate implementation of GenericDao A typesafe implementation of CRUD.
  */
 public class OperationDAO implements IGenericDAO<Operation> {
-    private static final long serialVersionUID = 3384270473692720501L;
-    private SessionFactory sessionFactory;
+	private static final long serialVersionUID = 3384270473692720501L;
+	@Autowired
+	private SessionFactory sessionFactory;
 
 	@Override
 	public void create(Operation obj) {

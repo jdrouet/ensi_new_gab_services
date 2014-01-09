@@ -3,18 +3,18 @@ package fr.ensicaen.dao.impl;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import fr.ensicaen.dao.IGenericDAO;
-import fr.ensicaen.entity.Account;
-import fr.ensicaen.entity.Organization;
 import fr.ensicaen.entity.Tag;
 
 /**
  * Hibernate implementation of GenericDao A typesafe implementation of CRUD.
  */
 public class TagDAO implements IGenericDAO<Tag> {
-    private static final long serialVersionUID = 8892968902941724721L;
-    private SessionFactory sessionFactory;
+	private static final long serialVersionUID = 8892968902941724721L;
+	@Autowired
+	private SessionFactory sessionFactory;
 
 	@Override
 	public void create(Tag obj) {
@@ -23,10 +23,8 @@ public class TagDAO implements IGenericDAO<Tag> {
 
 	@Override
 	public Tag find(Long id) {
-		List list = sessionFactory
-				.getCurrentSession()
-				.createQuery(
-						"from " + Tag.class.getName() + " where id_tag=?")
+		List list = sessionFactory.getCurrentSession()
+				.createQuery("from " + Tag.class.getName() + " where id_tag=?")
 				.setParameter(0, id).list();
 		if (list != null && !list.isEmpty())
 			return (Tag) list.get(0);

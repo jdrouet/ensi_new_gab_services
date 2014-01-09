@@ -3,18 +3,18 @@ package fr.ensicaen.dao.impl;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import fr.ensicaen.dao.IGenericDAO;
-import fr.ensicaen.entity.Account;
-import fr.ensicaen.entity.Organization;
 import fr.ensicaen.entity.Person;
 
 /**
  * Hibernate implementation of GenericDao A typesafe implementation of CRUD.
  */
 public class PersonDAO implements IGenericDAO<Person> {
-    private static final long serialVersionUID = 3757905726142171015L;
-    private SessionFactory sessionFactory;
+	private static final long serialVersionUID = 3757905726142171015L;
+	@Autowired
+	private SessionFactory sessionFactory;
 
 	@Override
 	public void create(Person obj) {
@@ -26,9 +26,8 @@ public class PersonDAO implements IGenericDAO<Person> {
 		List list = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"from " + Person.class.getName()
-								+ " where id_person=?").setParameter(0, id)
-				.list();
+						"from " + Person.class.getName() + " where id_person=?")
+				.setParameter(0, id).list();
 		if (list != null && !list.isEmpty())
 			return (Person) list.get(0);
 		return null;
