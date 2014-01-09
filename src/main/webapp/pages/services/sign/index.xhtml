@@ -31,7 +31,7 @@
                         <h:outputText value="#{lang['signature.mail_recipient']}"/>
                     </p:column>
                     <p:column>
-                        <p:inputText id="recipient" value="#{signatureBean.mailRecipient}">
+                        <p:inputText id="recipient" value="#{signatureBean.mailRecipient}" required="true">
                             <f:validateRegex
                                     pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
                         </p:inputText>
@@ -48,7 +48,7 @@
                 <p:row>
                     <p:column styleClass="ui-widget-header" colspan="2">
                         <p:commandButton value="#{lang['signature.cancel']}"
-                                         action="/pages/home.xhtml"/>
+                                         action="#{signatureBean.onPressCancel}"/>
                         <p:commandButton value="#{lang['signature.send']}"
                                          action="#{signatureBean.sendFile()}"/>
                     </p:column>
