@@ -8,7 +8,8 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 
          id="WebApp_ID" version="2.5">
 
-    <display-name>PrimeFaces Web Application</display-name>
+    <display-name>Nouveaux services GAB group 6</display-name>
+
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
