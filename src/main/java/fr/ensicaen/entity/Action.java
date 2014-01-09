@@ -113,8 +113,12 @@ public class Action implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + (activation ? 1231 : 1237);
+		result = prime * result + ((client == null) ? 0 : client.hashCode());
+		result = prime * result + ((event == null) ? 0 : event.hashCode());
 		result = prime * result
 				+ ((idAction == null) ? 0 : idAction.hashCode());
+		result = prime * result + ((service == null) ? 0 : service.hashCode());
 		return result;
 	}
 
@@ -127,11 +131,29 @@ public class Action implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Action other = (Action) obj;
+		if (activation != other.activation)
+			return false;
+		if (client == null) {
+			if (other.client != null)
+				return false;
+		} else if (!client.equals(other.client))
+			return false;
+		if (event == null) {
+			if (other.event != null)
+				return false;
+		} else if (!event.equals(other.event))
+			return false;
 		if (idAction == null) {
 			if (other.idAction != null)
 				return false;
 		} else if (!idAction.equals(other.idAction))
 			return false;
+		if (service == null) {
+			if (other.service != null)
+				return false;
+		} else if (!service.equals(other.service))
+			return false;
 		return true;
 	}
+
 }

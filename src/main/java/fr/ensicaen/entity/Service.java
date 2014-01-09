@@ -1,141 +1,187 @@
 package fr.ensicaen.entity;
 
-import javax.persistence.*;
-
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
 /**
  * Classe définissant un service
- *
+ * 
  * @author Jérémie Drouet
  */
 @Entity
 @Table(name = "service")
 public class Service implements Serializable {
-    private static final long serialVersionUID = 3375875149325438194L;
+	private static final long serialVersionUID = 3375875149325438194L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_service", nullable = false)
-    private Long idService;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id_service", nullable = false)
+	private Long idService;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+	@Column(name = "name", nullable = false)
+	private String name;
 
-    @Column(name = "description", nullable = false)
-    private String description;
-    
-    @Column(name = "cost", nullable = false)
-    private float cost;
+	@Column(name = "description", nullable = false)
+	private String description;
 
-    @Column(name = "removable", nullable = false)
-    private boolean removable;
+	@Column(name = "cost", nullable = false)
+	private float cost;
 
-    /**
-     * Chemin d'accès au service
-     */
-    @Column(name = "path", nullable = false)
-    private String path;
+	@Column(name = "removable", nullable = false)
+	private boolean removable;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(name = "service_tag",
-            joinColumns = {@JoinColumn(name = "id_service")},
-            inverseJoinColumns = {@JoinColumn(name = "id_tag")})
-    private List<Tag> tagList;
+	/**
+	 * Chemin d'accès au service
+	 */
+	@Column(name = "path", nullable = false)
+	private String path;
 
-    public Service() {
-    }
-    
-    public Service(String name, String description, String path) {
-        this(name, description, path, 0, true);
-    }
-    
-    public Service(String name, String description, String path, float cost) {
-        this(name, description, path, cost, true);
-    }
+	@ManyToMany(cascade = { CascadeType.ALL })
+	@JoinTable(name = "service_tag", joinColumns = { @JoinColumn(name = "id_service") }, inverseJoinColumns = { @JoinColumn(name = "id_tag") })
+	private List<Tag> tagList;
 
-    public Service(String name, String description, String path, float cost, boolean removable) {
-        this.name = name;
-        this.description = description;
-        this.removable = removable;
-        this.path = path;
-        this.cost = cost;
-    }
+	public Service() {
+	}
 
-    public Long getIdService() {
-        return idService;
-    }
+	public Service(String name, String description, String path) {
+		this(name, description, path, 0, true);
+	}
 
-    public void setIdService(Long idService) {
-        this.idService = idService;
-    }
+	public Service(String name, String description, String path, float cost) {
+		this(name, description, path, cost, true);
+	}
 
-    public String getName() {
-        return name;
-    }
+	public Service(String name, String description, String path, float cost,
+			boolean removable) {
+		this.name = name;
+		this.description = description;
+		this.removable = removable;
+		this.path = path;
+		this.cost = cost;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public Long getIdService() {
+		return idService;
+	}
 
-    public boolean isRemovable() {
-        return removable;
-    }
+	public void setIdService(Long idService) {
+		this.idService = idService;
+	}
 
-    public void setRemovable(boolean removable) {
-        this.removable = removable;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public boolean isRemovable() {
+		return removable;
+	}
 
-    public List<Tag> getTagList() {
-        return tagList;
-    }
+	public void setRemovable(boolean removable) {
+		this.removable = removable;
+	}
 
-    public void setTagList(List<Tag> tagList) {
-        this.tagList = tagList;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public String getPath() {
-        return path;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public void setPath(String path) {
-        this.path = path;
-    }
+	public List<Tag> getTagList() {
+		return tagList;
+	}
 
-    public float getCost() {
-        return cost;
-    }
+	public void setTagList(List<Tag> tagList) {
+		this.tagList = tagList;
+	}
 
-    public void setCost(float cost) {
-        this.cost = cost;
-    }
+	public String getPath() {
+		return path;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        } else {
-            if (o == null) {
-                return false;
-            } else if (this.getClass() != o.getClass()) {
-                return false;
-            } else {
-                Service service = (Service) o;
-                if (this.idService != null) {
-                    return this.idService == service.idService;
-                } else {
-                    return false;
-                }
-            }
-        }
-    }
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+	public float getCost() {
+		return cost;
+	}
+
+	public void setCost(float cost) {
+		this.cost = cost;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Float.floatToIntBits(cost);
+		result = prime * result
+				+ ((description == null) ? 0 : description.hashCode());
+		result = prime * result
+				+ ((idService == null) ? 0 : idService.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((path == null) ? 0 : path.hashCode());
+		result = prime * result + (removable ? 1231 : 1237);
+		result = prime * result + ((tagList == null) ? 0 : tagList.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Service other = (Service) obj;
+		if (Float.floatToIntBits(cost) != Float.floatToIntBits(other.cost))
+			return false;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (idService == null) {
+			if (other.idService != null)
+				return false;
+		} else if (!idService.equals(other.idService))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (path == null) {
+			if (other.path != null)
+				return false;
+		} else if (!path.equals(other.path))
+			return false;
+		if (removable != other.removable)
+			return false;
+		if (tagList == null) {
+			if (other.tagList != null)
+				return false;
+		} else if (!tagList.equals(other.tagList))
+			return false;
+		return true;
+	}
+
 }

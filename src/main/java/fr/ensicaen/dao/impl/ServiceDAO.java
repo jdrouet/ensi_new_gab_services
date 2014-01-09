@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.ensicaen.dao.IGenericDAO;
 import fr.ensicaen.entity.Service;
@@ -11,6 +12,7 @@ import fr.ensicaen.entity.Service;
 /**
  * Hibernate implementation of GenericDao A typesafe implementation of CRUD.
  */
+@Transactional
 public class ServiceDAO implements IGenericDAO<Service> {
 	private static final long serialVersionUID = -5452974058955362841L;
 	@Autowired

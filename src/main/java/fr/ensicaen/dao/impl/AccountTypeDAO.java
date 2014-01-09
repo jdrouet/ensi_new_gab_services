@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.ensicaen.dao.IGenericDAO;
 import fr.ensicaen.entity.AccountType;
@@ -11,6 +12,7 @@ import fr.ensicaen.entity.AccountType;
 /**
  * Hibernate implementation of GenericDao A typesafe implementation of CRUD.
  */
+@Transactional
 public class AccountTypeDAO implements IGenericDAO<AccountType> {
 	private static final long serialVersionUID = 1682608267042736617L;
 	@Autowired
