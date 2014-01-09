@@ -40,6 +40,8 @@ import org.bouncycastle.operator.ContentSigner;
 import org.bouncycastle.operator.OperatorCreationException;
 import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
 
+import fr.ensicaen.util.Properties;
+
 /**
  * Classe héritant de client définissant une personne
  * 
@@ -101,8 +103,9 @@ public class Person extends Client {
 
 	@Override
 	public void generateP12() {
-		if (getEmail() == null || firstname == null || lastname == null)
+		if (getEmail() == null || firstname == null || lastname == null) {
 			return;
+		}
 		// @TODO le placer pour qu'il devienne static
 		Security.addProvider(new BouncyCastleProvider());
 		try {
@@ -146,28 +149,21 @@ public class Person extends Client {
 			X509CertificateHolder certUser = cbUser.build(sigGen);
 
 			// creation du p12
-			KeyStore store = KeyStore.getInstance("PKCS12", "BC");
+			KeyStore store = KeyStore.getInstance("PKCS12",
+					BouncyCastleProvider.PROVIDER_NAME);
 			store.load(null, null);
 			Certificate[] certs = new Certificate[1];
-			certs[0] = new JcaX509CertificateConverter().setProvider("BC")
+			certs[0] = new JcaX509CertificateConverter().setProvider(
+					BouncyCastleProvider.PROVIDER_NAME)
 					.getCertificate(certUser);
 			store.setKeyEntry(this.lastname + " " + this.firstname,
 					pairUser.getPrivate(), null, certs);
 
 			// stockage p12 (b64) avec mot de passe
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			/*
-			 * try (OutputStream os = new OutputStream() { private StringBuilder
-			 * string = new StringBuilder();
-			 * 
-			 * @Override public void write(int arg0) throws IOException {
-			 * string.append(arg0); }
-			 * 
-			 * public String toString() { return
-			 * Base64.encodeBase64String(string.toString() .getBytes()); } }) {
-			 */
-			store.store(baos, "ensicaen".toCharArray());
+			store.store(baos, Properties.P12_PASSWORD.toCharArray());
 			setP12(Base64.encodeBase64String(baos.toByteArray()));
+			baos.close();
 
 		} catch (IOException | URISyntaxException | NoSuchAlgorithmException
 				| InvalidKeySpecException | OperatorCreationException

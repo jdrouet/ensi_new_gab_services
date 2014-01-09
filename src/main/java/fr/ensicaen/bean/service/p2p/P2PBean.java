@@ -21,119 +21,128 @@ import fr.ensicaen.service.IGenericService;
 @ManagedBean
 @SessionScoped
 public class P2PBean extends AbstractBean {
-    private static final long serialVersionUID = 6055540180053992038L;
-    private static final String PAGE = "/pages/services/p2p/index.xhtml";
+	private static final long serialVersionUID = 6055540180053992038L;
+	private static final String PAGE = "/pages/services/p2p/index.xhtml";
 
-    @ManagedProperty("#{accountService}")
-    private IGenericService<Account> accountService;
+	@ManagedProperty("#{accountService}")
+	private IGenericService<Account> accountService;
 
-    @ManagedProperty("#{homeBean}")
-    private HomeBean homeBean;
+	@ManagedProperty("#{homeBean}")
+	private HomeBean homeBean;
 
-    @ManagedProperty("#{fingerBean}")
-    private FingerBean fingerBean;
+	@ManagedProperty("#{fingerBean}")
+	private FingerBean fingerBean;
 
-    private Account senderAccount;
-    private Account recipientAccount;
-    private float amount;
+	private Account senderAccount;
+	private Account recipientAccount;
 
-    public Account getRecipientAccount() {
-        return recipientAccount;
-    }
+	private float amount;
 
-    public void setRecipientAccount(Account recipientAccount) {
-        this.recipientAccount = recipientAccount;
-    }
+	public String getRecipientText() {
+		if (this.recipientAccount == null) {
+			System.out.println("READ TEXT ACCOUNT null");
+			return "";
+		} else {
+			System.out.println("READ TEXT ACCOUNT ");
+			return String.format("%s - %s - %d", this.recipientAccount
+					.getClient().getName(), this.recipientAccount
+					.getAccountType().getName(), this.recipientAccount
+					.getIdAccount());
+		}
+	}
 
-    public String getRecipientText() {
-        if (this.recipientAccount == null) {
-            return "";
-        } else {
-            return String.format("%s - %s - %d", this.recipientAccount
-                    .getClient().getName(), this.recipientAccount
-                    .getAccountType().getName(), this.recipientAccount
-                    .getIdAccount());
-        }
-    }
+	/**
+	 * Fausse lecture de tag, on prend un compte aléatoire dans la base de
+	 * données et on fait une transaction
+	 */
+	public String readTag() {
+		System.out.println("READ TAG []");
+		List<Account> lst = this.accountService.getAll();
+		if (this.senderAccount == null) {
+			this.recipientAccount = null;
+		} else {
+			lst.removeAll(this.getHomeBean().getClient().getAccountList());
+			if (lst.size() > 0) {
+				Collections.shuffle(lst);
+				this.recipientAccount = lst.get(0);
+				System.out
+						.println("ACCOUNT " + recipientAccount.getIdAccount());
+			} else {
+				this.recipientAccount = null;
+			}
+		}
 
-    public Account getSenderAccount() {
-        return senderAccount;
-    }
+		return PAGE;
+	}
 
-    public void setSenderAccount(Account senderAccount) {
-        this.senderAccount = senderAccount;
-    }
+	public String execute() {
+		return FingerBean.PAGE;
+	}
 
-    public IGenericService<Account> getAccountService() {
-        return accountService;
-    }
+	public void generateTransfer() {
+		System.out.println("OP []");
+		Operation op = new Operation(this.senderAccount, this.recipientAccount,
+				this.amount);
+		if (this.senderAccount.getDebitList() != null) {
+			this.senderAccount.getDebitList().add(op);
+		} else {
+			this.senderAccount.setDebitList(Arrays.asList(op));
+		}
+		if (this.recipientAccount.getCreditList() != null) {
+			this.recipientAccount.getCreditList().add(op);
+		} else {
+			this.recipientAccount.setCreditList(Arrays.asList(op));
+		}
+		this.accountService.update(this.senderAccount);
+		this.accountService.update(this.recipientAccount);
+	}
 
-    public void setAccountService(IGenericService<Account> accountService) {
-        this.accountService = accountService;
-    }
+	public Account getSenderAccount() {
+		return senderAccount;
+	}
 
-    public FingerBean getFingerBean() {
-        return fingerBean;
-    }
+	public void setSenderAccount(Account senderAccount) {
+		this.senderAccount = senderAccount;
+	}
 
-    public void setFingerBean(FingerBean fingerBean) {
-        this.fingerBean = fingerBean;
-    }
+	public IGenericService<Account> getAccountService() {
+		return accountService;
+	}
 
-    public HomeBean getHomeBean() {
-        return homeBean;
-    }
+	public void setAccountService(IGenericService<Account> accountService) {
+		this.accountService = accountService;
+	}
 
-    public void setHomeBean(HomeBean homeBean) {
-        this.homeBean = homeBean;
-    }
+	public FingerBean getFingerBean() {
+		return fingerBean;
+	}
 
-    public float getAmount() {
-        return amount;
-    }
+	public void setFingerBean(FingerBean fingerBean) {
+		this.fingerBean = fingerBean;
+	}
 
-    public void setAmount(float amount) {
-        this.amount = amount;
-    }
+	public HomeBean getHomeBean() {
+		return homeBean;
+	}
 
-    /**
-     * Fausse lecture de tag, on prend un compte aléatoire dans la base de
-     * données et on fait une transaction
-     */
-    public String readTag() {
-        List<Account> lst = this.accountService.getAll();
-        if (this.senderAccount == null) {
-            this.recipientAccount = null;
-        } else {
-            lst.removeAll(this.getHomeBean().getClient().getAccountList());
-            if (lst.size() > 0) {
-                Collections.shuffle(lst);
-                this.recipientAccount = lst.get(0);
-            } else {
-                this.recipientAccount = null;
-            }
-        }
-        return PAGE;
-    }
+	public void setHomeBean(HomeBean homeBean) {
+		this.homeBean = homeBean;
+	}
 
-    public String execute() {
-        return FingerBean.PAGE;
-    }
+	public float getAmount() {
+		return amount;
+	}
 
-    public void generateTransfer() {
-        Operation op = new Operation(this.senderAccount, this.recipientAccount, this.amount);
-        if (this.senderAccount.getDebitList() != null) {
-            this.senderAccount.getDebitList().add(op);
-        } else {
-            this.senderAccount.setDebitList(Arrays.asList(op));
-        }
-        if (this.recipientAccount.getCreditList() != null) {
-            this.recipientAccount.getCreditList().add(op);
-        } else {
-            this.recipientAccount.setCreditList(Arrays.asList(op));
-        }
-        this.accountService.update(this.senderAccount);
-        this.accountService.update(this.recipientAccount);
-    }
+	public void setAmount(float amount) {
+		this.amount = amount;
+	}
+
+	public Account getRecipientAccount() {
+		return recipientAccount;
+	}
+
+	public void setRecipientAccount(Account recipientAccount) {
+		this.recipientAccount = recipientAccount;
+	}
 
 }
