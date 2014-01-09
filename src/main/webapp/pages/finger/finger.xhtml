@@ -6,7 +6,7 @@
 <h:head>
     <script language="javascript">
         function authentication(res) {
-            document.getElementById("fingerauth").value = res;
+            document.getElementById("finger-form:fingerauth").value = res;
             document.getElementById('finger-form:submit').click();
         }
     </script>
@@ -24,7 +24,7 @@
         </object>
 
         <p:inputText value="#{fingerBean.result}" id="fingerauth"
-                     widgetVar="fingerauth" style="display: none;"/>
+                     widgetVar="fingerauth" style="display: none"/>
         <p:commandButton id="submit" actionListener="#{fingerBean.proceed}"
                          widgetVar="submit" style="display:none"/>
     </h:form>
