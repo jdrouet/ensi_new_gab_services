@@ -132,23 +132,15 @@ public class StoreBean extends AbstractBean {
     
     public void buyService(Service service) {
         Company bank = this.companyService.getCompanyByName("Banque");
-        if(bank != null) {
-            Account bankAccount = bank.getAccountList().get(0);
-            if(bankAccount != null) {
-                Account clientAccount = this.homeBean.getAccount();
-                float amount = service.getCost();
-                Operation op = new Operation(clientAccount, bankAccount, amount);
-                clientAccount.debit(op);
-                bankAccount.credit(op);
-                this.accountService.update(bankAccount);
-                this.accountService.update(clientAccount);
-                this.addService(service);
-            }
-            else
-                System.err.println("Banque Account unreachable !");
-        }
-        else
-            System.err.println("Banque company unreachable !");
+        Account bankAccount = bank.getAccountList().get(0);
+        Account clientAccount = this.homeBean.getAccount();
+        float amount = service.getCost();
+        Operation op = new Operation(clientAccount, bankAccount, amount);
+        //clientAccount.debit(op);
+        bankAccount.credit(op);
+        this.accountService.update(bankAccount);
+        this.getClient().getServiceList().add(service);
+        this.clientService.update(this.getClient());
     }
 
 }

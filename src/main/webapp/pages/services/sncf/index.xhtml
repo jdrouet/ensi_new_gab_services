@@ -51,7 +51,7 @@
                 </p:row>
             </p:panelGrid>
 
-            <p:dataGrid id="voyages" var="v" value="#{sncfBean.voyages}" columns="3" rows="4">
+            <p:dataGrid id="voyages" var="v" value="#{sncfBean.voyages}" columns="3" rows="4" emptyMessage="">
                 <p:panel header="#{v.source} - #{v.destination}" style="text-align:center">
                     <h:panelGrid columns="1" style="width:100%">
                         <h:outputLabel value="#{lang['sncf.departing_from']} : #{v.source}"/>

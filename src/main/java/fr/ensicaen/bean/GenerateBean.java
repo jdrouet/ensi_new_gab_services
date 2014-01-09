@@ -208,7 +208,7 @@ public class GenerateBean extends AbstractBean {
                 "osef",
                 "Banque");
         //
-        Account aBank = new Account(bank, t4, 100000000);
+        Account aBank = new Account(bank, t4, 0);
         //
         bank.setAccountList(Arrays.asList(aBank));
         this.clientService.add(bank);
