@@ -14,9 +14,9 @@
                     </p:column>
                 </p:row>
                 <p:row>
-                    <p:column rowspan="3" style="margin: 0 auto;">
+                    <p:column rowspan="3" style="margin: 0 auto">
                         <p:graphicImage value="/pages/services/p2p/img/logo.png"
-                                        style="max-width: 100px; max-height: 100px;"/>
+                                        style="max-width: 100px; max-height: 100px"/>
                     </p:column>
                     <p:column styleClass="ui-widget-header">
                         <h:outputText value="#{lang['p2p.sender_account']}"/>
@@ -45,13 +45,13 @@
                     </p:column>
                 </p:row>
                 <p:row>
-                    <p:column styleClass="ui-widget-header" colspan="3" style="text-align: center;">
+                    <p:column styleClass="ui-widget-header" colspan="3" style="text-align: center">
 
                         <p:commandButton value="#{lang['p2p.cancel']}"
                                          action="/pages/home.xhtml"/>
 
                         <p:commandButton value="#{lang['p2p.read_tag']}"
-                                         action="#{p2PBean.readTag}"/>
+                                         action="#{p2PBean.readTag}" oncomplete="javascript:location.reload(true)"/>
 
                         <p:commandButton value="#{lang['p2p.make']}"
                                          action="#{p2PBean.execute}"/>

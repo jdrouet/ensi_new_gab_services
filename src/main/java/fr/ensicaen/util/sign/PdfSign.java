@@ -31,6 +31,7 @@ import com.itextpdf.text.pdf.security.MakeSignature.CryptoStandard;
 import com.itextpdf.text.pdf.security.PrivateKeySignature;
 
 import fr.ensicaen.entity.Client;
+import fr.ensicaen.util.Properties;
 
 public class PdfSign {
 
@@ -48,7 +49,7 @@ public class PdfSign {
 	public static File signPDF(Client client, File f) {
 
 		// et ici sa "passPhrase"
-		String fileKeyPassword = "ensicaen";
+		String fileKeyPassword = Properties.P12_PASSWORD;
 		File outputFile = null;
 		if (client == null || client.getP12() == null || f == null
 				|| !f.exists()) {

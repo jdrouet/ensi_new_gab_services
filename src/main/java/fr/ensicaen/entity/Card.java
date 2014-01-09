@@ -17,6 +17,8 @@ import javax.persistence.Table;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.bouncycastle.util.encoders.Base64;
 
+import fr.ensicaen.util.CryptoUtils;
+
 /**
  * Cette classe correspond a la carte bancaire de l'utilisateur. Utilise pour
  * les besoins du projet, en vrai elle ne serait pas geree par le serveur.
@@ -52,7 +54,8 @@ public class Card implements Serializable {
 	private String hashedPin;
 
 	/**
-	 * Cle privee permettant de chiffrer le template des minuties
+	 * Cle privee permettant de chiffrer le template des minuties. Elle est
+	 * chiffree par le pin
 	 */
 	@Column(name = "cipher_key")
 	private String key;
@@ -76,18 +79,19 @@ public class Card implements Serializable {
 
 	public Card(Account account, String pan, String clearPin,
 			byte[] cleartemplate) {
+		// generation d'une cle de chiffrement
 		key = new BigInteger(130, new Random()).toString(32);
 		this.account = account;
 		this.pan = pan;
 		this.setClearPin(clearPin);
 
 		// chiffrement et passage en base64 du template
-		// byte[] sb = new byte[cleartemplate.length];
-		// byte[] tkey = key.getBytes();
-		// for (int i = 0; i < cleartemplate.length; i++) {
-		// sb[i] = (byte) (cleartemplate[i] ^ tkey[i % tkey.length]);
-		// }
-		cipherTemplate = Base64.toBase64String(cleartemplate);
+		cipherTemplate = Base64.toBase64String(CryptoUtils.xor(cleartemplate,
+				key.getBytes()));
+
+		// chiffrement de la cle par le pin
+		key = Base64.toBase64String(CryptoUtils.xor(key.getBytes(),
+				clearPin.getBytes()));
 	}
 
 	public Long getIdCard() {
