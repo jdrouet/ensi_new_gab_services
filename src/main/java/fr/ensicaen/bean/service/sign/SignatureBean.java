@@ -1,5 +1,6 @@
 package fr.ensicaen.bean.service.sign;
 
+import fr.ensicaen.bean.AbstractBean;
 import fr.ensicaen.bean.HomeBean;
 import fr.ensicaen.util.mailSender.EnsicaenSender;
 import fr.ensicaen.util.sign.PdfSign;
@@ -21,7 +22,7 @@ import java.io.Serializable;
  */
 @ManagedBean
 @SessionScoped
-public class SignatureBean implements Serializable {
+public class SignatureBean extends AbstractBean {
     private static final long serialVersionUID = -3183230042838768890L;
 
     @ManagedProperty("#{homeBean}")

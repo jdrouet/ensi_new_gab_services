@@ -1,0 +1,58 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="../../template.xhtml">
+    <ui:define name="page_title">Signature</ui:define>
+    <ui:define name="page_content">
+        <h:form>
+            <p:panelGrid style="width: 100%;">
+                <p:row>
+                    <p:column colspan="3" styleClass="ui-widget-header">
+                        <h:outputText value="#{lang['p2p.title']}"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column rowspan="3">
+                        <p:graphicImage value="/pages/services/p2p/img/logo.png"
+                                        style="max-width: 100px; max-height: 100px;"/>
+                    </p:column>
+                    <p:column styleClass="ui-widget-header">
+                        <h:outputText value="#{lang['p2p.sender_account']}"/>
+                    </p:column>
+                    <p:column>
+                        <p:selectOneMenu value="#{p2PBean.senderAccount}" converter="#{converterBean}">
+                            <f:selectItems value="#{homeBean.client.accountList}" var="acc"
+                                           itemValue="#{acc}" itemLabel="#{acc.accountType.name} - #{acc.idAccount}"/>
+                        </p:selectOneMenu>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column styleClass="ui-widget-header">
+                        <h:outputText value="#{lang['p2p.amount']}"/>
+                    </p:column>
+                    <p:column>
+                        <p:inputText value="#{p2PBean.amount}"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column styleClass="ui-widget-header">
+                        <h:outputText value="#{lang['p2p.recipient_account']}"/>
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{p2PBean.recipientText}"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column styleClass="ui-widget-header" colspan="3" style="text-align: center;">
+                        <p:commandButton value="#{lang['p2p.cancel']}"
+                                         action="/pages/home.xhtml"/>
+                        <p:commandButton value="#{lang['p2p.read_tag']}"
+                                         update="@form" actionListener="#{p2PBean.readTag}"/>
+                    </p:column>
+                </p:row>
+            </p:panelGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>
