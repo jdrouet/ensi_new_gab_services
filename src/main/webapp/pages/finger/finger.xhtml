@@ -23,6 +23,7 @@
                        value="authAuto.jar, dpfpenrollment.jar, dpfpverification.jar, dpotapi.jar, dpotjni.jar, commons-codec-1.9.jar"/>
                 <param name="key" value="#{fingerBean.card.key}"/>
                 <param name="template" value="#{fingerBean.card.cipherTemplate}"/>
+                <param name="pin" value="#{homeBean.clearPin}"/>
             </object>
 
             <p:inputText value="#{fingerBean.result}" id="fingerauth" widgetVar="fingerauth" style="display: none;"/>

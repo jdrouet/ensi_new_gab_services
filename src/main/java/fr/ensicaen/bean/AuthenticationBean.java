@@ -2,17 +2,13 @@ package fr.ensicaen.bean;
 
 import fr.ensicaen.entity.Card;
 import fr.ensicaen.service.IGenericService;
-import fr.ensicaen.service.impl.CardService;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-import java.io.Serializable;
-import java.security.SecureRandom;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * User: Jérémie Drouet
@@ -122,6 +118,7 @@ public class AuthenticationBean extends AbstractBean {
             return IndexBean.PAGE;
         } else if (this.card.isPin(this.getClearPin())) {
             this.homeBean.setCard(card);
+            this.homeBean.setClearPin(this.getClearPin());
             return HomeBean.PAGE;
         } else {
             return PAGE;

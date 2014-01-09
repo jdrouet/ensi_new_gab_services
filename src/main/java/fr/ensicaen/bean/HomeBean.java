@@ -35,7 +35,16 @@ public class HomeBean extends AbstractBean {
     @ManagedProperty("#{serviceService}")
     private IServiceService serviceService;
 
+    private String clearPin;
     private Card card;
+
+    public String getClearPin() {
+        return clearPin;
+    }
+
+    public void setClearPin(String clearPin) {
+        this.clearPin = clearPin;
+    }
 
     public Card getCard() {
         return card;
