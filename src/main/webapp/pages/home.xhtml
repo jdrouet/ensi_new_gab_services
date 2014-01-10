@@ -7,6 +7,10 @@
     <ui:define name="page_title">Home</ui:define>
     <ui:define name="page_content">
         <h:form id="form">
+
+            <h:outputText value="#{param.auth}" rendered="#{param.auth != null}"
+                          styleClass="ui-messages ui-messages-info"/>
+
             <p:dataGrid id="nonRemovablesServices" var="srv"
                         value="#{homeBean.nonRemovableServicesList}" columns="2">
                 <f:facet name="header">
@@ -20,7 +24,7 @@
                     </h:panelGrid>
                 </p:panel>
             </p:dataGrid>
-            
+
             <p:dataGrid id="services" var="srv"
                         value="#{homeBean.selectedServiceList}" columns="2" emptyMessage="">
                 <f:facet name="header">
