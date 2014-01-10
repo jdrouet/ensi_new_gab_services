@@ -23,8 +23,7 @@
                             </h:panelGrid>
                             <h:panelGrid columns="2" style="margin: 0 auto">
                                 <p:commandButton value="#{lang['cashout.confirm']}" icon="ui-icon-check"
-                                                 actionListener="#{cashoutBean.retirer(amount)}"
-                                                 action="/pages/services/cashout/out.xhtml"/>
+                                                 action="#{cashoutBean.execute(amount)}"/>
                                 <p:commandButton value="#{lang['cashout.cancel']}" type="button" icon="ui-icon-close"
                                                  onclick="PF('ret#{amount}').hide();"/>
                             </h:panelGrid>
