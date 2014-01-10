@@ -81,7 +81,7 @@ public class FingerBean extends AbstractBean {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		if (this.result == 0) {
 			this.getCommand().onSuccess();
-
+			homeBean.setInfo("Authentification réussie - Action effectuée");
 			facesContext
 					.getApplication()
 					.getNavigationHandler()

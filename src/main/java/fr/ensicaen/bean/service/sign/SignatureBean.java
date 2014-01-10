@@ -114,7 +114,7 @@ public class SignatureBean extends AbstractBean {
 				// To change body of implemented methods use File | Settings |
 				// File Templates.
 			}
-		}, PAGE);
+		}, HomeBean.PAGE);
 		return FingerBean.PAGE;
 	}
 
