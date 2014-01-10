@@ -6,7 +6,6 @@
 
 package fr.ensicaen.bean.service.sncf;
 
-import java.beans.*;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;

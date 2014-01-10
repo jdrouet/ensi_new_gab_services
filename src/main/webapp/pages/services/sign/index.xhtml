@@ -6,7 +6,6 @@
                 template="../../template.xhtml">
     <ui:define name="page_title">Signature</ui:define>
     <ui:define name="page_content">
-
         <p:panelGrid style="width: 100%">
             <p:row>
                 <p:column styleClass="ui-widget-header" colspan="2">
@@ -47,15 +46,13 @@
                 </p:row>
                 <p:row>
                     <p:column styleClass="ui-widget-header" colspan="2">
-                        <p:commandButton value="#{lang['signature.cancel']}"
-                                         action="/pages/home.xhtml"/>
+                        <p:button value="#{lang['signature.cancel']}" 
+                                  href="/pages/home.xhtml"/>
                         <p:commandButton value="#{lang['signature.send']}"
                                          action="#{signatureBean.sendFile()}"/>
                     </p:column>
                 </p:row>
             </p:panelGrid>
-
         </h:form>
-
     </ui:define>
 </ui:composition>

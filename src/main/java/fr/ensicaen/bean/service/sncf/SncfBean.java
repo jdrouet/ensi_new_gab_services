@@ -4,27 +4,19 @@ import fr.ensicaen.bean.AbstractBean;
 import fr.ensicaen.bean.FingerBean;
 import fr.ensicaen.bean.HomeBean;
 import fr.ensicaen.entity.Account;
-import fr.ensicaen.entity.Card;
-import fr.ensicaen.entity.Client;
 import fr.ensicaen.entity.Company;
 import fr.ensicaen.entity.Operation;
 import fr.ensicaen.service.ICompanyService;
 import fr.ensicaen.service.IGenericService;
-import fr.ensicaen.service.impl.CompanyService;
-import fr.ensicaen.service.impl.PartnerService;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 
 /**
  * User: Jérémie Drouet

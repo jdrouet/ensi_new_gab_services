@@ -4,21 +4,38 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 template="../../template.xhtml">
-    <ui:define name="page_title">Retrait d'argent</ui:define>
+    <ui:define name="page_title">#{lang['cashout.cashout']}</ui:define>
     <ui:define name="page_content">
         <h:form id="form">
-            <p:dataTable value="#{cashoutBean.amounts}" var="amount">
+            <p:dataGrid value="#{cashoutBean.amounts}" var="amount">
                 <f:facet name="header">
-                    <h:outputText value="Choisissez le montant à retirer"/>
+                    <h:outputText value="#{lang['cashout.choose_amount']}"/>
                 </f:facet>
-
-                <p:commandButton value="#{amount.toString()}" actionListener="#{cashoutBean.retirer(amount)}"/>
-
+                <p:panel style="text-align:center">
+                    <h:panelGrid columns="1" style="width:100%">
+                        <p:commandButton style="width:100%;height:100%;"
+                                         value="#{amount} €"
+                                         onclick="PF('ret#{amount}').show();"/>
+                        <p:dialog width="600" id="confdial#{amount}" header="#{lang['cashout.confirm_cashout']}"
+                                  widgetVar="ret#{amount}" modal="true">
+                            <h:panelGrid columns="1" style="width:100%">
+                                <h:outputLabel value="#{lang['cashout.cashout_of']}: #{amount} €"/>
+                            </h:panelGrid>
+                            <h:panelGrid columns="2" style="margin: 0 auto">
+                                <p:commandButton value="#{lang['cashout.confirm']}" icon="ui-icon-check"
+                                                 actionListener="#{cashoutBean.retirer(amount)}"
+                                                 action="/pages/services/cashout/out.xhtml"/>
+                                <p:commandButton value="#{lang['cashout.cancel']}" type="button" icon="ui-icon-close"
+                                                 onclick="PF('ret#{amount}').hide();"/>
+                            </h:panelGrid>
+                        </p:dialog>
+                    </h:panelGrid>
+                </p:panel>
                 <f:facet name="footer">
-                    <p:commandButton value="#{lang['consult.back_to_home']}"
-                                     action="/pages/home.xhtml"/>
+                    <p:button value="#{lang['consult.back_to_home']}"
+                              href="/pages/home.xhtml"/>
                 </f:facet>
-            </p:dataTable>
+            </p:dataGrid>
         </h:form>
     </ui:define>
 </ui:composition>

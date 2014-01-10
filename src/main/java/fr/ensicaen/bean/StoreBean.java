@@ -1,7 +1,6 @@
 package fr.ensicaen.bean;
 
 import fr.ensicaen.entity.Account;
-import fr.ensicaen.entity.Action;
 import fr.ensicaen.entity.Client;
 import fr.ensicaen.entity.Company;
 import fr.ensicaen.entity.Operation;
@@ -10,16 +9,11 @@ import fr.ensicaen.entity.Tag;
 import fr.ensicaen.service.ICompanyService;
 import fr.ensicaen.service.IGenericService;
 import fr.ensicaen.service.IServiceService;
-import org.primefaces.context.RequestContext;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
-import java.io.Serializable;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * User: Jérémie Drouet
@@ -35,9 +29,6 @@ public class StoreBean extends AbstractBean {
 
     @ManagedProperty("#{clientService}")
     private IGenericService<Client> clientService;
-
-    @ManagedProperty("#{actionService}")
-    private IGenericService<Action> actionService;
 
     @ManagedProperty("#{homeBean}")
     private HomeBean homeBean;
@@ -79,14 +70,6 @@ public class StoreBean extends AbstractBean {
 
     public void setClientService(IGenericService<Client> clientService) {
         this.clientService = clientService;
-    }
-
-    public IGenericService<Action> getActionService() {
-        return actionService;
-    }
-
-    public void setActionService(IGenericService<Action> actionService) {
-        this.actionService = actionService;
     }
 
     public Tag getSelectedTag() {

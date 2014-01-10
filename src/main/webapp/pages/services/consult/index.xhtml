@@ -27,9 +27,9 @@
                 </f:facet>
                 <p:column>
                     <h:outputText rendered="#{op.source.idAccount == acc.idAccount}"
-                                  value="#{op.source.client.name} - #{op.source.idAccount}"/>
-                    <h:outputText rendered="#{op.destination.idAccount == acc.idAccount}"
                                   value="#{op.destination.client.name} - #{op.destination.idAccount}"/>
+                    <h:outputText rendered="#{op.destination.idAccount == acc.idAccount}"
+                                  value="#{op.source.client.name} - #{op.source.idAccount}"/>
                 </p:column>
                 <p:column>
                     #{op.event}

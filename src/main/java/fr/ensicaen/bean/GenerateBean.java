@@ -72,6 +72,10 @@ public class GenerateBean extends AbstractBean {
         //
         AccountType t4 = new AccountType();
         t4.setName("Compte partenaire");
+        
+        //
+        AccountType t5 = new AccountType();
+        t5.setName("Retrait");
 
         /** Tags **/
         Tag tag1 = new Tag("SNCF");
@@ -100,7 +104,7 @@ public class GenerateBean extends AbstractBean {
                 "Paiement NFC", "Paiement de personne à personne à l\'aide du GAB", "p2p");
         s4.setTagList(Arrays.asList(tag6));
         //
-        Service s5 = new Service("Retrait d\'argent", "Retrait d\'argent en espèce", "cashout", (float)0, false);
+        Service s5 = new Service("Retrait", "Retrait d\'argent en espèce", "cashout", (float)0, false);
         //
         s5.setTagList(Arrays.asList(tag7));
         
@@ -212,6 +216,15 @@ public class GenerateBean extends AbstractBean {
         //
         bank.setAccountList(Arrays.asList(aBank));
         this.clientService.add(bank);
+        
+        Company ret = new Company(
+                "osef",
+                "Retrait");
+        //
+        Account aRet = new Account(ret, t5, 0);
+        //
+        ret.setAccountList(Arrays.asList(aRet));
+        this.clientService.add(ret);
     }
 
 }
