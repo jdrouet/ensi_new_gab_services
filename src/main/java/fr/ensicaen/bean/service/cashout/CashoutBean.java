@@ -6,12 +6,14 @@
 
 package fr.ensicaen.bean.service.cashout;
 
+import fr.ensicaen.bean.FingerBean;
 import fr.ensicaen.bean.HomeBean;
 import fr.ensicaen.entity.Account;
 import fr.ensicaen.entity.Company;
 import fr.ensicaen.entity.Operation;
 import fr.ensicaen.service.ICompanyService;
 import fr.ensicaen.service.IGenericService;
+
 import java.beans.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,14 +24,14 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 /**
- *
  * @author Alexandre
  */
 
 @ManagedBean
 @SessionScoped
 public class CashoutBean implements Serializable {
-    
+    private static final long serialVersionUID = 4944558785307729996L;
+
     @ManagedProperty("#{homeBean}")
     private HomeBean homeBean;
 
@@ -38,12 +40,15 @@ public class CashoutBean implements Serializable {
 
     @ManagedProperty("#{companyService}")
     private ICompanyService companyService;
-    
+
+    @ManagedProperty("#{fingerBean}")
+    private FingerBean fingerBean;
+
     List<Integer> amounts;
-    
+
     public CashoutBean() {
-        this.amounts = new ArrayList<>(Arrays.asList(10,20,40,60,80,100));
-    }   
+        this.amounts = new ArrayList<>(Arrays.asList(10, 20, 40, 60, 80, 100));
+    }
 
     public List<Integer> getAmounts() {
         return amounts;
@@ -61,6 +66,14 @@ public class CashoutBean implements Serializable {
         this.homeBean = homeBean;
     }
 
+    public FingerBean getFingerBean() {
+        return fingerBean;
+    }
+
+    public void setFingerBean(FingerBean fingerBean) {
+        this.fingerBean = fingerBean;
+    }
+
     public IGenericService<Account> getAccountService() {
         return accountService;
     }
@@ -76,7 +89,7 @@ public class CashoutBean implements Serializable {
     public void setCompanyService(ICompanyService companyService) {
         this.companyService = companyService;
     }
-    
+
     public void retirer(int amount) {
         Company bank = this.companyService.getCompanyByName("Retrait");
         Account bankAccount = bank.getAccountList().get(0);
@@ -86,5 +99,22 @@ public class CashoutBean implements Serializable {
         bankAccount.credit(op);
         this.accountService.update(clientAccount);
     }
-    
+
+    public String execute(final int amount) {
+        this.fingerBean.initialize(new FingerBean.Command() {
+            private static final long serialVersionUID = 254803664828902353L;
+
+            @Override
+            public void onSuccess() {
+                retirer(amount);
+            }
+
+            @Override
+            public void onFail() {
+                //To change body of implemented methods use File | Settings | File Templates.
+            }
+        }, "/pages/services/cashout/out.xhtml");
+        return FingerBean.PAGE;
+    }
+
 }
