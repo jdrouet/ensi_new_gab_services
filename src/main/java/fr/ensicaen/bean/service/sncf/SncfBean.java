@@ -144,7 +144,7 @@ public class SncfBean extends AbstractBean {
                 Operation op = new Operation(clientAccount, sncfAccount, amount);
                 clientAccount.debit(op);
                 sncfAccount.credit(op);
-                this.accountService.update(sncfAccount);
+                //this.accountService.update(sncfAccount);
                 this.accountService.update(clientAccount);
             }
             else

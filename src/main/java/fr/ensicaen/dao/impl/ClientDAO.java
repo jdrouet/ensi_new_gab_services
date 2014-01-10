@@ -39,7 +39,6 @@ public class ClientDAO implements IGenericDAO<Client> {
 	public void update(Client obj) {
 		Client tmp = (Client) sessionFactory.getCurrentSession().merge(obj);
 		sessionFactory.getCurrentSession().update(tmp);
-		sessionFactory.getCurrentSession().refresh(obj);
 	}
 
 	@Override

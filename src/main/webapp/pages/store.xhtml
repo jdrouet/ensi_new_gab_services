@@ -15,10 +15,12 @@
                     <h:panelGrid columns="1" style="width: 100%; text-align: center">
                         <h:outputText value="#{srv.description}"/>
 
-                        <p:commandButton value="#{lang['store.add_service']} (Gratuit)" update=":form"
-                                         actionListener="#{storeBean.addService(srv)}" rendered="#{srv.cost == 0}"/>
-                        <p:commandButton value="#{lang['store.add_service']} (#{srv.cost} €)" update=":form"
-                                         actionListener="#{storeBean.buyService(srv)}" rendered="#{srv.cost > 0}"/>
+                        <p:commandButton value="#{lang['store.add_service']} (Gratuit)" update="@all"
+                                         actionListener="#{storeBean.addService(srv)}" rendered="#{srv.cost == 0}"
+                                         action="/pages/home.xhtml"/>
+                        <p:commandButton value="#{lang['store.add_service']} (#{srv.cost} €)" update="@all"
+                                         actionListener="#{storeBean.buyService(srv)}" rendered="#{srv.cost > 0}"
+                                         action="/pages/home.xhtml"/>
                     </h:panelGrid>
                 </p:panel>
                 <f:facet name="footer">

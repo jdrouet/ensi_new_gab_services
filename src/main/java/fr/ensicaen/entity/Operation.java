@@ -56,7 +56,7 @@ public class Operation implements Serializable {
 	/**
 	 * Montant de la transaction
 	 */
-	@Column(name = "amout", nullable = false)
+	@Column(name = "amount", nullable = false)
 	private float amount; /* toujours positif */
 
 	public Operation() {

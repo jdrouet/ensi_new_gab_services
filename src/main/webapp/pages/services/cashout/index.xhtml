@@ -7,7 +7,18 @@
     <ui:define name="page_title">Retrait d'argent</ui:define>
     <ui:define name="page_content">
         <h:form id="form">
-            <p:commandButton value="Annuler" action="/pages/home.xhtml"/>
+            <p:dataTable value="#{cashoutBean.amounts}" var="amount">
+                <f:facet name="header">
+                    <h:outputText value="Choisissez le montant à retirer"/>
+                </f:facet>
+
+                <p:commandButton value="#{amount.toString()}" actionListener="#{cashoutBean.retirer(amount)}"/>
+
+                <f:facet name="footer">
+                    <p:commandButton value="#{lang['consult.back_to_home']}"
+                                     action="/pages/home.xhtml"/>
+                </f:facet>
+            </p:dataTable>
         </h:form>
     </ui:define>
 </ui:composition>

@@ -1,6 +1,7 @@
 package fr.ensicaen.entity;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -146,12 +147,20 @@ public class Account implements Serializable {
 
 	public void credit(Operation op) {
 		this.balance += op.getAmount();
-		this.creditList.add(op);
+                if(this.creditList == null) {
+                    this.setCreditList(Arrays.asList(op));
+                }
+                else
+                    this.creditList.add(op);
 	}
 
 	public void debit(Operation op) {
 		this.balance -= op.getAmount();
-		this.debitList.add(op);
+                if(this.debitList == null) {
+                    this.setDebitList(Arrays.asList(op));
+                }
+                else
+                    this.debitList.add(op);
 	}
 
 	@Override

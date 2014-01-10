@@ -26,7 +26,7 @@ import java.util.Map;
  * Date: 07/01/14
  */
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class StoreBean extends AbstractBean {
     private static final long serialVersionUID = 1980070445064631124L;
 
@@ -136,11 +136,10 @@ public class StoreBean extends AbstractBean {
         Account clientAccount = this.homeBean.getAccount();
         float amount = service.getCost();
         Operation op = new Operation(clientAccount, bankAccount, amount);
-        //clientAccount.debit(op);
+        clientAccount.debit(op);
         bankAccount.credit(op);
-        this.accountService.update(bankAccount);
         this.getClient().getServiceList().add(service);
-        this.clientService.update(this.getClient());
+        this.accountService.update(clientAccount);
     }
 
 }
