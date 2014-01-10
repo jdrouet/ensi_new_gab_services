@@ -31,7 +31,7 @@ public class HomeBean extends AbstractBean {
 
     @ManagedProperty("#{actionService}")
     private IGenericService<Action> actionService;
-    
+
     @ManagedProperty("#{serviceService}")
     private IServiceService serviceService;
 
@@ -41,7 +41,11 @@ public class HomeBean extends AbstractBean {
     private Card card;
 
     public String getInfo() {
-        return info;
+        try {
+            return info;
+        } finally {
+            this.setInfo(null);
+        }
     }
 
     public void setInfo(String info) {
@@ -107,7 +111,7 @@ public class HomeBean extends AbstractBean {
             return this.card.getAccount().getClient().getServiceList();
         }
     }
-    
+
     public List<Service> getNonRemovableServicesList() {
         return this.serviceService.getNonRemovableServices();
     }
