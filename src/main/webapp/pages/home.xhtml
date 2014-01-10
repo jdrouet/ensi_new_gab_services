@@ -8,11 +8,7 @@
     <ui:define name="page_content">
         <h:form id="form">
 
-            <f:metadata>
-                <f:viewParam name="auth" value="#{homeBean.info}"/>
-            </f:metadata>
-
-            <h:outputText value="#{lang[homeBean.info]}" rendered="#{homeBean.info != null}"
+            <h:outputText value="#{lang[homeBean.info]}"
                           styleClass="ui-messages ui-messages-info"/>
 
             <p:dataGrid id="nonRemovablesServices" var="srv"
