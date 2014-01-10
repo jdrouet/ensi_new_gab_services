@@ -15,12 +15,30 @@
                     <h:panelGrid columns="1" style="width: 100%; text-align: center">
                         <h:outputText value="#{srv.description}"/>
 
-                        <p:commandButton value="#{lang['store.add_service']} (Gratuit)" update="@all"
+                        <p:commandButton value="#{lang['store.add_service']} (Gratuit)" update=":form"
                                          actionListener="#{storeBean.addService(srv)}" rendered="#{srv.cost == 0}"
                                          action="/pages/home.xhtml"/>
-                        <p:commandButton value="#{lang['store.add_service']} (#{srv.cost} €)" update="@all"
-                                         actionListener="#{storeBean.buyService(srv)}" rendered="#{srv.cost > 0}"
-                                         action="/pages/home.xhtml"/>
+                        <p:commandButton value="#{lang['store.add_service']} (#{srv.cost} €)"
+                                         onclick="PF('addconf#{srv.idService}').show();"
+                                         rendered="#{srv.cost > 0}"/>
+                        <p:dialog width="600" id="confdial#{srv.idService}" header="#{lang['store.confirm_purchase']}"
+                                  widgetVar="addconf#{srv.idService}" modal="true">
+                            <h:panelGrid columns="2" style="width:100%">
+                                <h:outputLabel value="#{lang['store.object']} :"/>
+                                <h:outputLabel
+                                    value="#{lang['store.service']} #{srv.name}"/>
+                                <h:outputLabel value="#{lang['store.amount']} :"/>
+                                <h:outputLabel value="#{srv.cost} €"/>
+                            </h:panelGrid>
+                            <h:panelGrid columns="2" style="margin: 0 auto">
+                                <p:commandButton value="#{lang['store.confirm']}" icon="ui-icon-check"
+                                                 actionListener="#{storeBean.buyService(srv)}"
+                                                 action="/pages/home.xhtml"
+                                                 update=":form"/>
+                                <p:commandButton value="#{lang['store.cancel']}" type="button" icon="ui-icon-close"
+                                                 onclick="PF('addconf#{srv.idService}').hide();"/>
+                            </h:panelGrid>
+                        </p:dialog>
                     </h:panelGrid>
                 </p:panel>
                 <f:facet name="footer">
