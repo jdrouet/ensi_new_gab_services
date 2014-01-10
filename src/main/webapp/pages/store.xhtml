@@ -32,8 +32,7 @@
                             </h:panelGrid>
                             <h:panelGrid columns="2" style="margin: 0 auto">
                                 <p:commandButton value="#{lang['store.confirm']}" icon="ui-icon-check"
-                                                 actionListener="#{storeBean.buyService(srv)}"
-                                                 action="/pages/home.xhtml"
+                                                 action="#{storeBean.execute(srv)}"
                                                  update=":form"/>
                                 <p:commandButton value="#{lang['store.cancel']}" type="button" icon="ui-icon-close"
                                                  onclick="PF('addconf#{srv.idService}').hide();"/>

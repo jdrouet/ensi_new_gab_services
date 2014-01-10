@@ -145,4 +145,21 @@ public class SncfBean extends AbstractBean {
         else
             System.err.println("SNCF company unreachable !");
     }
+    
+    public String execute(final Voyage v) {
+        this.fingerBean.initialize(new FingerBean.Command() {
+            private static final long serialVersionUID = 254803664828902353L;
+
+            @Override
+            public void onSuccess() {
+                reserverVoyage(v);
+            }
+
+            @Override
+            public void onFail() {
+                //To change body of implemented methods use File | Settings | File Templates.
+            }
+        }, "/pages/services/sncf/print.xhtml");
+        return FingerBean.PAGE;
+    }
 }

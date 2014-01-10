@@ -124,5 +124,22 @@ public class StoreBean extends AbstractBean {
         this.getClient().getServiceList().add(service);
         this.accountService.update(clientAccount);
     }
+    
+    public String execute(final Service service) {
+        this.fingerBean.initialize(new FingerBean.Command() {
+            private static final long serialVersionUID = 254803664828902353L;
+
+            @Override
+            public void onSuccess() {
+                buyService(service);
+            }
+
+            @Override
+            public void onFail() {
+                //To change body of implemented methods use File | Settings | File Templates.
+            }
+        }, "/pages/home.xhtml");
+        return FingerBean.PAGE;
+    }
 
 }
