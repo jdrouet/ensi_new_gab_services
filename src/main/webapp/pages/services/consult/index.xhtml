@@ -7,53 +7,55 @@
     <ui:define name="page_title">Consultation</ui:define>
     <ui:define name="page_content">
         <h:form id="form">
-        <p:dataTable value="#{consultationBean.accountList}" var="acc" scrollable="true">
-            <f:facet name="header">
-                <h:outputText value="#{lang['consult.operation_list']}"/>
-            </f:facet>
-
-            <p:columnGroup type="header">
-                <p:row>
-                    <p:column headerText="#{lang['consult.entitled']}"/>
-                    <p:column headerText="#{lang['consult.date']}"/>
-                    <p:column headerText="#{lang['consult.credit']}"/>
-                    <p:column headerText="#{lang['consult.debit']}"/>
-                </p:row>
-            </p:columnGroup>
-
-            <p:subTable value="#{consultationBean.getOperationList(acc)}" var="op">
+            <p:dataTable value="#{consultationBean.accountList}" var="acc" scrollable="true">
                 <f:facet name="header">
-                    #{acc.idAccount} - #{acc.accountType.name}
+                    <h:outputText value="#{lang['consult.operation_list']}"/>
                 </f:facet>
-                <p:column>
-                    <h:outputText rendered="#{op.source.idAccount == acc.idAccount}"
-                                  value="#{op.destination.client.name} - #{op.destination.idAccount}"/>
-                    <h:outputText rendered="#{op.destination.idAccount == acc.idAccount}"
-                                  value="#{op.source.client.name} - #{op.source.idAccount}"/>
-                </p:column>
-                <p:column>
-                    #{op.event}
-                </p:column>
-                <p:column>
-                    <h:outputText rendered="#{op.destination.idAccount == acc.idAccount}"
-                                  value="#{op.amount} €"/>
-                </p:column>
-                <p:column>
-                    <h:outputText rendered="#{op.source.idAccount == acc.idAccount}"
-                                  value="#{op.amount} €"/>
-                </p:column>
-                <p:columnGroup type="footer">
+
+                <p:columnGroup type="header">
                     <p:row>
-                        <p:column footerText="#{lang['consult.balance']}" style="text-align:right" colspan="2"/>
-                        <p:column footerText="#{acc.balance} €" colspan="2"/>
+                        <p:column headerText="#{lang['consult.entitled']}"/>
+                        <p:column headerText="#{lang['consult.date']}"/>
+                        <p:column headerText="#{lang['consult.credit']}"/>
+                        <p:column headerText="#{lang['consult.debit']}"/>
                     </p:row>
                 </p:columnGroup>
-            </p:subTable>
-            <f:facet name="footer">
-                <p:commandButton value="#{lang['consult.back_to_home']}"
-                                 action="/pages/home.xhtml"/>
-            </f:facet>
-        </p:dataTable>
+
+                <p:subTable value="#{consultationBean.getOperationList(acc)}" var="op">
+                    <f:facet name="header">
+                        <h:outputText value="#{acc.idAccount} - #{acc.accountType.name} ("/>
+                        <h:outputText value="#{acc.balance} €">
+                            <f:convertNumber pattern="#0.00"/>
+                        </h:outputText>
+                        <h:outputText value=")"/>
+                    </f:facet>
+                    <p:column>
+                        <h:outputText rendered="#{op.source.idAccount == acc.idAccount}"
+                                      value="#{op.destination.client.name} - #{op.destination.idAccount}"/>
+                        <h:outputText rendered="#{op.destination.idAccount == acc.idAccount}"
+                                      value="#{op.source.client.name} - #{op.source.idAccount}"/>
+                    </p:column>
+                    <p:column>
+                        #{op.event}
+                    </p:column>
+                    <p:column>
+                        <h:outputText rendered="#{op.destination.idAccount == acc.idAccount}"
+                                      value="#{op.amount} €">
+                            <f:convertNumber pattern="#0.00"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column>
+                        <h:outputText rendered="#{op.source.idAccount == acc.idAccount}"
+                                      value="#{op.amount} €">
+                            <f:convertNumber pattern="#0.00"/>
+                        </h:outputText>
+                    </p:column>
+                </p:subTable>
+                <f:facet name="footer">
+                    <p:commandButton value="#{lang['consult.back_to_home']}"
+                                     action="/pages/home.xhtml"/>
+                </f:facet>
+            </p:dataTable>
         </h:form>
     </ui:define>
 </ui:composition>
