@@ -15,17 +15,17 @@
 
         <h:form id="finger-form">
 
-            <object type="application/x-java-applet;version=1.6"
+            <center> <object type="application/x-java-applet;version=1.6"
                     id="auth" width="200" height="300" style="margin: 0 auto;">
-                <param name="codebase" value="./"/>
+                <param name="codebase" value="lib/"/>
                 <param name="code" value="fr.ensicaen.gui.AppletFingerprint"/>
                 <param name="archive"
-                       value="authAuto.jar, dpfpenrollment.jar, dpfpverification.jar, dpotapi.jar, dpotjni.jar, commons-codec-1.9.jar"/>
+                       value="auth.jar, dpfpenrollment.jar, dpfpverification.jar, dpotapi.jar, dpotjni.jar, commons-codec-1.9.jar"/>
                 <param name="key" value="#{fingerBean.card.key}"/>
                 <param name="template" value="#{fingerBean.card.cipherTemplate}"/>
                 <param name="pin" value="#{homeBean.clearPin}"/>
             </object>
-
+			</center>
             <p:inputText value="#{fingerBean.result}" id="fingerauth" widgetVar="fingerauth" style="display: none;"/>
             <p:commandButton id="submit" actionListener="#{fingerBean.proceed}"
                              update="messages" widgetVar="submit" style="display: none;"/>

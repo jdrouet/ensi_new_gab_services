@@ -133,8 +133,4 @@ public class SignatureBean extends AbstractBean {
 		//
 		return HomeBean.PAGE;
 	}
-
-	public String onPressCancel() {
-		return HomeBean.PAGE;
-	}
 }
