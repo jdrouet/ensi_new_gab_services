@@ -131,15 +131,8 @@ public class Service implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + Float.floatToIntBits(cost);
-		result = prime * result
-				+ ((description == null) ? 0 : description.hashCode());
 		result = prime * result
 				+ ((idService == null) ? 0 : idService.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((path == null) ? 0 : path.hashCode());
-		result = prime * result + (removable ? 1231 : 1237);
-		result = prime * result + ((tagList == null) ? 0 : tagList.hashCode());
 		return result;
 	}
 
@@ -152,34 +145,10 @@ public class Service implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Service other = (Service) obj;
-		if (Float.floatToIntBits(cost) != Float.floatToIntBits(other.cost))
-			return false;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
 		if (idService == null) {
 			if (other.idService != null)
 				return false;
 		} else if (!idService.equals(other.idService))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (path == null) {
-			if (other.path != null)
-				return false;
-		} else if (!path.equals(other.path))
-			return false;
-		if (removable != other.removable)
-			return false;
-		if (tagList == null) {
-			if (other.tagList != null)
-				return false;
-		} else if (!tagList.equals(other.tagList))
 			return false;
 		return true;
 	}

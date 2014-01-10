@@ -158,14 +158,7 @@ public class Card implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((account == null) ? 0 : account.hashCode());
-		result = prime * result
-				+ ((cipherTemplate == null) ? 0 : cipherTemplate.hashCode());
-		result = prime * result
-				+ ((hashedPin == null) ? 0 : hashedPin.hashCode());
 		result = prime * result + ((idCard == null) ? 0 : idCard.hashCode());
-		result = prime * result + ((key == null) ? 0 : key.hashCode());
-		result = prime * result + ((pan == null) ? 0 : pan.hashCode());
 		return result;
 	}
 
@@ -178,35 +171,10 @@ public class Card implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Card other = (Card) obj;
-		if (account == null) {
-			if (other.account != null)
-				return false;
-		} else if (!account.equals(other.account))
-			return false;
-		if (cipherTemplate == null) {
-			if (other.cipherTemplate != null)
-				return false;
-		} else if (!cipherTemplate.equals(other.cipherTemplate))
-			return false;
-		if (hashedPin == null) {
-			if (other.hashedPin != null)
-				return false;
-		} else if (!hashedPin.equals(other.hashedPin))
-			return false;
 		if (idCard == null) {
 			if (other.idCard != null)
 				return false;
 		} else if (!idCard.equals(other.idCard))
-			return false;
-		if (key == null) {
-			if (other.key != null)
-				return false;
-		} else if (!key.equals(other.key))
-			return false;
-		if (pan == null) {
-			if (other.pan != null)
-				return false;
-		} else if (!pan.equals(other.pan))
 			return false;
 		return true;
 	}

@@ -109,29 +109,4 @@ public class Operation implements Serializable {
 		this.amount = amount;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((idOperation == null) ? 0 : idOperation.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Operation other = (Operation) obj;
-		if (idOperation == null) {
-			if (other.idOperation != null)
-				return false;
-		} else if (!idOperation.equals(other.idOperation))
-			return false;
-		return true;
-	}
 }

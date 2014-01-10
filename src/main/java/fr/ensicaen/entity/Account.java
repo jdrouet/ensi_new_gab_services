@@ -147,38 +147,24 @@ public class Account implements Serializable {
 
 	public void credit(Operation op) {
 		this.balance += op.getAmount();
-                if(this.creditList == null) {
-                    this.setCreditList(Arrays.asList(op));
-                }
-                else
-                    this.creditList.add(op);
+		if (this.creditList == null) {
+			this.setCreditList(Arrays.asList(op));
+		} else
+			this.creditList.add(op);
 	}
 
 	public void debit(Operation op) {
 		this.balance -= op.getAmount();
-                if(this.debitList == null) {
-                    this.setDebitList(Arrays.asList(op));
-                }
-                else
-                    this.debitList.add(op);
+		if (this.debitList == null) {
+			this.setDebitList(Arrays.asList(op));
+		} else
+			this.debitList.add(op);
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((accountType == null) ? 0 : accountType.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(balance);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result
-				+ ((cardList == null) ? 0 : cardList.hashCode());
-		result = prime * result + ((client == null) ? 0 : client.hashCode());
-		result = prime * result
-				+ ((creditList == null) ? 0 : creditList.hashCode());
-		result = prime * result
-				+ ((debitList == null) ? 0 : debitList.hashCode());
 		result = prime * result
 				+ ((idAccount == null) ? 0 : idAccount.hashCode());
 		return result;
@@ -193,34 +179,6 @@ public class Account implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Account other = (Account) obj;
-		if (accountType == null) {
-			if (other.accountType != null)
-				return false;
-		} else if (!accountType.equals(other.accountType))
-			return false;
-		if (Double.doubleToLongBits(balance) != Double
-				.doubleToLongBits(other.balance))
-			return false;
-		if (cardList == null) {
-			if (other.cardList != null)
-				return false;
-		} else if (!cardList.equals(other.cardList))
-			return false;
-		if (client == null) {
-			if (other.client != null)
-				return false;
-		} else if (!client.equals(other.client))
-			return false;
-		if (creditList == null) {
-			if (other.creditList != null)
-				return false;
-		} else if (!creditList.equals(other.creditList))
-			return false;
-		if (debitList == null) {
-			if (other.debitList != null)
-				return false;
-		} else if (!debitList.equals(other.debitList))
-			return false;
 		if (idAccount == null) {
 			if (other.idAccount != null)
 				return false;

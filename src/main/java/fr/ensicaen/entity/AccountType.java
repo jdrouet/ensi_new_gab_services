@@ -81,13 +81,8 @@ public class AccountType implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((ceiling == null) ? 0 : ceiling.hashCode());
 		result = prime * result
 				+ ((idAccountType == null) ? 0 : idAccountType.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(rate);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
 
@@ -100,23 +95,10 @@ public class AccountType implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		AccountType other = (AccountType) obj;
-		if (ceiling == null) {
-			if (other.ceiling != null)
-				return false;
-		} else if (!ceiling.equals(other.ceiling))
-			return false;
 		if (idAccountType == null) {
 			if (other.idAccountType != null)
 				return false;
 		} else if (!idAccountType.equals(other.idAccountType))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (Double.doubleToLongBits(rate) != Double
-				.doubleToLongBits(other.rate))
 			return false;
 		return true;
 	}

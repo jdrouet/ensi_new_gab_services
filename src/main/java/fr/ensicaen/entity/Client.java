@@ -132,15 +132,7 @@ public abstract class Client implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((accountList == null) ? 0 : accountList.hashCode());
-		result = prime * result
-				+ ((actionList == null) ? 0 : actionList.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result
 				+ ((idClient == null) ? 0 : idClient.hashCode());
-		result = prime * result + ((p12 == null) ? 0 : p12.hashCode());
-		result = prime * result
-				+ ((serviceList == null) ? 0 : serviceList.hashCode());
 		return result;
 	}
 
@@ -153,35 +145,10 @@ public abstract class Client implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Client other = (Client) obj;
-		if (accountList == null) {
-			if (other.accountList != null)
-				return false;
-		} else if (!accountList.equals(other.accountList))
-			return false;
-		if (actionList == null) {
-			if (other.actionList != null)
-				return false;
-		} else if (!actionList.equals(other.actionList))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
 		if (idClient == null) {
 			if (other.idClient != null)
 				return false;
 		} else if (!idClient.equals(other.idClient))
-			return false;
-		if (p12 == null) {
-			if (other.p12 != null)
-				return false;
-		} else if (!p12.equals(other.p12))
-			return false;
-		if (serviceList == null) {
-			if (other.serviceList != null)
-				return false;
-		} else if (!serviceList.equals(other.serviceList))
 			return false;
 		return true;
 	}
