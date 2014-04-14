@@ -86,8 +86,8 @@ public class EnsicaenSender {
         msg.setContent(multipart);
 
 
-        String user = "adee";
-        String pass = "0406/adee";
+        String user = "yourlogin";
+        String pass = "yourpass";
         Transport t = mailSession.getTransport("smtp");
         t.connect(host, user, pass);
 
