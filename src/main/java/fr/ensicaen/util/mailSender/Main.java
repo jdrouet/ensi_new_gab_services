@@ -17,7 +17,7 @@ public class Main {
          EnsicaenSender mail = new EnsicaenSender();
            
           
-          mail.sendFile("Sender Namer","yassir.bouhaddaoui@gmail.com", new File("C:/DP1.pdf"));
+          mail.sendFile("Sender Namer","YOURemail", new File("C:/DP1.pdf"));
         
       }
 
