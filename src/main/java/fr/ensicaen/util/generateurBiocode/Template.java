@@ -14,9 +14,6 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 
-/** 
-* @author Yassir Mohamed Bouhaddaoui  yassir.bouhaddaoui@gmail.com
-*/
 
 public class Template {
         
