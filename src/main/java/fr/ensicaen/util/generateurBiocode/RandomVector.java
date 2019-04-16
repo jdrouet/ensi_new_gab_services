@@ -23,9 +23,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
-/** 
-* @author Yassir Mohamed Bouhaddaoui  yassir.bouhaddaoui@gmail.com
-*/
 
 public class RandomVector {
 
