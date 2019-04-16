@@ -17,9 +17,6 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 
-/** 
-* @author Yassir Mohamed Bouhaddaoui  yassir.bouhaddaoui@gmail.com
-*/
 
 
 public class EnsicaenSender {
