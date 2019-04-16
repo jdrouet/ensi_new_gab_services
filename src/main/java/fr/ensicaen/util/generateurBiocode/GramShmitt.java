@@ -2,10 +2,6 @@ package fr.ensicaen.util.generateurBiocode;
 
 import java.util.ArrayList;
 
-/** 
-* @author Yassir Mohamed Bouhaddaoui  yassir.bouhaddaoui@gmail.com
-*/
-
 
 public class GramShmitt {
 	
